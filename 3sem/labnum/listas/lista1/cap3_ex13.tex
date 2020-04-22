@@ -1,0 +1,56 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage[brazil]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{bussproofs}
+\usepackage[table]{xcolor}
+\usepackage{gensymb}
+\graphicspath{{./images}}
+\geometry{verbose,a4paper,left=2cm,top=2cm,right=3cm,bottom=3cm}
+\title{Lista}
+\author{Lourenço Henrique Moinheiro Martins Sborz Bogo}
+\date{}
+\linespread{1.5}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\product}[3]{\displaystyle\prod_{#1}^#2 #3}
+\newcommand{\gsum}[3]{\displaystyle\sum_{#1}^#2 #3}
+\newcommand{\mytitle}[1]{\textbf{\underline{#1}}}
+\newcommand{\ring}[1]{\langle #1 \rangle}
+\newcommand{\glim}[1]{\displaystyle\lim_{#1}}
+
+\begin{document}
+
+\maketitle
+
+Para provar que perto do ponto $0$ a função pode ser apoximada por $\frac{-x}{3}$ iremos usar Taylor.
+
+$f(x) = \frac{xcos(x) - sin(x)}{x^2}$.
+$f'(x) = \frac{-x^3sin(x) - 2x(xcos(x)-sin(x))}{x^4}$.
+
+Denominando $t(x)$ a expansão de Taylor de primeira ordem da função $f(x)$ usando o ponto $x_0 = 0$ como base, temos:
+
+$t(x) = f(x_0) + f'(x_0)(x - 0) = f(x_0) + f'(x_0)(x)$.
+
+Como $f'(x)$ e $f(x)$ não estão bem definidas no ponto $x = 0$, precisamos calcular o limite quando $x \to 0$. Temos então:
+\\
+
+$\displaystyle\lim_{x \to 0}f'(x) = \displaystyle\lim_{x \to 0}\frac{-x^3sin(x) - 2x(xcos(x)-sin(x))}{x^4} = \displaystyle\lim_{x \to 0}\frac{-x^2sin(x) - 2(xcos(x)-sin(x))}{x^3} \rightarrow L'Hopital \rightarrow \displaystyle\lim_{x \to 0}\frac{-2xsin(x)-2x^2cos(x)+2xsen(x)}{3x^2} = \displaystyle\lim_{x \to 0}\frac{-2xsin(x)-2x^2cos(x)+2xsen(x)}{3x^2} = \displaystyle\lim_{x \to 0}\frac{-x^2cos(x)}{3x^2} = \frac{-1}{3}$.
+\\
+
+$\displaystyle\lim_{x \to 0}f(x) = \displaystyle\lim_{x \to 0}\frac{xcos(x)-sen(x)}{x^2} \rightarrow L'Hopital \rightarrow \displaystyle\lim_{x \to 0}\frac{-xsen(x)}{2x} = 0$
+\\
+
+Agora, por fim, temos:
+\\
+
+$\displaystyle\lim_{x_0 \to 0}t(x) = \displaystyle\lim_{x_0 \to 0}f(x_0) + f'(x_0)(x) = 0 + \frac{-x}{3} = \frac{-x}{3}$
+.
+
+\end{document}

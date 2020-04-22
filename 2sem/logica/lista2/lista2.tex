@@ -1,0 +1,222 @@
+\documentclass[12pt, oneside]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{bussproofs}
+\usepackage{calrsfs}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[brazil]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{forest}
+\forestset{
+  smullyan tableaux/.style={
+    for tree={
+      math content
+    },
+    where n children=1{
+      !1.before computing xy={l=\baselineskip},
+      !1.no edge
+    }{},
+    closed/.style={
+      label=below:$\times$
+    },    
+  },
+}
+
+\newenvironment{scprooftree}[1]%
+  {\gdef\scalefactor{#1}\begin{center}\proofSkipAmount \leavevmode}%
+    {\scalebox{\scalefactor}{\DisplayProof}\proofSkipAmount \end{center} }
+  
+\geometry{verbose,a4paper,left=2cm,top=2cm,right=2cm,bottom=1cm}
+\title{MAC 239 Lista 2: Lógica de Primeira Ordem}
+\author{Lourenço Henrique Moinheiro Martins Sborz Bogo, NUSP=11208005}
+\date{12/11/2019}
+\linespread{1.5}
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+    
+\item
+  
+  \begin{itemize}
+  \item $\Gamma$ = \{$p_1{(c)}$ $\rightarrow$ $\forall{x}$($p_2{(x)}$)\}
+  \item $\varphi$ = $\forall{x}$($p_1{(c)}$ $\rightarrow$ $p_2{(x)}$)
+  \end{itemize}
+   \begin{center}
+    \begin{forest}
+      smullyan tableaux
+      [T p_1(c) \rightarrow \forall x p_2(x)
+        [F \forall x(p_1(c) \rightarrow p_2(x)
+          [F p_1(c) \rightarrow p_2(b)
+            [T p_1(c)
+              [F p_2(b)
+                [F p_1(c), closed]
+                [T \forall xp_2(x)
+                  [T p_2(b), closed]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    \end{forest}
+  \end{center}
+  Como todos os ramos do Tableaux fecharam, podemos concluir que $\Gamma \vdash \varphi$.
+  
+\item
+  
+  \begin{itemize}
+  \item $\Gamma$ = \{$\forall{x_1}$($\forall{x_2}$($p_1{(x_2)}$ $\rightarrow$ $p_2{(x_1)}$))\}
+  \item $\varphi$ = $\exists{x_2}p_1{(x_2)}$ $\rightarrow$ $\forall{x_1}p_2{(x_1)}$
+  \end{itemize}
+  \begin{center}
+    \begin{forest}
+      smullyan tableaux
+      [T \forall x_1 (\forall x_2 (p_1(x_2) \rightarrow p_2(x_1)))
+        [F \exists x_2 p_1(x_2) \rightarrow \forall x_1 p_2(x_1)
+          [T \exists x_2 p_1(x_2)
+            [F \forall x_1 p_2(x_1)
+              [T p_1(c)
+                [F p_2(b)
+                  [T \forall x_2 (p_1(x_2) \rightarrow p_2(b)
+                    [T p_1(c) \rightarrow p_2(b)
+                      [F p_1(c), closed]
+                      [T p_2(b), closed]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    \end{forest}
+  \end{center}
+  Como todos os ramos do Tableaux fecharam, podemos concluir que $\Gamma \vdash \varphi$.
+\item
+  
+  \begin{itemize}
+  \item $\Gamma$ = \{$\forall{x_1}p{(a,x_1,x_1)}$, $\forall{x_1}$($\forall{x_2}$($\forall{x_3}$($p{(x_1,x_2,x_3)}$ $\rightarrow$ $p{(f{(x_1)},x_2,f{(x_3)})}$)))\}
+  \item $\varphi$ = $p{(f{(a)},a,f{(a)})}$
+  \end{itemize}
+  \begin{scprooftree}{0.8}
+    \def\ScoreOverhang{1pt}
+    \def\labelSpacing{1.5pt}
+    \def\insertBetweenHyps{1pt}
+    \def\extraVskip{5pt
+    \def\defaultHypSeparation{\hskip .1in}}
+    
+    \AxiomC{$p(a,a,a) \vdash p(a,a,a)$}
+    \RightLabel{12}
+    \UnaryInfC{$p(a,a,a),p(a,a,a) \rightarrow p(f(a),a,f(a)) \vdash p(a,a,a)$}
+    
+    \AxiomC{$p(a,a,a) \rightarrow p(f(a),a,f(a)) \vdash p(a,a,a) \rightarrow p(f(a),a,f(a))$}
+    \RightLabel{12}
+    \UnaryInfC{$p(a,a,a) \rightarrow p(f(a),a,f(a)),p(a,a,a) \vdash p(a,a,a) \rightarrow p(f(a),a,f(a))$}
+
+    \RightLabel{8}
+    \BinaryInfC{$p(a,a,a),p(a,a,a) \rightarrow p(f(a),a,f(a)) \vdash p(f(a),a,f(a))$}
+    \RightLabel{14}
+    \UnaryInfC{$p(a,a,a),\forall{x_3}(p(a,a,x_3) \rightarrow p(f(a),a,f(x_3))) \vdash p(f(a),a,f(a))$}
+    \RightLabel{14}
+    \UnaryInfC{$p(a,a,a),\forall{x_2}(\forall{x_3}(p(a,x_2,x_3) \rightarrow p(f(a),x_2,f(x_3)))) \vdash p(f(a),a,f(a))$}
+    \RightLabel{14}
+    \UnaryInfC{$p(a,a,a),\forall{x_1}(\forall{x_2}(\forall{x_3}(p(x_1,x_2,x_3) \rightarrow p(f(x_1),x_2,f(x_3))))) \vdash p(f(a),a,f(a))$}
+    \RightLabel{14}
+    \UnaryInfC{$\forall{x_1}p(a,x_1,x_1),\forall{x_1}(\forall{x_2}(\forall{x_3}(p(x_1,x_2,x_3) \rightarrow p(f(x_1),x_2,f(x_3))))) \vdash p(f(a),a,f(a))$}
+  \end{scprooftree}
+  Como partimos dos axiomas e apenas usando as regras do Cálculo de Sequentes, conseguimos chegar em $\Gamma \vdash \varphi$, podemos concluir o mesmo.
+  \begin{center}
+    \begin{forest}
+      smullyan tableaux
+      [{T \forall{x_1}p(a,x_1,x_1)}
+      [{T \forall{x_1}(\forall{x_2}(\forall{x_3}(p(x_1,x_2,x_3) \rightarrow p(f(x_1),x_2,f(x_3)))))}
+      [{F p(f(a),a,f(a))}
+      [{T p(a,a,a)}
+      [{T \forall{x_2}(\forall{x_3}(p(a,x_2,x_3) \rightarrow p(f(a),x_2,f(x_3))))}
+      [{T \forall{x_3}(p(a,a,x_3) \rightarrow p(f(a),a,f(x_3)))}
+      [{T p(a,a,a) \rightarrow p(f(a),a,f(a))}
+      [{F p(a,a,a)}, closed]
+      [{T p(f(a),a,f(a))}, closed]
+      ]
+      ]
+      ]
+      ]
+      ]
+      ]
+      ]
+    \end{forest}
+  \end{center}
+  Como todos os ramos do Tableaux fecharam, podemos concluir que $\Gamma \vdash \varphi$
+  \newpage
+\item
+  
+  \begin{itemize}
+  \item $\Gamma$ = \{$\forall{x_1}$($(p{(x_1)}$ $\rightarrow$ ($\forall{x_2}$($p{(f{(x_1,x_2)})}$ $\wedge$ $p{(f{(x_2,x_1)})}$))),$p{(a)}$,$p{(c)}$\}
+  \item $\varphi$ = $p{(f{(f{(a,b)},f{(c,d)})})}$
+  \end{itemize}
+  \begin{center}
+    \begin{forest}
+      smullyan tableaux
+      [{T \forall{x_1}(p(x_1) \rightarrow (\forall{x_2}(p(f(x_1,x_2)) \wedge p(f(x_2, x_1)))))}
+      [{T p(a)}
+      [{T p(c)}
+      [{F p(f(a,b),f(c,d))}
+      [{T p(c_1) \rightarrow (\forall{x_2}(p(f(c_1,x_2)) \wedge p(f(x_2,c_1))))}
+      [{F p(c_1)}]
+      [{T \forall{x_2}(p(f(c_1,x_2)) \wedge p(f(x_2,c_1)))}
+      [{T p(f(c_1,c_2)) \wedge p(f(c_2,c_1))}
+      [{T p(f(c_1,c_2))}
+      [{T p(f(c_2,c_1))}
+      ]
+      ]
+      ]
+      ]
+      ]
+      ]
+      ]
+      ]
+      ]
+    \end{forest}
+  \end{center}
+  Independente do que for colocado no lugar de $c_1$ e $c_2$, o Tableaux nunca fechará $\rightarrow$ Não posso deduzir $\varphi$ de $\Gamma$.
+\item
+  
+  \begin{itemize}
+  \item $\Gamma$ = \{$\forall{x_1}$($\forall{x_3}$($p_1{(x_1)}$$\wedge$($\exists{x_2}$($p_2{(x_1,x_2,x_3)}$ $\lor$ $p_2{(x_2,x_1,x_3)}$)$\rightarrow$ $p_1{(x_3)}$))),\\$p_1{(a)}$,$p_2{(a,b,c)}$,$p_2{(d,e,f)}$,$p_2{(c,f,g)}$\}
+  \item $\varphi$ = $p_1{(g)}$
+  \end{itemize}
+  \begin{center}
+    \begin{forest}
+      smullyan tableaux
+      [{T \forall{x_1}(\forall{x_3}(p_1(x_1) \wedge (\exists{x_2}(p_2(x_1,x_2,x_3) \lor p_2(x_2,x_1,x_3)) \rightarrow p_1(x_1))))}
+      [{T p_1(a)}
+      [{T p_2(a,b,c)}
+      [{T p_2(d,e,f)}
+      [{T p_2(c,f,g)}
+      [{F p_1(g)}
+      [{T \forall{x_3}(p_1(g) \wedge (\exists{x_2}(p_2(g,x_2,x_3) \lor p_2(x_2,x_1,x_3)) \rightarrow p_1(g)))}
+      [{T p_1(g) \wedge (\exists{x_2}(p_2(g,x_2,c_1) \lor p_2(x_2,g,c_1)))}
+      [{T p_1(g)}, closed]
+      ]
+      ]
+      ]
+      ]
+      ]
+      ]
+      ]
+      ]
+    \end{forest}
+  \end{center}
+  Como todos os ramos do Tableaux fecharam, podemos concluir que $\Gamma \vdash \varphi$.
+\end{enumerate}
+
+\end{document}

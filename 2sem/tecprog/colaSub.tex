@@ -1,0 +1,59 @@
+% Created 2019-12-03 ter 00:50
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{miguel}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={miguel},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.2.6)}, 
+ pdflang={English}}
+\begin{document}
+
+%\tableofcontents
+
+\begin{enumerate}
+\item Responda verdadeiro ou falso e justifique:
+\begin{enumerate}
+\item Não se deve normalmente colocar funções em arquivos de cabeçalhos (.h) em programas  escritos em (.c).\\
+\textbf{Resposta:} Verdadeiro. O cabeçalho serve basicamente para interface e só deve conter declarações.
+\item Autômatos finitos servem apenas para construção de analisadores léxicos.\\
+\textbf{Resposta:} Falso. São modelos genéricos, embora não sejam universais.
+\item A saída padrão é o terminal onde o programa é executado.\\
+\textbf{Resposta:} Falso. A saída padrão é o \uline{Stream} de saída do processo. A associação com o terminal é apenas uma das possibilidades.
+\item No Unix o significado de \textbf{executável} depende do tipo de cada arquivo.\\
+\textbf{Resposta:} Verdadeiro. Um script é texto e deve ser interpretado por um outro programa. Um arquivo ELF pode ou não ser executável, dependendo da arquitetura para o qual foi gerado
+\end{enumerate}
+\item int recur (int a, int b).\\
+\textbf{Resposta:} O que deveria ser feito é calcular o tamanho do frame
+\item Responda e justifique:
+\begin{enumerate}
+\item Por que a chamada para o Kernel só pode ser feita com \emph{syscall} ou \emph{int 0x80}?\\
+\textbf{Resposta:} O modo Kernel é protegido. Assim precisamos de uma instrução especial.
+\item Por que o protótipo de funções é importatnte para o Compilador?\\
+\textbf{Resposta:} Para que o compilador consiga identificar o tipo de retorno e os argumentos.
+\item Por que o getchar devolve um int e não um char?\\
+\textbf{Resposta:} Para retornar o código para EOF.
+\item Impacto no \uline{make} ao \emph{atrasar} o relógio.\\
+\textbf{Resposta:} Os arquivos alterados ficarão com uma data no passado e o make poderá não identifcar a necessidade de reconstrução. Outro impacto é nos alvos gerados, que ficarão com data antiga, e serão refeitos sem necessidade na vez seguinte.
+\item Impacto no \uline{make} ao \emph{adiantar} o relógio:\\
+\textbf{Resposta:} Nenhum. É como se cada operação demorasse mais tempo do que o normal.
+\end{enumerate}
+\end{enumerate}
+\end{document}

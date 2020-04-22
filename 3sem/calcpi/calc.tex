@@ -1,0 +1,66 @@
+\documentclass[12pt]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage[brazil]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{bussproofs}
+\usepackage[table]{xcolor}
+\usepackage{gensymb}
+\graphicspath{{./images}}
+\geometry{verbose,a4paper,left=2cm,top=2cm,right=3cm,bottom=3cm}
+\title{Caderno de Funções Diferenciáveis e Séries}
+\author{}
+\date{}
+\linespread{1.5}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\product}[3]{\displaystyle\prod_{#1}^#2 #3}
+\newcommand{\gsum}[3]{\displaystyle\sum_{#1}^#2 #3}
+\newcommand{\mytitle}[1]{\textbf{\underline{#1}}}
+\newcommand{\ring}[1]{\langle #1 \rangle}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\chapter{Sequências Numéricas}
+\section{Introdução}
+
+\mytitle{Definição:} Lista infinita de números reais (ou complexos, inteiros). Formalmente é uma função:
+
+$f:\mathbb{N} \rightarrow \real$, onde $a_n=f(n)$.\\
+\mytitle{Notação:} $\{a_N\}_{n\in\mathbb{N}}$, $\{a_n\}^\infty_{n=1}$, $(a_n)^\infty_{n=1}$, $\dots$\\
+
+\section{Limites}
+
+\mytitle{Definição:} $\{a_n\}^\infty_{n=1}$ tem limite finito $L \in \real$, e escrevemos $\lim_{n \to \infty}a_n=L$ ou $a_n\rightarrow L$, se dado $\epsilon >0$ existe $N$ tal que:
+
+$n\geq \Rightarrow |a_n-L|<\epsilon$\\
+\mytitle{Teorema:} Suponhamos que uma sequência $\{a_n\}$ é dada por $a_n=f(n)$, onde $f:[1,+\infty]\rightarrow \real$. Se
+
+$\lim_{x \to \infty}f(x)=L$ então $\lim_{n \to \infty}a_n=L$.\\
+\mytitle{Definição:} Dizemos que $\{a_n\}$ diverge para $+(-)\infty$, e escrevemos $\lim_{n \to \infty}a_n=+(-)\infty$, se dadoa $M>0$, existe $N$ tal que $N\geq n \Rightarrow a_n>M(<-M)$. Se o limite da sequência quando $n \to \infty$ não existe, também dizemos que $\{a_n\}$ é divergente.\\
+
+\section{Propriedades Algébricas dos Limites}
+\begin{itemize}
+\item $lim(a_n+b_n)=lim(a_n)+lim(b_n)$
+\item $lim(ca_n)=clim(a_n),\: c \in \real$
+\item $lim(a_nb_n)=lim(a_n)lim(b_n)$
+\item $lim\frac{a_n}{b_n}=\frac{lim(a_n)}{lim(b_n)}$, se $lim(b_n)\neq 0$
+\end{itemize}
+Caso os limites do lado direito existam.\\
+
+\section{Outras Propriedades}
+
+Se $f$ é uma função contínua, então:
+
+$lim(f(a_n))=f(lim(a_n))$.\\
+\mytitle{Definição(Teorema do Confronto):} Se $a_n\leq b_n \leq _n,\: \forall n$ e $a_n\rightarrow L,\: c_n\rightarrow L$ então $b_n\rightarrow L$.\\
+\mytitle{Definição:} $\{a_n\}$ é crescente se $a_{n+1}\geq a_n$ e estritamente crescente se $a_{n+1}>a_n$ (definido analogamente para decrescente). $\{a_n\}$ é monotônica se é crescente ou decrescente.\\
+\mytitle{Definição:} $\{a_n\}$ é limitada superiormente (inferiormente) se $\exists M$ tal que $a_n\leq (\geq) M,\: \forall n$.
+\end{document}

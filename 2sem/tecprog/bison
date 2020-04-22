@@ -1,0 +1,23 @@
+Forma de indentificar o texto
+Tipos:
+	Top-down
+	Bottom-up
+Recursiva-descendente:
+	Cada não-terminal determina uma regra
+	Forçosamente gramática LL(k)
+Gramáticas LR(k):
+	São mais flexíveis em termos de expressão
+
+Declarações:
+	%left, %right, %nonassoc - indicação de predicados
+	%union - tipos possíveis para valores semânticos, exemplo:
+	       %union {
+	       	      int xx;
+		      double yy
+	       }
+	       %type
+
+
+
+
+

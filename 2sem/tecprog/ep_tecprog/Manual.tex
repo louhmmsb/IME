@@ -1,0 +1,51 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage[brazil]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{bussproofs}
+\usepackage[table]{xcolor}
+\usepackage{gensymb}
+\graphicspath{{./images}}
+\geometry{verbose,a4paper,left=2cm,top=2cm,right=3cm,bottom=3cm}
+\title{README só que bonito}
+\author{Leonardo, Lourenço, Miguel}
+\date{}
+\linespread{1.5}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\product}[3]{\displaystyle\prod_{#1}^#2 #3}
+\newcommand{\gsum}[3]{\displaystyle\sum_{#1}^#2 #3}
+\newcommand{\mytitle}[1]{\textbf{\underline{#1}}}
+\begin{document}
+\maketitle
+\noindent\mytitle{Preparando o Programa}:\\
+Para iniciar o programa rode o comando "make install" e rode o jogo usando ./spaceWars.bin 1". Caso queira compartilhar o programa use o comando "make tar" que criará um tar com tudo que é necessário para rodar o programa.\\
+\mytitle{OBS}: As imagens demoram um pouco para serem criadas, então seja paciente :D!\\
+\mytitle{Controles}: Para controlar as naves use:
+\begin{description}
+\item[Nave 1]:
+  \begin{itemize}
+  \item $\uparrow$ para acelerar
+  \item $\downarrow$ para atirar
+  \item $\leftarrow$ e $\rightarrow$ para rotacionar a nave
+  \end{itemize}
+\item[Nave 2]:
+  \begin{itemize}
+  \item $W$ para acelerar
+  \item $S$ para atirar
+  \item $A$ e $D$ para rotacionar a nave
+  \end{itemize}
+\end{description}
+Este projeto foi feito por:
+\begin{itemize}
+\item Leonardo Costa Santos - 10783142
+\item Lourenço Henrique Moinheiro Martins Sborz Bogo - 11208005
+\item Miguel de Mello Carpi - 11208502
+\end{itemize}
+\end{document}

@@ -1,0 +1,102 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage[brazil]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{bussproofs}
+\usepackage[table]{xcolor}
+\usepackage{gensymb}
+\graphicspath{{./images}}
+\geometry{verbose,a4paper,left=2cm,top=2cm,right=3cm,bottom=3cm}
+\title{Lista}
+\author{Lourenço Henrique Moinheiro Martins Sborz Bogo}
+\date{}
+\linespread{1.5}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\product}[3]{\displaystyle\prod_{#1}^#2 #3}
+\newcommand{\gsum}[3]{\displaystyle\sum_{#1}^#2 #3}
+\newcommand{\mytitle}[1]{\textbf{\underline{#1}}}
+\newcommand{\ring}[1]{\langle #1 \rangle}
+
+
+\begin{document}
+
+\maketitle
+
+\mytitle{Monomial Basis:}
+Primeiro temos que montar um sistema linear com os pontos que nos foram dados: $(-1, 1), (0, 1), (1, 2), (2, 0)$
+
+$
+\begin{cases}
+  -a+b-c+d = 1\\
+  0a+0b+0c+d = 1\\
+  a+b+c+d = 2\\\
+  8a+4b+2c+1 = 0
+\end{cases}
+$
+
+
+Resolvendo esse sistema linear temos que:
+
+$
+\begin{cases}
+  a = \frac{-2}{3}\\
+  b = \frac{1}{2}\\
+  c = \frac{7}{6}\\
+  d = 1
+\end{cases}
+$
+\\
+
+Portanto o polinômio pela base monomial é: $\frac{4x^3-3x^2-7x-6}{-6}$
+
+
+\newpage
+
+\mytitle{Lagrange Basis:} Temos que achar os polinômios da base de Lagrange:
+
+$L(x) = \gsum{j=0}{k}{y_jl_j(x)}$,
+
+com $l_i(x) = \product{j=0, j \neq i}{k}{\frac{x-x_i}{x_j-x_i}}$.
+
+Para o nosso exemplo, temos:
+
+$l_0(x) = \product{i=0, 0 \neq i}{k}{\frac{x-x_i}{x_j-x_i}} = \frac{x}{-1} \cdot \frac{x-1}{-2} \cdot \frac{x-2}{-3} = \frac{x^3-3x^2+2x}{-6}\\$
+
+$l_1(x) = \product{i=0, 1 \neq i}{k}{\frac{x-x_i}{x_j-x_i}} = \frac{x+1}{1} \cdot \frac{x-1}{-1} \cdot \frac{x-2}{-2} = \frac{x^3-2x^2-x+2}{2}\\$
+
+$l_2(x) = \product{i=0, 2 \neq i}{k}{\frac{x-x_i}{x_j-x_i}} = \frac{x+1}{2} \cdot \frac{x}{1} \cdot \frac{x-2}{-1} = \frac{x^3-x^2-2x}{-2}\\$
+
+$l_3(x) = \product{i=0, 3 \neq i}{k}{\frac{x-x_i}{x_j-x_i}} = \frac{x+1}{3} \cdot \frac{x}{2} \cdot \frac{x-1}{1} = \frac{x^3-x}{6}\\$
+
+Agora que temos os polinômios da base de lagrange, podemos construir finalmente o polinômio final utilizando a somatória $L(x)$.
+
+$L(x) = \gsum{j=0}{k}{y_jl_j(x)} = \frac{x^3-3x^2+2x}{-6} + \frac{-3x^3+6x^2+3x-6}{-6} + \frac{6x^3-6x^2-12x}{-6} + 0 = \\ = \frac{4x^3-3x^2-7x-6}{-6}$.
+
+\newpage
+
+\mytitle{Newton Basis}: Para esse método, temos que achar $P_{n-1}(x)$, o polinômio que interpola n pontos, para depois construir $P_n$ recursivamente.
+
+Primeiro, vamos construir $P_0(x)$, o polinômio que interpola 1 ponto.
+
+$P_0(x) = a_0 \rightarrow P_0(x_0) = y_0 \rightarrow P_0(-1) = 1$.
+
+Agora para $n = 1$, temos:
+
+$P_1(x) = P_0(x) + a_1(x-x_0) \rightarrow a_1 = \frac{y_1-y_0}{x_1-x_0} = \frac{1-1}{0-(-1)} = 0 \rightarrow P_1(x) = P_0(x) = y_0 = 1$
+
+$n=2$:
+
+$P_2(x) = P_1(x) + a_2(x-x_0)(x-x_1) \rightarrow y_2 = P_1(x_2) + a_2(x_2-x_0)(x_2-x_1) \rightarrow a_2 = \frac{y_2-P_1(x)}{(x_2-x_0)(x_1-x_0)} = \frac{1}{2} \rightarrow P_2(x) = 1 + \frac{(x+1)(x)}{2}$
+
+$n = 3$:
+
+$P_3(x) = P_2(x) + a_3(x-x_0)(x-x_1)(x-x_2) \rightarrow y_3 = P_2(x_3) + a_3(x_3-x_0)(x_3-x_1)(x_3-x_2) \rightarrow a_3 = \frac{y_3-P_2(x_3)}{(x_3-x_0)(x_3-x_1)(x_3-x_2)} = \frac{-4}{6} \rightarrow P_3(x) = \frac{6}{6} + \frac{3x^2+3x}{6} + \frac{-4(x+1)(x)(x-1)}{6} = \frac{-4x^3+3x^2+7x+6}{6}$.
+
+\end{document}

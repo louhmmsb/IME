@@ -1,0 +1,41 @@
+(gnome-settings-daemon:10269): color-plugin-WARNING **: failed to get profile checksum: failed to load: not an ICC profile
+Window manager warning: Log level 128: Preferences.vala:298: Loading preferences from file '/home/naftuli/.config/plank/dock1/settings'
+Window manager warning: Log level 128: Preferences.vala:298: Loading preferences from file '/home/naftuli/.config/plank/theme/dock.theme'
+Window manager warning: Log level 128: Settings.vala:155: Loading settings from schema 'org.pantheon.desktop.gala.behavior'
+Window manager warning: Log level 128: Settings.vala:155: Loading settings from schema 'org.pantheon.desktop.gala.shadows'
+
+** (cerbere:10305): WARNING **: ProcessWrapper.vala:82: Failed to execute child process "plank" (No such file or directory)
+Window manager warning: Log level 128: Settings.vala:155: Loading settings from schema 'org.pantheon.desktop.gala.animations'
+** Message: applet now removed from the notification area
+
+(dropbox:10351): Gtk-WARNING **: Unable to locate theme engine in module_path: "pixmap",
+
+(dropbox:10351): Gtk-WARNING **: Unable to locate theme engine in module_path: "pixmap",
+
+(dropbox:10351): Gtk-WARNING **: Unable to locate theme engine in module_path: "pixmap",
+
+(dropbox:10351): Gtk-WARNING **: Unable to locate theme engine in module_path: "pixmap",
+
+(dropbox:10351): Gtk-WARNING **: Unable to locate theme engine in module_path: "pixmap",
+Gtk-Message: Failed to load module "canberra-gtk-module"
+gnome-session[10224]: WARNING: Could not launch application 'telepathy-indicator-pantheon.desktop': Unable to start application: Failed to execute child process "telepathy-indicator" (No such file or directory)
+
+** (zeitgeist-datahub:11424): WARNING **: zeitgeist-datahub.vala:227: Unable to get name "org.gnome.zeitgeist.datahub" on the bus!
+
+(applet.py:11432): Gtk-WARNING **: Unable to locate theme engine in module_path: "pixmap",
+
+(applet.py:11432): Gtk-WARNING **: Unable to locate theme engine in module_path: "pixmap",
+
+(applet.py:11432): Gtk-WARNING **: Unable to locate theme engine in module_path: "pixmap",
+
+(applet.py:11432): Gtk-WARNING **: Unable to locate theme engine in module_path: "pixmap",
+
+(applet.py:11432): Gtk-WARNING **: Unable to locate theme engine in module_path: "pixmap",
+Gtk-Message: Failed to load module "canberra-gtk-module"
+
+** (update-notifier:13401): WARNING **: log file empty (logrotate?) /var/log/dpkg.log
+
+
+** (update-notifier:13401): WARNING **: log file empty (logrotate?) /var/log/apt/term.log
+
+Window manager warning: Log level 128: Settings.vala:155: Loading settings from schema 'org.pantheon.desktop.gala.appearance'

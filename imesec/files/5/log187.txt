@@ -1,0 +1,74 @@
+[    47.459] 
+X.Org X Server 1.9.4
+Release Date: 2011-02-04
+[    47.461] X Protocol Version 11, Revision 0
+[    47.461] Build Operating System: Linux 2.6.37-gentoo-r4 x86_64 Gentoo
+[    47.462] Current Operating System: Linux ZVEZDA 2.6.37-gentoo-r4 #2 SMP PREEMPT Mon Apr 11 14:00:26 CEST 2011 x86_64
+[    47.463] Kernel command line: root=/dev/sda3 nouveau.modeset=1
+[    47.464] Build Date: 11 April 2011  02:02:40PM
+[    47.465]  
+[    47.465] Current version of pixman: 0.20.2
+[    47.466]    Before reporting problems, check http://wiki.x.org
+    to make sure that you have the latest version.
+[    47.468] Markers: (--) probed, (**) from config file, (==) default setting,
+    (++) from command line, (!!) notice, (II) informational,
+    (WW) warning, (EE) error, (NI) not implemented, (??) unknown.
+[    47.470] (==) Log file: "/var/log/Xorg.0.log", Time: Mon Apr 11 15:58:36 2011
+[    47.471] (II) Loader magic: 0x7d5140
+[    47.471] (II) Module ABI versions:
+[    47.471]    X.Org ANSI C Emulation: 0.4
+[    47.471]    X.Org Video Driver: 8.0
+[    47.471]    X.Org XInput driver : 11.0
+[    47.471]    X.Org Server Extension : 4.0
+[    47.472] (--) PCI:*(0:1:0:0) 10de:0405:1025:011e rev 161, Mem @ 0xd2000000/16777216, 0xc0000000/268435456, 0xd0000000/33554432, I/O @ 0x00005000/128
+[    47.473] List of video drivers:
+[    47.473]    nouveau
+[    47.474] (II) LoadModule: "nouveau"
+[    47.474] (II) Loading /usr/lib64/xorg/modules/drivers/nouveau_drv.so
+[    47.474] (II) Module nouveau: vendor="X.Org Foundation"
+[    47.474]    compiled for 1.9.4, module version = 0.0.16
+[    47.474]    Module class: X.Org Video Driver
+[    47.474]    ABI class: X.Org Video Driver, version 8.0
+[    47.475] (II) NOUVEAU driver 
+[    47.475] (II) NOUVEAU driver for NVIDIA chipset families :
+[    47.475]    RIVA TNT    (NV04)
+[    47.475]    RIVA TNT2   (NV05)
+[    47.475]    GeForce 256 (NV10)
+[    47.475]    GeForce 2   (NV11, NV15)
+[    47.475]    GeForce 4MX (NV17, NV18)
+[    47.475]    GeForce 3   (NV20)
+[    47.475]    GeForce 4Ti (NV25, NV28)
+[    47.475]    GeForce FX  (NV3x)
+[    47.475]    GeForce 6   (NV4x)
+[    47.475]    GeForce 7   (G7x)
+[    47.475]    GeForce 8   (G8x)
+[    47.491] (++) Using config file: "/root/xorg.conf.new"
+[    47.491] (==) Using system config directory "/usr/share/X11/xorg.conf.d"
+[    47.492] (==) ServerLayout "X.org Configured"
+[    47.492] (**) |-->Screen "Screen0" (0)
+[    47.492] (**) |   |-->Monitor "Monitor0"
+[    47.492] (**) |   |-->Device "Card0"
+[    47.492] (**) |-->Input Device "Mouse0"
+[    47.492] (**) |-->Input Device "Keyboard0"
+[    47.492] (==) Automatically adding devices
+[    47.493] (==) Automatically enabling devices
+[    47.493] (**) FontPath set to:
+    /usr/share/fonts/misc/,
+    /usr/share/fonts/TTF/,
+    /usr/share/fonts/OTF/,
+    /usr/share/fonts/Type1/,
+    /usr/share/fonts/100dpi/,
+    /usr/share/fonts/75dpi/,
+    /usr/share/fonts/misc/,
+    /usr/share/fonts/TTF/,
+    /usr/share/fonts/OTF/,
+    /usr/share/fonts/Type1/,
+    /usr/share/fonts/100dpi/,
+    /usr/share/fonts/75dpi/
+[    47.493] (**) ModulePath set to "/usr/lib64/xorg/modules"
+[    47.493] (WW) AllowEmptyInput is on, devices using drivers 'kbd', 'mouse' or 'vmmouse' will be disabled.
+[    47.493] (WW) Disabling Mouse0
+[    47.493] (WW) Disabling Keyboard0
+[    47.493] (EE) [drm] No DRICreatePCIBusID symbol
+[    47.493] Number of created screens does not match number of detected devices.
+  Configuration failed.

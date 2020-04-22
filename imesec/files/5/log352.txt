@@ -1,0 +1,177 @@
+[  3242.982] (WW) Failed to open protocol names file lib/xorg/protocol.txt
+[  3242.983] 
+X.Org X Server 1.20.3
+X Protocol Version 11, Revision 0
+[  3242.984] Build Operating System: Linux Arch Linux
+[  3242.985] Current Operating System: Linux laptop 4.19.8-arch1-1-ARCH #1 SMP PREEMPT Sat Dec 8 13:49:11 UTC 2018 x86_64
+[  3242.985] Kernel command line: BOOT_IMAGE=/boot/vmlinuz-linux root=UUID=46ddbe4b-9415-4556-9026-0acdbe574523 rw quiet
+[  3242.986] Build Date: 25 October 2018  04:42:32PM
+[  3242.987]  
+[  3242.987] Current version of pixman: 0.36.0
+[  3242.988]    Before reporting problems, check http://wiki.x.org
+to make sure that you have the latest version.
+[  3242.988] Markers: (--) probed, (**) from config file, (==) default setting,
+(++) from command line, (!!) notice, (II) informational,
+(WW) warning, (EE) error, (NI) not implemented, (??) unknown.
+[  3242.991] (==) Log file: "/home/person/.local/share/xorg/Xorg.0.log", Time: Sun Dec 16 22:06:50 2018
+[  3242.992] (==) Using config file: "/etc/X11/xorg.conf"
+[  3242.992] (==) Using system config directory "/usr/share/X11/xorg.conf.d"
+[  3242.993] (==) ServerLayout "X.org Configured"
+[  3242.993] (**) |-->Screen "Screen0" (0)
+[  3242.993] (**) |   |-->Monitor "Monitor0"
+[  3242.993] (**) |   |-->Device "Card0"
+[  3242.993] (**) |-->Screen "Screen1" (1)
+[  3242.993] (**) |   |-->Monitor "Monitor1"
+[  3242.993] (**) |   |-->Device "Card1"
+[  3242.993] (**) |-->Input Device "Mouse0"
+[  3242.993] (**) |-->Input Device "Keyboard0"
+[  3242.993] (==) Automatically adding devices
+[  3242.993] (==) Automatically enabling devices
+[  3242.993] (==) Automatically adding GPU devices
+[  3242.993] (==) Automatically binding GPU devices
+[  3242.993] (==) Max clients allowed: 256, resource mask: 0x1fffff
+[  3242.993] (WW) `fonts.dir' not found (or not valid) in "/usr/share/fonts/misc".
+[  3242.993]    Entry deleted from font path.
+[  3242.993]    (Run 'mkfontdir' on "/usr/share/fonts/misc").
+[  3242.993] (WW) The directory "/usr/share/fonts/TTF" does not exist.
+[  3242.993]    Entry deleted from font path.
+[  3242.993] (WW) The directory "/usr/share/fonts/OTF" does not exist.
+[  3242.993]    Entry deleted from font path.
+[  3242.993] (WW) The directory "/usr/share/fonts/Type1" does not exist.
+[  3242.993]    Entry deleted from font path.
+[  3242.993] (WW) `fonts.dir' not found (or not valid) in "/usr/share/fonts/misc".
+[  3242.993]    Entry deleted from font path.
+[  3242.993]    (Run 'mkfontdir' on "/usr/share/fonts/misc").
+[  3242.993] (WW) The directory "/usr/share/fonts/TTF" does not exist.
+[  3242.993]    Entry deleted from font path.
+[  3242.993] (WW) The directory "/usr/share/fonts/OTF" does not exist.
+[  3242.993]    Entry deleted from font path.
+[  3242.993] (WW) The directory "/usr/share/fonts/Type1" does not exist.
+[  3242.993]    Entry deleted from font path.
+[  3242.993] (**) FontPath set to:
+/usr/share/fonts/100dpi,
+/usr/share/fonts/75dpi,
+/usr/share/fonts/100dpi,
+/usr/share/fonts/75dpi
+[  3242.993] (**) ModulePath set to "/usr/lib/xorg/modules"
+[  3242.993] (WW) Hotplugging is on, devices using drivers 'kbd', 'mouse' or 'vmmouse' will be disabled.
+[  3242.993] (WW) Disabling Mouse0
+[  3242.993] (WW) Disabling Keyboard0
+[  3242.993] (II) Module ABI versions:
+[  3242.993]    X.Org ANSI C Emulation: 0.4
+[  3242.993]    X.Org Video Driver: 24.0
+[  3242.993]    X.Org XInput driver : 24.1
+[  3242.993]    X.Org Server Extension : 10.0
+[  3242.996] (--) using VT number 2
+
+[  3242.996] (II) systemd-logind: logind integration requires -keeptty and -keeptty was not provided, disabling logind integration
+[  3242.996] (II) xfree86: Adding drm device (/dev/dri/card0)
+[  3243.011] (--) PCI:*(0@0:1:0) 1002:9874:103c:81fd rev 201, Mem @ 0xe0000000/268435456, 0xf0000000/8388608, 0xfeb00000/262144, I/O @ 0x0000f000/256, BIOS @ 0x????????/131072
+[  3243.011] (II) Open ACPI successful (/var/run/acpid.socket)
+[  3243.011] (II) "glx" will be loaded. This was enabled by default and also specified in the config file.
+[  3243.011] (II) LoadModule: "glx"
+[  3243.012] (II) Loading /usr/lib/xorg/modules/extensions/libglx.so
+[  3243.014] (II) Module glx: vendor="X.Org Foundation"
+[  3243.014]    compiled for 1.20.3, module version = 1.0.0
+[  3243.014]    ABI class: X.Org Server Extension, version 10.0
+[  3243.014] (II) LoadModule: "amdgpu"
+[  3243.014] (II) Loading /usr/lib/xorg/modules/drivers/amdgpu_drv.so
+[  3243.014] (II) Module amdgpu: vendor="X.Org Foundation"
+[  3243.014]    compiled for 1.20.1, module version = 18.1.0
+[  3243.014]    Module class: X.Org Video Driver
+[  3243.014]    ABI class: X.Org Video Driver, version 24.0
+[  3243.014] (II) AMDGPU: Driver for AMD Radeon:
+All GPUs supported by the amdgpu kernel driver
+[  3243.027] (II) AMDGPU(0): [KMS] Kernel modesetting enabled.
+[  3243.042] (WW) VGA arbiter: cannot open kernel arbiter, no multi-card support
+[  3243.042] (==) AMDGPU(0): Depth 24, (--) framebuffer bpp 32
+[  3243.042] (II) AMDGPU(0): Pixel depth = 24 bits stored in 4 bytes (32 bpp pixmaps)
+[  3243.042] (==) AMDGPU(0): Default visual is TrueColor
+[  3243.042] (==) AMDGPU(0): RGB weight 888
+[  3243.042] (II) AMDGPU(0): Using 8 bits per RGB (8 bit DAC)
+[  3243.042] (--) AMDGPU(0): Chipset: "Unknown AMD Radeon GPU" (ChipID = 0x9874)
+[  3243.042] (II) Loading sub module "fb"
+[  3243.042] (II) LoadModule: "fb"
+[  3243.042] (II) Loading /usr/lib/xorg/modules/libfb.so
+[  3243.042] (II) Module fb: vendor="X.Org Foundation"
+[  3243.042]    compiled for 1.20.3, module version = 1.0.0
+[  3243.042]    ABI class: X.Org ANSI C Emulation, version 0.4
+[  3243.042] (II) Loading sub module "dri2"
+[  3243.042] (II) LoadModule: "dri2"
+[  3243.043] (II) Module "dri2" already built-in
+[  3243.135] (II) Loading sub module "glamoregl"
+[  3243.135] (II) LoadModule: "glamoregl"
+[  3243.136] (II) Loading /usr/lib/xorg/modules/libglamoregl.so
+[  3243.140] (II) Module glamoregl: vendor="X.Org Foundation"
+[  3243.140]    compiled for 1.20.3, module version = 1.0.1
+[  3243.140]    ABI class: X.Org ANSI C Emulation, version 0.4
+[  3243.153] (II) AMDGPU(0): glamor X acceleration enabled on AMD CARRIZO (DRM 3.27.0, 4.19.8-arch1-1-ARCH, LLVM 7.0.0)
+[  3243.153] (II) AMDGPU(0): glamor detected, initialising EGL layer.
+[  3243.153] (==) AMDGPU(0): TearFree property default: auto
+[  3243.153] (II) AMDGPU(0): KMS Pageflipping: enabled
+[  3243.153] (II) AMDGPU(0): Output eDP using monitor section Monitor0
+[  3243.153] (II) AMDGPU(0): Output HDMI-A-0 has no monitor section
+[  3243.158] (II) AMDGPU(0): EDID for output eDP
+[  3243.158] (II) AMDGPU(0): Manufacturer: LGD  Model: 503  Serial#: 0
+[  3243.158] (II) AMDGPU(0): Year: 2015  Week: 0
+[  3243.158] (II) AMDGPU(0): EDID Version: 1.4
+[  3243.158] (II) AMDGPU(0): Digital Display Input
+[  3243.158] (II) AMDGPU(0): 6 bits per channel
+[  3243.158] (II) AMDGPU(0): Digital interface is DisplayPort
+[  3243.158] (II) AMDGPU(0): Max Image Size [cm]: horiz.: 34  vert.: 19
+[  3243.158] (II) AMDGPU(0): Gamma: 2.20
+[  3243.159] (II) AMDGPU(0): No DPMS capabilities specified
+[  3243.159] (II) AMDGPU(0): Supported color encodings: RGB 4:4:4 YCrCb 4:4:4 
+[  3243.159] (II) AMDGPU(0): First detailed timing is preferred mode
+[  3243.159] (II) AMDGPU(0): Preferred mode is native pixel format and refresh rate
+[  3243.159] (II) AMDGPU(0): redX: 0.567 redY: 0.344   greenX: 0.332 greenY: 0.561
+[  3243.159] (II) AMDGPU(0): blueX: 0.159 blueY: 0.119   whiteX: 0.313 whiteY: 0.329
+[  3243.159] (II) AMDGPU(0): Manufacturer's mask: 0
+[  3243.159] (II) AMDGPU(0): Supported detailed timing:
+[  3243.159] (II) AMDGPU(0): clock: 76.3 MHz   Image Size:  344 x 194 mm
+[  3243.159] (II) AMDGPU(0): h_active: 1366  h_sync: 1414  h_sync_end 1446 h_blank_end 1610 h_border: 0
+[  3243.159] (II) AMDGPU(0): v_active: 768  v_sync: 771  v_sync_end 776 v_blanking: 790 v_border: 0
+[  3243.159] (II) AMDGPU(0): Supported detailed timing:
+[  3243.159] (II) AMDGPU(0): clock: 50.9 MHz   Image Size:  344 x 194 mm
+[  3243.159] (II) AMDGPU(0): h_active: 1366  h_sync: 1414  h_sync_end 1446 h_blank_end 1610 h_border: 0
+[  3243.159] (II) AMDGPU(0): v_active: 768  v_sync: 771  v_sync_end 776 v_blanking: 790 v_border: 0
+[  3243.159] (II) AMDGPU(0): Unknown vendor-specific block 2
+[  3243.159] (II) AMDGPU(0): EDID (in hex):
+[  3243.159] (II) AMDGPU(0):    00ffffffffffff0030e4030500000000
+[  3243.159] (II) AMDGPU(0):    00190104952213780a42e59158558f28
+[  3243.159] (II) AMDGPU(0):    1e505400000001010101010101010101
+[  3243.159] (II) AMDGPU(0):    010101010101d01d56f4500016303020
+[  3243.159] (II) AMDGPU(0):    350058c21000001be01356f450001630
+[  3243.159] (II) AMDGPU(0):    3020350058c21000001b000000000000
+[  3243.159] (II) AMDGPU(0):    00000000000000000000000000000002
+[  3243.159] (II) AMDGPU(0):    000c47ff0a3c6e12141d6e00000000a5
+[  3243.159] (II) AMDGPU(0): Printing probed modes for output eDP
+[  3243.159] (II) AMDGPU(0): Modeline "1366x768"x60.0   76.32  1366 1414 1446 1610  768 771 776 790 +hsync -vsync (47.4 kHz eP)
+[  3243.159] (II) AMDGPU(0): Modeline "1366x768"x40.0   50.88  1366 1414 1446 1610  768 771 776 790 +hsync -vsync (31.6 kHz e)
+[  3243.159] (II) AMDGPU(0): Modeline "1280x720"x60.0   76.32  1280 1414 1446 1610  720 771 776 790 +hsync -vsync (47.4 kHz e)
+[  3243.159] (II) AMDGPU(0): Modeline "1024x768"x60.0   76.32  1024 1414 1446 1610  768 771 776 790 +hsync -vsync (47.4 kHz e)
+[  3243.159] (II) AMDGPU(0): Modeline "800x600"x60.0   76.32  800 1414 1446 1610  600 771 776 790 +hsync -vsync (47.4 kHz e)
+[  3243.159] (II) AMDGPU(0): Modeline "640x480"x60.0   76.32  640 1414 1446 1610  480 771 776 790 +hsync -vsync (47.4 kHz e)
+[  3243.159] (II) AMDGPU(0): EDID for output HDMI-A-0
+[  3243.159] (II) AMDGPU(0): Output eDP connected
+[  3243.159] (II) AMDGPU(0): Output HDMI-A-0 disconnected
+[  3243.159] (II) AMDGPU(0): Using exact sizes for initial modes
+[  3243.159] (II) AMDGPU(0): Output eDP using initial mode 1366x768 +0+0
+[  3243.159] (II) AMDGPU(0): mem size init: gart size :bf48b000 vram size: s:1f604000 visible:1f604000
+[  3243.159] (==) AMDGPU(0): DPI set to (96, 96)
+[  3243.159] (==) AMDGPU(0): Using gamma correction (1.0, 1.0, 1.0)
+[  3243.159] (II) Loading sub module "ramdac"
+[  3243.159] (II) LoadModule: "ramdac"
+[  3243.159] (II) Module "ramdac" already built-in
+[  3243.159] Unable to retrieve master
+[  3243.159] (EE) 
+Fatal server error:
+[  3243.159] (EE) AddScreen/ScreenInit failed for driver 0
+[  3243.159] (EE) 
+[  3243.159] (EE) 
+Please consult the The X.Org Foundation support 
+    at http://wiki.x.org
+for help. 
+[  3243.159] (EE) Please also check the log file at "/home/person/.local/share/xorg/Xorg.0.log" for additional information.
+[  3243.159] (EE) 
+[  3243.178] (EE) Server terminated with error (1). Closing log file.

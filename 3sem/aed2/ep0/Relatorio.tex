@@ -1,0 +1,87 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage[brazil]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{bussproofs}
+\usepackage[table]{xcolor}
+\usepackage{gensymb}
+\graphicspath{{./images}}
+\geometry{verbose,a4paper,left=2cm,top=2cm,right=3cm,bottom=3cm}
+\title{Relatorio}
+\author{}
+\date{}
+\linespread{1.5}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\product}[3]{\displaystyle\prod_{#1}^#2 #3}
+\newcommand{\gsum}[3]{\displaystyle\sum_{#1}^#2 #3}
+\newcommand{\mytitle}[1]{\textbf{\underline{#1}}}
+\newcommand{\ring}[1]{\langle #1 \rangle}
+
+
+\begin{document}
+\maketitle
+
+\mytitle{Estratégia:} Eu utilizei duas filas, uma para tratar de aviões de emergência e a outra para tratar de aviões normais.
+
+Para cada avião é feito o seguinte processo:
+
+\begin{itemize}
+\item Caso o avião seja um voo especial, ele é tratado imediatamente como um avião de emergência e colocado no atrás dos outros aviões da fila de emergência.
+\item Caso o avião não seja de emergência:
+  \begin{itemize}
+  \item Se ele for de decolagem, ele é colocado na fila normal.
+  \item Se ele for de pouso, o programa vê se será possível o avião pousar caso ele seja inserido no fim da fila normal. Se isso não for possível, eu vejo se seu pouso será possível caso ele seja inserido no fim da fila de emergência, e aí ele será tratado como um avião de emergência. Se isso também não for possível ele é remanejado para outro aeroporto.
+  \end{itemize}
+\end{itemize}
+
+Sempre que um avião é colocado na fila de emergência, toda a fila normal é percorrida, atualizando os aviões, pois pode ser que um avião que antes conseguiria pousar, agora, como o de emergência passou em sua frente, não consiga mais. Nesse caso ele será transformado em de emergência ou remanejado, dependendo da sua situação.
+
+Na próxima página está a explicação de uma simulação com os parâmetros 90 (semente), 6 (combustível máximo), 30(tempo esperado de voo máximo), 5 (máximo de avões gerados a cada T) e 10 (t total da simulação).
+
+\newpage
+
+\mytitle{Avisos:}
+\begin{itemize}
+  
+\item Eu entendi que por 2 segundos, o enunciado quis dizer que caso a pista 1 tenha sido usada no instante 1, por exemplo, no instante 3 ele já pode sar usada denovo.
+\item Aviões que esperam mais do que 0.1 do seu tempo esperado de voo, são enviados para a fila de emergência.
+  
+\end{itemize}
+
+\newpage
+
+\mytitle{Exemplo:}
+
+Parâmetros: S, 90, 5, 30, 5 e 10.
+
+\begin{enumerate}[start=0]
+  %0
+\item São gerados 3 aviões e cada um usa uma das pistas.
+  %1
+\item São gerados 4 aviões de pousou, dois deles vão usar as pistas 0 e 1 respectivamente, no instante 2 e os outros dois usarão no instante 4.
+  %2
+\item É gerado 1 avião de pouso, que usará a pista 0 e as pistas 0 e 1 são usadas.
+  %3
+\item É gerado 1 avião que só conseguirá pousar caso seja tratado como de emergência, e isso (por efeito borboleta) faz como que todos os outros aviões tenham que ser tratados como de eemergência. É usada a pista 2
+  %4
+\item São gerados 3 aviões que são inseridos na fila normal e um avião é remanejado. São usadas as pistas 0 e 1
+  %5
+\item São gerados 3 aviões que são inseridos na fila normal. É usada a pista 2.
+  %6
+\item Nenhum avião é gerado. É usada a pista 0 e a pista 1.
+  %7
+\item É gerado 1 avião especial que é colocado direto na fila de emergência, isso faz com que todos os aviões se tornem aviões de emergência. A pista 2 é usada.
+  %8
+\item É gerado 1 avião que é inserido na fila normal. As pistas 0 e 1 são usadas.
+  %9
+\item São gerados alguns aviões dos quais 2 são inserido na fila normal, dois na de emergência e um é remanejado. A pista 2 é usada.   
+\end{enumerate}
+
+\end{document}

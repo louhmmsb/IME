@@ -1,0 +1,287 @@
+\documentclass[12pt]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage[brazil]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{bussproofs}
+\usepackage[table]{xcolor}
+\usepackage{gensymb}
+\graphicspath{{./images}}
+\geometry{verbose,a4paper,left=2cm,top=2cm,right=3cm,bottom=3cm}
+\title{Caderno de Anéis e Corpos}
+\author{Lourenço Bogo}
+\date{}
+\linespread{1.5}
+\newcommand{\integer}{\mathbb{Z}}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\product}[3]{\displaystyle\prod_{#1}^#2 #3}
+\newcommand{\gsum}[3]{\displaystyle\sum_{#1}^{#2} #3}
+\newcommand{\mytitle}[1]{\textbf{\underline{#1}}}
+\newcommand{\ring}[1]{\langle #1 \rangle}
+\begin{document}
+\maketitle
+\tableofcontents
+\chapter{Introdução}
+Nessa matéria, como o nome já diz, vamos tratar sobre dois tipos de estruturas matemáticas: os Anéis e os Corpos. Essas estruturas e suas propriedades vêm sido estudadas há muito tempo por vários matemáticos diferentes.
+
+No começo, muitos matemáticos investiam teempo e trabalho para fazer novas descobertas sobre os anéis, como os números inteiros. Alguns grandes nomes, como Diofantus, Fermat, entre outros, dedicaram boa parte de seu tempo para trabalhar com números inteiros, surgindo com problemas que foram discutidos até recentemente, como o Último Teorema de Fermat: $x^n+y^n=z^n$, com $n\in \integer$
+
+
+\section{Introdução}
+\mytitle{Aneis:} Anel é um conjunto $A$ sobre o qal estão definidas duas operações: adição e multiplicação,
+
+$\forall a,b \in A
+\begin{cases}
+  + : (a,b) \rightarrow a+b \in A \\
+  \cdot : (a,b) \rightarrow a\cdot b \in A
+\end{cases}
+$, que satisfazem as seguintes propriedades:
+\begin{description}
+\item[A1] $(a+b)+c=a+(b+c)$
+\item[A2] $a+b=b+a$
+\item[A3] $\exists 0 \in A \: t.q. \forall a \in A,\: a+0=a$
+\item[A4] $\forall a \in A \exists (-a)\: t.q. \: a+(-a)=0$
+\end{description}
+$\ring{A,+}$ é um grupo abeliano
+$0$ é o elemento neutro e $-a$ é o elemento oposto
+\begin{description}
+\item[AM1] $(a+b).c=a.c+b.c$
+\item[AM2] $a.(b+c)=a.b+a.c$
+\end{description}
+O anel $\ring{A,+,\cdot}$ chama-se associativo se:
+\begin{description}
+\item[M1] $(a.b).c=a.(b.c)$
+\end{description}
+O anel chama-se comutativo se:
+\begin{description}
+\item[M2] $\forall a,b \in A,\: a.b=b.a$
+\end{description}
+O anel chama-se unitário se $\exists \: 1 \in A\: t.q. \: \forall a \in A\: a.1=1.a=a$
+\section{Propriedades}
+\begin{enumerate}
+\item O elemento neutro é único:
+
+  \mytitle{Dem:} Seja $0'$ outro elemento neutro de $A$. Consideremos $0+0'$. Como $0'$ é elemento neutro, isso é igual a $0$, mas como a soma é comutativa $0=0' \blacksquare$
+\item O elemento oposto é único:
+
+  \mytitle{Dem:} Seja $b$ outro elemento oposto para $a$. $a+b=0=b+a$. Consideremos $(b+a)+(-a)=0+(-a)=-a$. Mas $(b+a)+(-a)=b+(a+(-a))=b+0=b$. Logo $b=-a \blacksquare$ 
+\item $\forall a \in A,\: 0.a=a.0=0$
+\item $\forall a,b \in A,\: (-a).b=-(a.b)=a.(-b)$
+\end{enumerate}
+\section{Exemplos de Anéis}
+\begin{enumerate}
+\item $\integer=\ring{\pm 0,\pm 1,\pm 2,\dots,n;+,\cdot}$ é um anel associativo, comutativo, unitário.
+\item $\ring{\mathbb{Q},+,\cdot}$ - Os números racionais
+\item $\ring{\real,+,\cdot}$ - Os números reais
+\item $\ring{\mathbb{C},+,\cdot}$ - Os números complexos
+
+  são todos anéis comutativos, associativos, unitários e, também, são inversíveis para todos os elementos exceto o zero $(0)$.
+\item $2\integer$ é um anel associativo, comutativo mas não é unitário
+\end{enumerate}
+Seja $\ring{A,+,\cdot}$ um anel associativo com 1, $a \in A$, um elemento $b \in A$ chama-se um inverso para $a$, se $a.b=b.a=1$. Neste caso o elemento $a$, chama-se inversível,  se denota$a^{-1}:=b$
+\section{Corpos}
+\mytitle{Definição:} Seja $\ring{A,+,\cdot}$ uum anel comutativo, associativo, com $1\neq 0\: t.q. \: \forall a \in A$, se $a\neq 0$, $a$ é inversível. Então chama-se $A$ de corpo.
+\section{Exemplos de Corpos}
+\begin{enumerate}
+\item $A = \{0\}$, pois $0 + 0 = 0$ e $0\cdot 0 = 0$.
+  
+  Se A é um anel t.q. $0=1$ em A, então $A = {0}$ \underline{apenas}, pois $a = 1\cdot a = 0\cdot a = 0$.
+
+  Logo, precisamos da condição $0\neq 1$.
+
+  
+\item Se $\langle \mathbb{R}^3, \ +, \ \times\rangle$, onde $\times$ é o produto vetorial. Vemos que não temos comutatividade nem associatividade. Pois $i\times(i\times j) = i\times k = -j$ e $(i\times i)\times j = 0$, além de que $a\times b = -b\times a$. Este exemplo é chamado de \underline{Anel de Lie}, quando tem apenas \textit{anticomutatividade}.
+  
+\item \underline{Anel de polinômios}.
+  
+  Seja R um anel. Denotamos por R[x] um anel de polinômios sobre R:
+
+  $R[x] := \{a_0 + a_1x +\cdots + a_nx^n \ | \ a_i\in\mathbb{R}, \ n\in\mathbb{N}\}$.
+
+  Se $f(x) = \gsum{i=0}{n}{a_ix^i}$ e $g(x) = \gsum{i=0}{m}{b_ix^i}$, então
+
+
+  $f(x)+g(x) = \gsum{i=0}{\max(n, m)}{(a_i+b_i)x^yi}$ e 
+
+  $f(x)\cdot g(x) = \gsum{i=0}{mn}{c_ix^i}, \ c = \displaystyle\sum_{j+k=i}{a_jb_k}$
+
+  $R[x] = \{(a_0, a_1, \cdots, a_n, \cdots) \ | \ a_i\in\mathbb{R}, \textrm{com um número finito de elementos diferente de 0}\}$.
+
+  $(a_0, a_1, \cdots, a_n, \cdots) + (b_0, b_1, \cdots, b_m, \cdots) = (a_0 + b_0, \cdots)$
+
+  $(a_0, a_1, \cdots, a_n, \cdots) \cdot (b_0, b_1, \cdots, b_m, \cdots) = (c_0, c_1, \cdots)$, onde $c = \displaystyle\sum_{j+k=i}a_jb_k$.
+
+  $x = (0, 1, 0, 0, \cdots)$
+
+  $1 = (1, 0, 0, 0, \cdots)$
+
+  $0 = (0, 0, 0, 0, \cdots)$
+
+\item \underline{Um anel de funções} (contínuas, deriváveis, etc)
+  
+  $\langle\mathbb{F}(\mathbb{R}), \ +, \ \cdot \ \rangle$ um anel de funções reais é comutativo, associativo e tem 1.
+  $\\$
+
+  $\langle\mathbb{F}(\mathbb{R}), \ +, \ \circ \ \rangle$ não é um anel, pois não há distributiva.
+
+
+\item \underline{Anéis de matrizes}
+  
+  $M_2(\mathbb{R}) = \left\{\begin{bmatrix}
+      a & b \\
+      c & d 
+    \end{bmatrix} \ | \ a,b,c,d \in \mathbb{R}\right\}$ é um anel não comutativo. 
+  
+  Onde $0 = \begin{bmatrix}
+    0 & 0 \\ 0 & 0
+  \end{bmatrix}$ e $1 = \begin{bmatrix}
+    1 & 0 \\ 0 & 1
+  \end{bmatrix}$
+
+  Seja R um anel associativo. Definimos $M_n(R) = \left\{\begin{bmatrix}
+      a_{11} & \cdots & a_{1n} \\
+      \vdots & \ddots & \vdots \\
+      a_{m1} & \cdots & a_{mn}
+    \end{bmatrix}\right\} \ | \ a_{ij}\in R$ com operações
+
+  $$\begin{bmatrix}
+    a_{11} & \cdots & a_{1n} \\
+    \vdots & \ddots & \vdots \\
+    a_{m1} & \cdots & a_{mn}
+  \end{bmatrix} + 
+  \begin{bmatrix}
+    b_{11} & \cdots & b_{1n} \\
+    \vdots & \ddots & \vdots \\
+    b_{m1} & \cdots & b_{mn}
+  \end{bmatrix} = \begin{bmatrix}
+    a_{11} + b_{11} & \cdots & a_{1n} + b_{1n}\\
+    \vdots & \ddots & \vdots \\
+    a_{m1} + b_{m1} & \cdots & a_{mn} + b_{mn}
+  \end{bmatrix}$$ e
+  $$\begin{bmatrix}
+    a_{11} & \cdots & a_{1n} \\
+    \vdots & \ddots & \vdots \\
+    a_{m1} & \cdots & a_{mn}
+  \end{bmatrix} \cdot \begin{bmatrix}
+    b_{11} & \cdots & b_{1n} \\
+    \vdots & \ddots & \vdots \\
+    b_{m1} & \cdots & b_{mn}
+  \end{bmatrix} = \begin{bmatrix}
+    c_{11} & \cdots & c_{1n} \\
+    \vdots & \ddots & \vdots \\
+    c_{m1} & \cdots & c_{mn}
+  \end{bmatrix}
+  $$ , onde $c_{ij} = a_{i1}b_{1j} + \cdots + a_{in}b+nj$.
+
+\item Um último exemplo é $\mathbb{Z}(\sqrt 2)$
+  Onde são números da forma $n + m\sqrt 2$
+\end{enumerate}
+\chapter{O Anel $\mathbb{Z}_n$}
+\section{Introdução}
+
+Sendo $\bar{z}$ o resto da divisão de $z$ por n.\\
+$\mathbb{Z}_n=\{\bar{0},\dots,\bar{n-1}\}$\\
+
+\section{Propriedades}
+\begin{itemize}
+\item $\overline{k}=\overline{m} \Leftrightarrow n|k-m$
+\item $\overline{k}+\overline{m}=\overline{k+m}$
+\item $\overline{k}.\overline{m}=\overline{k.m}$
+\item $-\overline{k}=\overline{n-k}$
+\end{itemize}
+$\ring{Z_n, +, \cdot}$ é um anel associativo, comutativo, unitário.\\
+\mytitle{Definição:} Seja $A$ um anel. Um elemento $a\in A$ chama-se divisor de zero se $a\neq 0$ e $\exists b \in A$ tal que $a.b=0$.
+\begin{enumerate}
+\item Se $a$ é inversível, a não pode ser um divisor de zero:
+
+  Suponhamos que $a.b=0 \Rightarrow a^{-1}.(a.b)=1.b=b\blacksquare$
+\item Qualquer corpo não tem divisores de zero.
+\end{enumerate}
+\begin{description}
+\item[Proposição 1] Seja $\overline{m} \in \integer_n$, então
+  \begin{itemize}
+  \item $\overline{m}$ é um divisor de zero $\Leftrightarrow$ $mdc(m,n)\neq 1$
+
+    \mytitle{Demonstração:} $\Rightarrow$: $\exists \overline{k}\neq \overline{0}$ em $\integer_n$ tal que $\overline{m}.\overline{k}=\overline{0}$, ou seja $m.k$ é divisível por $n$: $\exists l \in \integer$ tal que $m.k=l.n$. Se $mdc(m,n)=1$ então $m$ é primo com $n$, logo $n|k$ e $\bar{k}=0$, um absurdo.
+    
+    $\Leftarrow$: Seja $mdc(m,n)=d>1$. Então $m=m_1.d$, $n=n_1.d$ $1<m_1,n_1<n$. Consideremos $\overline{m}.\overline{n_1}=(\overline{m_1}.\overline{d}).\overline{n_1}=\overline{m_1}.(\overline{d}.\overline{n_1})=\overline{m}.\overline{n}=0$.
+  \item $\overline{m}$ é inversível $\Leftrightarrow$ $mdc(m,n)=1$
+
+    \mytitle{Demonstração:} $\Rightarrow$: Suponhamos que $\bar{m}$ é inversível. Então $\exists \overline{k}\in \integer_n$ tal que $\overline{m}.\overline{k}=\overline{1}$, ou seja $n|n.k-1$. Então $\exists l \in \integer$ tal que $m.k-1=n.l$, ou seja $m.k+n.l=1 \Rightarrow mdc(m,n)=1$.
+
+    $\Leftarrow$: Suponhamos que $mdc(m,n)=1$ pela Identidade de Bizout, $\exists r,s \in \integer$ tal que $m.r+n.s=1\Rightarrow \overline{m}.\overline{r}+\overline{n}.\overline{s}=\overline{1}\Rightarrow \overline{m}.\overline{r}=1$ (pois $\overline{n}.\overline{s}=\overline{0}$).
+    
+  \end{itemize}
+\end{description}
+  Um anel $A$, chama-se de domínio de integridade se $A$ não tiver divisores de zero. Cada corpo é um domínio de integridade no qual cada elemento não nulo é inversível.
+
+  Em cada domínio de integridade se verifica a lei de cancelamento: se $a.b=a.c$ e $a\neq 0$ entãoy $b=c$.\\
+  \mytitle{Teorema 1:} Seja $D=\{a_1,\dots,a_n\}$ um domínio de integridade. Seja $0\neq a \in D$, consideremos $\{a_1.a,\dots,a_n.a\} \subseteq D$. Observemmos que se $i\neq j$ então $a_i.a\neq a_j.a$. Então $D=\{a_1.a,\dots,a_n.a\}$. Em particular existe $i$ tal que $a_i.a=a$. Denotemos $e=a_i$ e provemos que $\forall b\in D \: e.b=b.e=b \: (e=1)$.
+
+  $e.a=a \Rightarrow e.(e.a)=e.a \Rightarrow e^2.a=a$, $(a.e-a).e=(a.e).e-a.e=a.e^2-a.e=a.(e^2-e)=0\Rightarrow a.e=a=e.a$.
+
+  Seja $b\in D$ arbitrário, então $b \in \{a_1.a,dots,a_n.a\}$,portanto, $\exists j$ tal que $b=a_j.a$. Agora $b.e=(a_j.a).e=a_j.(a.e)=a_j.a=b$. Como antes, temos também que $e.b=b$. Como $b$ é arbitrário, $e$ é um elemento neutro $(e=1)$, temos $1 \in \{a_1.a,\dots,a_n.a\}$, então $\exists k$ tal que $1=a_k.a$. Consideremos $(a.a_k-1)\Rightarrow a_k.(a.a_k-1)=1.a_k-a_k=0$.
+  
+  Pela lei do cancelamento, $a.a_k=1$, então $a_k=a^{-1}$.
+
+  \section{Sub-anel e Sub-corpo}
+  Seja $A$ um anel. Um subconjunto $B \subseteq A$ chama-se $sub-anel$ se:
+  \begin{enumerate}
+  \item $0 \in B$
+  \item $\forall a,b \in B,\: a+b, \: a.b \in B$
+  \item $\forall b \in B, \: -b \in B$
+  \end{enumerate}
+  Se $A$ é um corpo e um sub-anel $B$ forma um corpo também, então $B$ chama-se sub-corpo de $A$.
+
+  Os únicos dois corpos sem sub-corpos próprios são $\integer_p$ ($p$ primo) e $\mathbb{Q}$.
+
+  \section{Soma Direta de Anéis}
+
+  $A,B$ anéis:
+
+  $A \oplus B=\{(a,b)|a \in A,b \in B\}$
+
+  $(a,b)+(c,b)=(a+c,b+d)$, o mesmo para o produto.
+
+  \section{Ideiais}
+
+  Seja $A$ um anel.  Um subanel $I \subseteq A$ chama-se \mytitle{ideal} (à direita (esquerda)) se $\forall a \in A$,  $\forall i \in I$, $i.a (a.i) \in I$.
+
+  Caso $I$ seja um ideal à direta e à esquerda, ele é chamado ideal bilateral.
+
+  Os ideais triviais para qualquer anel $A$ são o $(0)$ e o próprio anel $A$.
+
+  \mytitle{Exemplos:}
+  \begin{enumerate}
+  \item Seja $A$ um anel comutativo unitário, $a \in A$. Então $a.A=\{a.x|x \in A\}$ é um ideal de $A$.
+
+    $aA$ é um subanel de $A$
+    $\begin{cases}
+      ax+ay=a(x+y) \in aA\\
+      (ax)(ay)=a(xy)= \in aA\\
+      -(ax)=a(-x) \in aA\\
+      0=0a \in aA
+    \end{cases}$
+    y
+    $\forall y \in A$, $(ax)y=a(xy)\in aA \Rightarrow aA$ é um ideal de $A$.
+
+    Esse ideal é cahamado também de ideal principal de $A$ e pode ser denotado como $(a)$.
+  \end{enumerate}
+
+  \mytitle{Proposição 1:} Em $\mathbb{Z}$, todo ideal tem forma $n\mathbb{Z}$ para algum $n\geq 0$. Provemos que todo subanel $S$ de $\mathbb{Z}$ tem essa forma para algum $n\geq 0$.
+
+  $s\neq \null$, pois $0 \in S$. Se $s=(0)$ então $S=0.\mathbb{Z} (n=0)$.
+
+  Suponhamos que $S\neq (0)$, então existe $s\in S$, $s\neq 0$. Se $s<0$, consideremos $-s\in S$, $-s>0$.
+
+  Então $S_+={m\in S|m>0}\neq \null$, $S_+\subseteq \mathbb{N}$;.
+
+
+  
+\end{document}

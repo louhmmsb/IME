@@ -1,0 +1,97 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage[brazil]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{bussproofs}
+\usepackage[table]{xcolor}
+\usepackage{gensymb}
+\graphicspath{{./images}}
+\geometry{verbose,a4paper,left=2cm,top=2cm,right=3cm,bottom=3cm}
+\title{P1}
+\author{Lourenço Henrique Moinheiro Martins Sborz Bogo - 11208005}
+\date{}
+\linespread{1.5}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\product}[3]{\displaystyle\prod_{#1}^#2 #3}
+\newcommand{\gsum}[3]{\displaystyle\sum_{#1}^#2 #3}
+\newcommand{\mytitle}[1]{\textbf{\underline{#1}}}
+\newcommand{\ring}[1]{\langle #1 \rangle}
+
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+  
+\item Mostrar se $a_n = (\frac{3n+5}{5n+1})^n(\frac{5}{3})^n$ converge ou diverge, calculado o limite caso convirja.
+
+  Vamos primeiro achar a função cuja discretização é a sequência dada: $f(x) = (\frac{3x+5}{5x+1})^x(\frac{5}{3})^x$.
+
+  Agora iremos cacular o limite desta função quando $x \to \infty$.
+
+  $\displaystyle\lim_{x \to \infty}(\frac{3x+5}{5x+1})^x(\frac{5}{3})^x = \displaystyle\lim_{x \to \infty}(\frac{15x+25}{15x+3})^x = \displaystyle\lim_{x \to \infty}e^{n\ln{(\frac{15n+25}{15n+5})}}$.
+  Portanto, vamos achar o limite do expoente, pois $e$ é uma constante.
+
+  $\displaystyle\lim_{x \to \infty}\frac{\ln{(\frac{15n+25}{15n+3})}}{n^{-1}} = \displaystyle\lim_{x \to \infty}\frac{\ln{(15n+25)}-\ln{(15n+3)}}{n^{-1}} \rightarrow L'Hopital \rightarrow = \displaystyle\lim_{x \to \infty}\frac{\frac{1}{15n+25}15 - \frac{1}{15n+3}15}{-n^{-2}} = \displaystyle\lim_{x \to \infty}15\frac{22n^2}{15n^2+15n28+75} = \displaystyle\lim_{x \to \infty}\frac{22}{15+\frac{28}{n}+\frac{5}{n^2}} = \frac{22}{5}$.
+
+  Potanto, a nossa sequência converge para: $e^\frac{22}{5}$.
+
+\item Decidir se $\gsum{k=1}{\infty}{\frac{k}{\sin{k}}}$ é convergente, e se possível, calcular sua soma.
+
+  Pelo Teste da Divergência, temos que se o último termo da sequência que gera a série não converge para 0, a série não converge. Portanto iremos calcular o limite do último termo.
+
+  Para isso iremos usar a função $f(x) = \frac{x}{\sin{x}}$, pois nos inteiros, ela é igual a sequência.
+
+  $\displaystyle\lim_{x \to \infty}\frac{x}{\sin{x}}$. Esse limite não existe, pois não sabemos quanto é $\sin{x}$ quando $x \to \infty$, portanto a série não converge pelo Teste da Divergência.
+
+\item Decidir se a série $\gsum{n=2}{\infty}{\frac{(-1)^n}{n(\ln{n})^2}}$ converge absolutamente, condicionalmente ou diverge.
+
+  Se mostrarmos que o módulo converge, teremos que a série converge absolutamente.
+
+  Como a série com módulo é decrescente e seu último termo tende a 0, podemos usar o critério da integral para avaliá-la.
+
+  Seja $f(x)$ a função cuja discretização é a sequência que gera a série dada com módulo, ou seja $\frac{1}{x(\ln{x})^2}$. Temos que: 
+
+  $\int\frac{1}{x(\ln{x})^2}dx \\ u=\ln{x} \rightarrow du=\frac{1}{x}dx \\ \int\frac{1}{x(\ln{x})^2}dx = \int\frac{1}{u^2}du = \frac{-1}{u} = \frac{-1}{\ln{x}}$.
+
+  Agora precisamos fazer essa integral no infinito menos ela no ponto 2:
+
+  $\displaystyle\lim_{x \to \infty}\frac{-1}{\ln{x}} - \frac{-1}{\ln{2}} = 0 - \frac{-1}{\ln{2}} = \frac{1}{\ln{2}}$.
+
+  Como a série com módulo converge, temos que a série converge absolutamente.
+
+\item Determinar os valores de $x$ para os quais a série $\gsum{n=1}{\infty}{x^n+\frac{1}{2^nx^n}}$ converge.
+
+  Primeiro vamos achar os valores de $x$ que fazem a série passar pelo Teste da Divergência.
+
+  Para isso usaremos a função cuja discretização é a sequência formadora da série dada $f(a) = x^a+\frac{1}{2^ax^a}$.
+
+  Como $x^a$ e $\frac{1}{2^ax^a}$ têm o mesmo sinal, para sua soma tender a 0, precisamos que as duas partes tendam a 0.
+
+  $\displaystyle\lim_{a \to \infty}x^a$ só vai tender a 0 quando $0 \leq |x|<1$.
+
+  $\displaystyle\lim_{a \to \infty}\frac{1}{2^ax^a}$ só vai tender a 0 quando $0<|\frac{1}{2x}|<1 \rightarrow |x|>\frac{1}{2}$.
+
+  Ou seja, para para a série passar pelo Teste da Divergência, $\frac{1}{2}<|x|<1$. Agora iremos usar o teste da integral para verificar se nesses valores, a série converge.
+
+  Iremos tirar a integral do módulo da função, pois se a série converge com o módulo, sem o módulo também irá convergir. Além disso, iremos começar a integral no ponto 2, pois no ponto 1 a integral seria diferente.
+
+  $\int x^n+(\frac{1}{2x})^ndn = \frac{x^n}{\ln{x}} + \frac{(\frac{1}{2x})^n}{\ln{\frac{1}{2x}}}$.
+
+  Agora vamos calcular de 2 até $\infty$:
+
+  $\displaystyle\lim_{n \to \infty}(\frac{x^n}{\ln{x}} + \frac{(\frac{1}{2x})^n}{\ln{\frac{1}{2x}}}) - \frac{x^2}{\ln{x}} + \frac{(\frac{1}{2x})^2}{\ln{\frac{1}{2x}}}$, que para $\frac{1}{2}<x<1$, converge.
+
+  Logo, a série dada converge para $\frac{1}{2}<|x|<1$ e diverge para o resto.
+   
+\end{enumerate}
+
+\end{document}

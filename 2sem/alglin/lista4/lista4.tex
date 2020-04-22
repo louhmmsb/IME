@@ -1,0 +1,91 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage[brazil]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{bussproofs}
+\usepackage[table]{xcolor}
+\graphicspath{{./images}}
+\geometry{verbose,a4paper,left=2cm,top=2cm,right=3cm,bottom=3cm}
+\title{Lista 4 - Álgebra Linear}
+\author{}
+\date{}
+\linespread{1.5}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\lk}{\left\{}
+\newcommand{\rk}{\right\}}
+\begin{document}
+    \maketitle
+    \noindent Exercícios transcritos do livro Gilbert Strang - Álgebra Linear e suas aplicações
+    $\\\\$ 
+    \textbf{Exercício 1}. Find the eigenvalues and eigenvectors of the matrix $A = \left[ 
+    \begin{matrix}
+        1 & -1 \\
+        2 & 4
+    \end{matrix}\right]$. Verify that the trace equals the sum of the eigenvalues, and the determinant equals their product.\\
+    \textbf{Exercício 5}. Find the eigenvalues and the eigenvectors of
+    $$A = \left[\begin{matrix}
+        3 & 4 & 2 \\
+        0 & 1 & 2 \\
+        0 & 0 & 0
+    \end{matrix}\right] \text{ and } B = \left[\begin{matrix}
+        0 & 0 & 2 \\
+        0 & 2 & 0 \\
+        2 & 0 & 0
+    \end{matrix}\right]$$
+    Check that $\lambda_1 + \lambda_2 + \lambda_3$ equals the trace and $\lambda_1\lambda_2\lambda_3$ equals the determinant.\\
+    \textbf{Exercício 8}. Show that the determinant equals the product of the eigenvalues by imagining that the characteristic polynomial is factored into
+    \begin{center}
+      $det(A-\lambda I) = (\lambda_1-\lambda)(\lambda_2-\lambda)\dots(\lambda_n-\lambda)$ \quad(16),
+    \end{center}
+    and making a clever choice of $\lambda$.\\
+    \textbf{Exercício 9}. Show that the trace equals the sum of the eigenvalues, in two steps. First, find the coefficient of $(-\lambda)^{n-1}$ on the right side of equation (16). Next, find all the terms in
+    \begin{center}
+      $det(A-\lambda I) = det$
+      $\begin{bmatrix}
+        a_{11}-\lambda & a_{12} & \cdots & a_{1n}\\
+        a_{21} & a_{22}-\lambda & \cdots & a_{2n}\\
+        \vdots & \vdots & & \vdots\\
+        a_{n1} & a_{n2} & \cdots & a_{nn}-\lambda\\
+      \end{bmatrix}$
+    \end{center}
+    that involve $(-\lambda)^{n-1}$. They all come from the main diagonal! Find that coefficient of $(-\lambda^{n-1})$ and compare.\\
+    \newpage
+    \noindent\textbf{Exercício 11}. \textit{\textbf{The eigenvalues of} A \textbf{equal the eigenvalues of}} $A^T$. This is because $det(A-\lambda I)$ equals $det(A^T-\lambda I)$. That is true because \_\_\_\_. Show by an example that the eigenvectors of $A$ and $A^T$ are not the same.\\
+    \textbf{Exercício 12}.
+    Find the eigenvalues and eigenvectors of 
+    $$A = \left[\begin{matrix}
+        3 & 4 \\
+        4 & -3
+    \end{matrix}\right]\quad \quad 
+    A = \left[\begin{matrix}
+        a & b \\
+        b & a
+    \end{matrix}\right]
+    $$
+    \textbf{Exercício 21}. Compute the eigenvalues and eigenvectors of $A$ and $A^{-1}$:
+    $$A = 
+    \left[
+        \begin{matrix}
+            0 & 2 \\
+            2 & 3
+        \end{matrix}    
+    \right]\text{ and } 
+    A^{-1} = 
+    \left[
+        \begin{matrix}
+            -\frac{3}{4} & \frac{1}{2} \\
+            \frac{1}{2} & 0
+        \end{matrix}    
+    \right]
+    $$
+    $A^{-1}$ has the \_\_\_\_\_ eigenvectors as $A$. When $A$ has eigenvalues $\lambda_1$ and $\lambda_2$, its inverse has eigenvalues \_\_\_\_\_.\\
+    \textbf{Exercício 39}. Challenge problem: \textit{Is there a real 2 by 2 matrix} (other than \textit{I}) \textit{with} $A^3 = I$? Its eigenvalues must satisfy $\lambda^3 = I$. They can be $e^{2\pi i/3}$ and $e^{-2\pi i/3}$. What trace and determinant would this give? Contruct $A$.\\
+    \textbf{Exercício 40}. There are six 3 by 3 permutation matrices $P$. What numbers can be the $determinants$ of $P$? What numbers can be $pivots$? What numbers can be the $trace$ of $P$? What \textit{four numbers} can be eigenvalues of $P$?
+\end{document}

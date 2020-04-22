@@ -1,0 +1,652 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage[brazil]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{bussproofs}
+\usepackage[table]{xcolor}
+\usepackage{gensymb}
+\graphicspath{{./images}}
+\geometry{verbose,a4paper,left=2cm,top=2cm,right=3cm,bottom=3cm}
+\title{Lista 4 - Álgebra Linear}
+\author{}
+\date{}
+\linespread{1.5}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\lk}{\left\{}
+  \newcommand{\rk}{\right\}}
+\newcommand{\product}[3]{\displaystyle\prod_{#1}^#2 #3}
+\newcommand{\gsum}[3]{\displaystyle\sum_{#1}^#2 #3}
+\newcommand{\mytitle}[1]{\textbf{\underline{#1}}}
+\begin{document}
+\maketitle
+\noindent Exercícios transcritos do livro Gilbert Strang - Álgebra Linear e suas aplicações
+$\\\\$ 
+\textbf{Exercício 1}. Find the eigenvalues and eigenvectors of the matrix $A = \left[ 
+  \begin{matrix}
+    1 & -1 \\
+    2 & 4
+  \end{matrix}\right]$. Verify that the trace equals the sum of the eigenvalues, and the determinant equals their product.\\
+Para achar os auto-valores, eu preciso encontrar os $\lambda$ tal que $det(A-\lambda I)=0$.\\
+$$
+\begin{bmatrix}
+  1 & -1 \\
+  2 & 4
+\end{bmatrix}-
+\begin{bmatrix}
+  \lambda & 0 \\
+  0 & \lambda
+\end{bmatrix}=
+\begin{bmatrix}
+  1-\lambda & -1\\
+  2 & 4-\lambda
+\end{bmatrix}$$
+$$
+\begin{vmatrix}
+  1-\lambda & -1\\
+  2 & 4-\lambda
+\end{vmatrix}=
+4-5\lambda +\lambda^2+2=\lambda^2-5\lambda+6=0$$
+$$\lambda \in \{2,3\}$$\\
+Agora, para os auvto-vetores tenho que achar o espaço nulo da matriz $A-\lambda I$ para cada um dos autovalores $\Rightarrow$
+\begin{itemize}
+\item $\lambda_1 = 2$
+  \begin{center}
+    $\begin{bmatrix}
+      -1 & -1 \\
+      2 & 2
+    \end{bmatrix}\cdot
+    \begin{bmatrix}
+      x_1 \\
+      x_2
+    \end{bmatrix}=
+    \begin{bmatrix}
+      0 \\
+      0
+    \end{bmatrix}\Rightarrow
+    x_1=-x_2\Rightarrow
+    \alpha
+    \begin{bmatrix}
+      1 \\
+      -1
+    \end{bmatrix}, \alpha \in \real$
+  \end{center}
+\item $\lambda_2 = 3$
+  \begin{center}
+    $\begin{bmatrix}
+      -2 & -1 \\
+      2 & 1
+    \end{bmatrix}\cdot
+    \begin{bmatrix}
+      y_1 \\
+      y_2
+    \end{bmatrix}=
+    \begin{bmatrix}
+      0 \\
+      0
+    \end{bmatrix}\Rightarrow
+    -2y_1=y_2\Rightarrow
+    \alpha
+    \begin{bmatrix}
+      1 \\
+      -2
+    \end{bmatrix}, \alpha \in \real$
+  \end{center}
+  $T(A)=5=\lambda_1+\lambda_2$ e $det(A)=6=\lambda_1\lambda_2$
+\end{itemize}
+
+\noindent\textbf{Exercício 5}. Find the eigenvalues and the eigenvectors of
+$$A = \left[\begin{matrix}
+    3 & 4 & 2 \\
+    0 & 1 & 2 \\
+    0 & 0 & 0
+  \end{matrix}\right] \text{ and } B = \left[\begin{matrix}
+    0 & 0 & 2 \\
+    0 & 2 & 0 \\
+    2 & 0 & 0
+  \end{matrix}\right]$$
+Check that $\lambda_1 + \lambda_2 + \lambda_3$ equals the trace and $\lambda_1\lambda_2\lambda_3$ equals the determinant.\\
+Primeiro para $A$, nós temos:
+\begin{center}
+  $(A-\lambda I)=
+  \begin{bmatrix}
+    3-\lambda & 4 & 2\\
+    0 & 1-\lambda & 2\\
+    0 & 0 & -\lambda
+  \end{bmatrix}\Rightarrow$
+\end{center}
+\begin{center}
+  $\begin{vmatrix}
+    3-\lambda & 4 & 2\\
+    0 & 1-\lambda & 2\\
+    0 & 0 & -\lambda
+  \end{vmatrix}=3\lambda(\lambda-1)-\lambda^2(\lambda-1)=
+  (3\lambda-\lambda^2)(\lambda-1)=0\Rightarrow
+  $
+\end{center}
+\begin{center}
+  $\lambda \in \{0,1,3\}$
+\end{center}
+Agora que temos os auto-valores, preciso encontrar os auto-vetores:
+\begin{itemize}
+\item $\lambda_1=0$
+  \begin{center}
+    $\begin{bmatrix}
+      3 & 4 & 2\\
+      0 & 1 & 2\\
+      0 & 0 & 0
+    \end{bmatrix}\cdot
+    \begin{bmatrix}
+      x_1 \\ x_2 \\ x_3
+    \end{bmatrix}=
+    \begin{bmatrix}
+      0 \\ 0 \\ 0
+    \end{bmatrix}\Rightarrow
+    \alpha
+    \begin{bmatrix}
+      1 \\ -1 \\ \frac{1}{2}
+    \end{bmatrix}, \alpha \in \real.
+    $
+  \end{center}
+\item $\lambda_2=1$
+  \begin{center}
+    $\begin{bmatrix}
+      2 & 4 & 2\\
+      0 & 0 & 2\\
+      0 & 0 & -1
+    \end{bmatrix}\cdot
+    \begin{bmatrix}
+      x_1 \\ x_2 \\ x_3
+    \end{bmatrix}=
+    \begin{bmatrix}
+      0 \\ 0 \\ 0
+    \end{bmatrix}\Rightarrow
+    \alpha
+    \begin{bmatrix}
+      -2 \\ 1 \\ 0
+    \end{bmatrix}, \alpha \in \real.
+    $
+  \end{center}
+\item $\lambda_3=3$
+  \begin{center}
+    $\begin{bmatrix}
+      0 & 4 & 2\\
+      0 & -2 & 2\\
+      0 & 0 & -3
+    \end{bmatrix}\cdot
+    \begin{bmatrix}
+      x_1 \\ x_2 \\ x_3
+    \end{bmatrix}=
+    \begin{bmatrix}
+      0 \\ 0 \\ 0
+    \end{bmatrix}\Rightarrow
+    \alpha
+    \begin{bmatrix}
+      1 \\ 0 \\ 0
+    \end{bmatrix}, \alpha \in \real.
+    $
+  \end{center}
+  Agora para $B$, nós temos:
+  \begin{center}
+    $(B-\lambda I)=
+    \begin{bmatrix}
+      -\lambda & 0 & 2\\
+      0 & 2-\lambda & 0\\
+      2 & 0 & -\lambda
+    \end{bmatrix}\Rightarrow$
+  \end{center}
+  \begin{center}
+    $\begin{vmatrix}
+      -\lambda & 0 & 2\\
+      0 & 2-\lambda & 0\\
+      2 & 0 & -\lambda
+    \end{vmatrix}=(\lambda+2)(\lambda-2)(2-\lambda)=0\Rightarrow$
+  \end{center}
+  \begin{center}
+    $\lambda \in \{-2,2\}$
+  \end{center}
+  Agora que temos os auto-valores, preciso encontrar os auto-vetores:
+\item $\lambda_1=2$
+  \begin{center}
+    $\begin{bmatrix}
+      -2 & 0 & 2\\
+      0 & 0 & 0\\
+      2 & 0 & -2
+    \end{bmatrix}\cdot
+    \begin{bmatrix}
+      x_1 \\ x_2 \\ x_3
+    \end{bmatrix}=
+    \begin{bmatrix}
+      0 \\ 0 \\ 0
+    \end{bmatrix}\Rightarrow
+    \alpha
+    \begin{bmatrix}
+      1 \\ \beta \\ 1
+    \end{bmatrix}, \alpha, \beta \in \real.
+    $
+  \end{center}
+\item $\lambda_2=-2$
+  \begin{center}
+    $\begin{bmatrix}
+      2 & 0 & 2\\
+      0 & 4 & 0\\
+      2 & 0 & 2
+    \end{bmatrix}\cdot
+    \begin{bmatrix}
+      x_1 \\ x_2 \\ x_3
+    \end{bmatrix}=
+    \begin{bmatrix}
+      0 \\ 0 \\ 0
+    \end{bmatrix}\Rightarrow
+    \alpha
+    \begin{bmatrix}
+      1 \\ 0 \\ -1
+    \end{bmatrix}, \alpha \in \real.
+    $
+  \end{center}
+\end{itemize}
+\textbf{Exercício 8}. Show that the determinant equals the product of the eigenvalues by imagining that the characteristic polynomial is factored into
+\begin{center}
+  $det(A-\lambda I) = (\lambda_1-\lambda)(\lambda_2-\lambda)\dots(\lambda_n-\lambda)$ \quad(16),
+\end{center}
+and making a clever choice of $\lambda$.\\
+Atribuindo o valor de 0 a $\lambda$, temos que:\\
+\begin{center}
+  $det(A-0I)=\product{i=1}{n}{\lambda_n-0}\Rightarrow det(A)=\product{i=1}{n}{\lambda_n}$
+\end{center}
+\textbf{Exercício 9}. Show that the trace equals the sum of the eigenvalues, in two steps. First, find the coefficient of $(-\lambda)^{n-1}$ on the right side of equation (16). Next, find all the terms in
+\begin{center}
+  $det(A-\lambda I) = det$
+  $\begin{bmatrix}
+    a_{11}-\lambda & a_{12} & \cdots & a_{1n}\\
+    a_{21} & a_{22}-\lambda & \cdots & a_{2n}\\
+    \vdots & \vdots & & \vdots\\
+    a_{n1} & a_{n2} & \cdots & a_{nn}-\lambda\\
+  \end{bmatrix}$
+\end{center}
+that involve $(-\lambda)^{n-1}$. They all come from the main diagonal! Find that coefficient of $(-\lambda^{n-1})$ and compare.\\
+De $(16)$, podemos ver que:
+\begin{center}
+  $det(A-\lambda I)=\product{i=1}{n}{(\lambda_n-\lambda)}$,
+\end{center}
+ou seja, temos que o coeficiente de $(-\lambda)^{n-1}$ será $\gsum{i=1}{n}{\lambda_n}$.\\
+Do que foi dado no enunciado podemos ver que ao calcular o determinante de $A-\lambda I$, o coeficiente do termo $(-\lambda)^{n-1}$ será $\gsum{i=1}{n}{a_{ii}}$.\\
+Desse modo, pode-se ver que ao calcularmos o determinante de $A-\lambda I$ de dois modos diferentes, chegamos em dois coeficientes para o termo $(-\lambda)^{n-1}$, logo eles devem ser iguais, pois o determinante é único $\Rightarrow$\\
+\begin{center}
+  $\Rightarrow T(A)=\gsum{i=1}{n}{a_{ii}}=\gsum{i=1}{n}{\lambda_i}$
+\end{center}
+\newpage
+\noindent\textbf{Exercício 11}. \textit{\textbf{The eigenvalues of} A \textbf{equal the eigenvalues of}} $A^T$. This is because $det(A-\lambda I)$ equals $det(A^T-\lambda I)$. That is true because \_\_\_\_. Show by an example that the eigenvectors of $A$ and $A^T$ are not the same.\\
+Sabemos que $det(M)=det(M^T)$ pra qualquer matriz $M$. Podemos então dizer que $det(A-\lambda I)=det\left[(A-\lambda I)^T \right]$. Porém, $(A-\lambda I)^T=A^T-\lambda I^T=A^T-\lambda I$. Logo, temos que $det(A-\lambda I)=det\left[(A-\lambda I)^T\right]=det(A^T-\lambda I)$.
+\begin{center}
+  $
+  \begin{bmatrix}
+    1 & 3 \\
+    4 & 5
+  \end{bmatrix}\Rightarrow
+  \begin{vmatrix}
+    1-\lambda & 3 \\
+    4 & 5-\lambda
+  \end{vmatrix}\Rightarrow
+  \lambda^2-6\lambda-7=0\Rightarrow \lambda \in \{-1,7\}
+  $
+\end{center}
+\begin{itemize}
+\item $\lambda = -1$
+  \begin{center}
+    $
+    \begin{bmatrix}
+      2 & 3 \\
+      4 & 6 
+    \end{bmatrix}\cdot
+    \begin{bmatrix}
+      x_1 \\ x_2
+    \end{bmatrix} =
+    \begin{bmatrix}
+      0 \\ 0
+    \end{bmatrix}\Rightarrow
+    \alpha
+    \begin{bmatrix}
+      3 \\ -2
+    \end{bmatrix}
+    $
+  \end{center}
+\item $\lambda = 7$
+  \begin{center}
+    $
+    \begin{bmatrix}
+      -6 & 3 \\
+      4 & -2
+    \end{bmatrix}\cdot
+    \begin{bmatrix}
+      x_1 \\ x_2
+    \end{bmatrix}=
+    \begin{bmatrix}
+      0 \\ 0
+    \end{bmatrix}\Rightarrow \alpha
+    \begin{bmatrix}
+      1 \\ 2
+    \end{bmatrix}
+    $
+  \end{center}
+  \begin{center}
+    $
+    \begin{bmatrix}
+      1 & 4 \\
+      3 & 5
+    \end{bmatrix}\Rightarrow
+    \begin{vmatrix}
+      1-\lambda & 3 \\
+      4 & 5-\lambda
+    \end{vmatrix}\Rightarrow
+    \lambda^2-6\lambda-7=0\Rightarrow \lambda \in \{-1,7\}
+    $
+  \end{center}
+\end{itemize}
+\begin{itemize}
+\item $\lambda = -1$
+  \begin{center}
+    $
+    \begin{bmatrix}
+      2 & 4 \\
+      3 & 6 
+    \end{bmatrix}\cdot
+    \begin{bmatrix}
+      x_1 \\ x_2
+    \end{bmatrix} =
+    \begin{bmatrix}
+      0 \\ 0
+    \end{bmatrix}\Rightarrow
+    \alpha
+    \begin{bmatrix}
+      -2 \\ 1
+    \end{bmatrix}
+    $
+  \end{center}
+\item $\lambda = 7$
+  \begin{center}
+    $
+    \begin{bmatrix}
+      -6 & 4 \\
+      3 & -2
+    \end{bmatrix}\cdot
+    \begin{bmatrix}
+      x_1 \\ x_2
+    \end{bmatrix}=
+    \begin{bmatrix}
+      0 \\ 0
+    \end{bmatrix}\Rightarrow \alpha
+    \begin{bmatrix}
+      2 \\ 3
+    \end{bmatrix}
+    $
+  \end{center}
+\end{itemize}
+Logo os eigenvectors são diferentes.\\
+\newpage
+\textbf{Exercício 12}.
+Find the eigenvalues and eigenvectors of 
+$$A = \left[\begin{matrix}
+    3 & 4 \\
+    4 & -3
+  \end{matrix}\right]\quad \quad 
+A = \left[\begin{matrix}
+    a & b \\
+    b & a
+  \end{matrix}\right]
+$$
+Primeiro acharei os eigenvalues:\\
+\begin{center}
+  $\begin{vmatrix}
+    3-\lambda & 4 \\
+    4 & -3-\lambda
+  \end{vmatrix}=\lambda^2-25=0\Rightarrow\lambda=\pm 5
+  \begin{vmatrix}
+    a-\lambda & b \\
+    b & a-\lambda
+  \end{vmatrix}=\lambda^2-2a\lambda+a^2-b^2\Rightarrow \lambda=a\pm b
+  $
+\end{center}
+Agora precisamos achar os eigenvectors:\\
+Primeira Matriz:
+\begin{itemize}
+\item 5:
+  \begin{center}
+    $\begin{bmatrix}
+      -2 & 4 \\
+      4 & -8
+    \end{bmatrix}\cdot
+    \begin{bmatrix}
+      x_1 \\ x_2
+    \end{bmatrix}=
+    \begin{bmatrix}
+      0 \\ 0
+    \end{bmatrix}\Rightarrow \alpha
+    \begin{bmatrix}
+      2 \\ 1
+    \end{bmatrix}, \alpha \in \real
+    $
+  \end{center}
+\item -5:
+  \begin{center}
+    $
+    \begin{bmatrix}
+      8 & 4 \\
+      4 & 2
+    \end{bmatrix}\cdot
+    \begin{bmatrix}
+      x_1 \\ x_2
+    \end{bmatrix}=
+    \begin{bmatrix}
+      0 \\ 0
+    \end{bmatrix}\Rightarrow \alpha
+    \begin{bmatrix}
+      1 \\ 2
+    \end{bmatrix}, \alpha \in \real
+    $
+  \end{center}
+\end{itemize}
+Segunda Matriz:
+\begin{itemize}
+\item $a+b$
+  \begin{center}
+    $
+    \begin{bmatrix}
+      -b & b \\
+      b & -b
+    \end{bmatrix}\cdot
+    \begin{bmatrix}
+      x_1 \\ x_2
+    \end{bmatrix}=
+    \begin{bmatrix}
+      0 \\ 0
+    \end{bmatrix}\Rightarrow \alpha
+    \begin{bmatrix}
+      1 \\ 1
+    \end{bmatrix}, \alpha \in \real
+    $
+  \end{center}
+\item $a-b$
+  \begin{center}
+    $
+    \begin{bmatrix}
+      b & b \\
+      b & b
+    \end{bmatrix}\cdot
+    \begin{bmatrix}
+      x_1 \\ x_2
+    \end{bmatrix}=
+    \begin{bmatrix}
+      0 \\ 0
+    \end{bmatrix}\Rightarrow \alpha
+    \begin{bmatrix}
+      1 \\ -1
+    \end{bmatrix}, \alpha \in \real
+    $
+  \end{center}
+\end{itemize}
+\newpage
+\textbf{Exercício 21}. Compute the eigenvalues and eigenvectors of $A$ and $A^{-1}$:
+$$A = 
+\left[
+  \begin{matrix}
+    0 & 2 \\
+    2 & 3
+  \end{matrix}    
+\right]\text{ and } 
+A^{-1} = 
+\left[
+  \begin{matrix}
+    -\frac{3}{4} & \frac{1}{2} \\
+    \frac{1}{2} & 0
+  \end{matrix}    
+\right]
+$$
+$A^{-1}$ has the \_\_\_\_\_ eigenvectors as $A$. When $A$ has eigenvalues $\lambda_1$ and $\lambda_2$, its inverse has eigenvalues \_\_\_\_\_.\\
+Primeiro vamos calcular os eigenvalues:\\
+A:
+\begin{center}
+  $
+  \begin{vmatrix}
+    -\lambda & 2 \\
+    2 & 3-\lambda
+  \end{vmatrix}\Rightarrow \lambda \in \{-1,4\}
+  $
+\end{center}
+B:
+\begin{center}
+  $
+  \begin{vmatrix}
+    -\frac{3}{4}-\lambda & \frac{1}{2} \\
+    \frac{1}{2} & -\lambda
+  \end{vmatrix}\Rightarrow \lambda \in \{-1,\frac{1}{4}\}
+  $
+\end{center}
+Agora vamos achar os eigenvectors:\\
+Primeira Matriz:
+\begin{itemize}
+\item -1:
+  \begin{center}
+    $
+    \begin{bmatrix}
+      1 & 2 \\
+      2 & 4
+    \end{bmatrix}\cdot
+    \begin{bmatrix}
+      x_1 \\ x_2
+    \end{bmatrix}=
+    \begin{bmatrix}
+      0 \\ 0
+    \end{bmatrix}\Rightarrow \alpha
+    \begin{bmatrix}
+      -2 \\ 1
+    \end{bmatrix}, \alpha \in \real
+    $
+  \end{center}
+\item -4:
+  \begin{center}
+    $
+    \begin{bmatrix}
+      4 & 2 \\
+      2 & -1
+    \end{bmatrix}\cdot
+    \begin{bmatrix}
+      x_1 \\ x_2
+    \end{bmatrix}=
+    \begin{bmatrix}
+      0 \\ 0
+    \end{bmatrix}\Rightarrow \alpha
+    \begin{bmatrix}
+      1 \\ 2
+    \end{bmatrix}, \alpha \in \real
+    $
+  \end{center}
+\end{itemize}
+Segunda Matriz:
+\begin{itemize}
+\item -1:
+  \begin{center}
+    $
+    \begin{bmatrix}
+      \frac{1}{4} & \frac{1}{2} \\
+      \frac{1}{2} & 1
+    \end{bmatrix}\cdot
+    \begin{bmatrix}
+      x_1 \\ x_2
+    \end{bmatrix}=
+    \begin{bmatrix}
+      0 \\ 0
+    \end{bmatrix}\Rightarrow \alpha
+    \begin{bmatrix}
+      -2 \\ 1
+    \end{bmatrix}, \alpha \in \real
+    $
+  \end{center}
+\item -4:
+  \begin{center}
+    $
+    \begin{bmatrix}
+      -1 & \frac{1}{2} \\
+      \frac{1}{2} & \frac{1}{4}
+    \end{bmatrix}\cdot
+    \begin{bmatrix}
+      x_1 \\ x_2
+    \end{bmatrix}=
+    \begin{bmatrix}
+      0 \\ 0
+    \end{bmatrix}\Rightarrow \alpha
+    \begin{bmatrix}
+      1 \\ 2
+    \end{bmatrix}, \alpha \in \real
+    $
+  \end{center}
+\end{itemize}
+\mytitle{Conclusão}: Os eigenvectors de $A$ e $A^{-1}$ são iguais e os eigenvalues de $A^{-1}$ são os inversos dos eigenvalues de $A$.\\
+\textbf{Exercício 39}. Challenge problem: \textit{Is there a real 2 by 2 matrix} (other than \textit{I}) \textit{with} $A^3 = I$? Its eigenvalues must satisfy $\lambda^3 = I$. They can be $e^{2\pi i/3}$ and $e^{-2\pi i/3}$. What trace and determinant would this give? Contruct $A$.\\
+A matriz $A$ seria a matriz de rotação de $120\degree$. Como seus eigenvalues são $e^{2\pi i/3}$ e $e^{-2\pi i/3}$, o traço será a soma desses 2, ou seja $e^{2\pi i/3}+e^{-2\pi i/3}$ e o determinante seria o produto, ou seja $e^{2\pi i/3}e^{-2\pi i/3}=e^0=1$\\
+\textbf{Exercício 40}. There are six 3 by 3 permutation matrices $P$. What numbers can be the $determinants$ of $P$? What numbers can be $pivots$? What numbers can be the $trace$ of $P$? What \textit{four numbers} can be eigenvalues of $P$?\\
+\begin{center}
+  $
+  \begin{bmatrix}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 1
+  \end{bmatrix}
+  \begin{bmatrix}
+    1 & 0 & 0 \\
+    0 & 0 & 1 \\
+    0 & 1 & 0
+  \end{bmatrix}
+  \begin{bmatrix}
+    0 & 1 & 0 \\
+    1 & 0 & 0 \\
+    0 & 0 & 1
+  \end{bmatrix}
+  \begin{bmatrix}
+    0 & 1 & 0 \\
+    0 & 0 & 1 \\
+    1 & 0 & 0
+  \end{bmatrix}
+  \begin{bmatrix}
+    0 & 0 & 1 \\
+    1 & 0 & 0 \\
+    0 & 1 & 0
+  \end{bmatrix}
+  \begin{bmatrix}
+    0 & 0 & 1 \\
+    0 & 1 & 0 \\
+    1 & 0 & 0
+  \end{bmatrix}
+  $
+\end{center}
+O determinante pode ser $0$ ou $-1$.\\
+O único número que pode ser o pivô é o $1$.\\
+O traço pode ser $3$, $1$ e $0$.\\\
+Fazendo as contas que fizemos até agora na lista toda (ficou no meu rascunho), os eigenvalues podem ser $1$, $-1$, $i$, $-i$. 
+\end{document}

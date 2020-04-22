@@ -1,0 +1,158 @@
+\documentclass[12pt]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage[brazil]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{bussproofs}
+\usepackage[table]{xcolor}
+\usepackage{gensymb}
+\graphicspath{{./images}}
+\geometry{verbose,a4paper,left=2cm,top=2cm,right=3cm,bottom=3cm}
+\title{Caderno de Labnum}
+\author{Lourenço Bogo}
+\date{}
+\linespread{1.5}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\product}[3]{\displaystyle\prod_{#1}^#2 #3}
+\newcommand{\gsum}[3]{\displaystyle\sum_{#1}^#2 #3}
+\newcommand{\mytitle}[1]{\textbf{\underline{#1}}}
+\newcommand{\ring}[1]{\langle #1 \rangle}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\chapter{Introdução}
+\section{Introdução}
+\section{Conceitos Básicos da Matéria}
+Obviamente para representarmos modelos reais em computadores precisamos fazer aproximações, que no caso irá nos causar erros.
+
+\mytitle{Definição:} Dado $u \in \real$ e $v \in \real$, uma aproximação de $u$, definimos \underline{Erro Absoluto} como $|u-v|$ e, se $u \neq 0$ e \underline{Erro Relativo} como $\frac{|u-v|}{|u|}$
+
+\mytitle{Tipos de Erro:}
+$\begin{cases}
+  $Modelagem$ \\
+  $Representação$ \\
+  $De aproximação$ \\
+  $De convergência$ \\
+  $De arredondamento$
+\end{cases}$
+
+\mytitle{Ordem:} Dizemos que $e=O(h^q)$ se existem constantes positivas C e q tais que $|e|\leq Ch^q$ para todo $h>0$ suficientemente pequeno.
+
+\mytitle{Definição (Não formal):} Um problema é bem condicionado quando pequenos erros nos dados causam pequenos erros nas soluções e um problema é mal condicionado quando pequenos erros nos dados podem mudar drasticamente as soluções.
+
+\mytitle{Definição:} Um método (para corrigir erros) é chamado \underline{estável} se, dado um problema, o que o método calcula é a solução exata de um problema parecido.
+
+Não dianta aplicar um método estável a um problema mal condicionado, como também não adianta aplicar um método não estável a um problema bem condicionado. 
+\section{Teoremas Úteis}
+\mytitle{Teorema de Taylor:} Suponhamos que $f:\real \rightarrow \real$ tem derivadas até a ordem $k+1$ num intervalo que contém os pontos $x_0 e x_0+h$ logo,
+
+$f(x_0+h)=f(x_0)+hf'(x_0)+\frac{h^2}{2!}f''(x_0)+\dots +\frac{h^k}{k!}f^{(k)}(x_0)+\frac{h^{k+1}}{(k+1)!}f^{(k+1)}(\bar{x})$, com $\bar{x}$ entre $x_0 e x_0+h$.\\
+\mytitle{Teorema do Valor Intermediário:} Se $f \in [a,b]$ e $s$ é tal que $min(f(a),f(b))<s<max(f(a),f(b))$, então existe $c \in [a,b]$, tal que $f(c)=s$.\\
+\mytitle{Teorema do Valor Médio:} Se $f \in C[a,b]$ é diferenciável em $(a,b)$ então existe $c \in [a,b]$ tal que:
+
+$f'(c)=\frac{f(b)-f(a)}{b-a}$.\\
+\mytitle{Terorema de Rolle:} Se $f \in C[a,b]$ é diferenciável em $(a,b)$ e, além disso, $f(a)=f(b)$ então existe $c \in [a,b]$ tal que $f(c)=0$.
+
+\section{Erros de Arredondamento}
+
+$c \in \real$ pode ser representado como:
+
+$x=\pm 1.d_1d_2\dots d_cd_{c+1}\dots \times 2^e$, onde $e$ é um número inteiro que representa o expoente e a mantissa pode ser reecrita como $1+\frac{d_1}{2}+\frac{d_2}{4}\dots$.
+
+Denotemos como $fl(x)$ a representação em ponto flutuante de $x\in \real$:
+
+$fl(x)=Sinal(x)\times (1.\tilde{d_1}\dots \tilde{d_t})\times 2^e$.
+
+Para um $t$ dado $e$ e com os dígitos $\tilde{d_1}\dots \tilde{d_t}$ de alguma forma relacionados com $d_1\dots$.
+
+O que nos interessa é limitar $\frac{|fl(x)-x|}{|x|}\leq \frac{|fl(x)-x|}{2^e}<\leq 0.0\dots 1\leq 2^{-t}$, supondo $x\neq 0$.
+
+É fácil ver que da para escolher $\tilde{d_1}\dots \tilde{d_t}$ de forma que:
+
+$\frac{|fl(x)|-x}{|x|}\leq \eta$, com $\eta = 2^{-t}$.
+
+Por outro lado, se esccolhermos $\tilde{d_1}\dots \tilde{d_t}$ "Arredondando" $x$, temos que $\eta = \frac{1}{2}.2^{-t}$ (precisão da máquina).
+
+\section{Cancelamento Catastrófico}
+
+\chapter{Ponto Flutuante (Float)}
+
+Num computador de verdade, temos 64 bits. 1 para o sinal, 11 para expoente e 52 para a mantissa.
+
+\section{Operações}
+
+Sejam $x$ e $y$ números em \mytitle{ponto flutuante}.
+
+Denotamos por $c(x,y)$ uma operação elementar $(+,-,\times,\div)$ sobre $x$ e $y$.
+
+Queremos: $fl(c)=c(1+e)$, com $|e|\leq \eta$.
+
+Note que isso é o mesmo que: $|\frac{fl(c)-c}{c}|\leq \eta$.
+
+Isso nos dá a impressão de que nossas contas são seguras.
+
+O problema é que o que temos não é $x$ e $y$, mas $\hat{x}$ e $\hat{y}$ tais que $\hat{x}=x(1+e_x)$ e $\hat{y}=y(1+e_Y)$.
+
+Queremos comparar $fl(c(\hat{x},\hat{y}))$ com $c(x,y)$.
+
+Chamemos $fl(\hat{x},\hat{y}) := fl(c(\hat{x},\hat{y}))$.
+
+$fl(\hat{x}*\hat{y})=\hat{x}\hat{y}(1+e_*)=x(1+e_xy(1+e_y)(1+e_*)=xy(1+e_x+e_y+e_*+e_xe_y+e_xe_*+e_Ye_*+e_xe_ye_*)=xy(1+e)$, com $|e|\leq \mu \eta$ (pequeno).
+
+Sabendo que $1-e+e^2-e^3+\dots=\frac{1}{1+e}$
+
+$fl(\frac{\hat{x}}{\hat{y}})=\frac{x(1{e_X})}{y(1+e+y)}(1+e_/)\sim \frac{x}{y}(1+e_x)(1-e_y)(1+e_/)=\frac{x}{y}(1+e)$, com $|e|\leq \mu \eta$ (pequeno).
+
+Para simplificarmos $fl(\hat{x}+\hat{y})$, vamos compará-lo com $x+y$.
+
+$\hat{x}+\hat{y}=x(1+e_x)+y(1+e_y)=x+xe_x+y+ye_y=(x+y)(1+(\frac{x}{x+y})e_x+(\frac{y}{x+y})e_y)$, com $e=(\frac{x}{x+y})e_x+(\frac{y}{x+y})e_y$.
+
+\newpage
+
+Sabemos que $e_x,e_y\leq \mu$, queremos avaliar $e$. $e$ é pequeno sse $(\frac{x}{x+y})$ e $\frac{y}{x+y}$ são pequenos. Contudo, se $x$ e $y$ têm módulo parecido, mas sinais contrários, então $x+y$ é pequeno e, logo, temos um erro grande!
+
+Esse tipo de erro chamamos de \mytitle{cancelamento catastrófico}.
+
+Como esse tipo de erro é impossível de evitar, nós o ignoramos em nossas análises.
+
+\section{Achar Raízes de Funções}
+
+Nosso problema é, dada $f:\real \to \real$, achar $x$ tal que $f(x)=0$.
+
+Para resolver esse tipo de problema, criamos um algoritmo que, dado $x_0$, gera uma seq. $x_{n\in \mathbb{N}}=(x_1,x_2,x_3,\dots)$ tal que $x_n \to x$.
+
+Chamamos esse tipo de método de \mytitle{método iterativo}.
+
+Temos que determinar quando parar. Três opções são:
+
+\begin{itemize}
+\item $|x_i-x_{i-1}|<A_{tol}$
+\item $|x_i-x_{i-1}|<R_{tol}-|x_i|$
+\item $|f(x_i)|<F_{tol}$
+\end{itemize}
+, onde $A_{tol}$, $R_{tol}$ e $F_{tol}$ sao tolerâncias.
+
+Por enquanto, vamos supor $f\in C[a,b]$ e $f(a)f(b)<0$. Pelo teorema do valor intermediário existe $x^* \in [a,b]$ com $f(x^*)=0$.
+
+Outro método que podemos usar é o \mytitle{método da bissecção (busca binária)}.
+\begin{enumerate}
+\item Definimos $p:=(a+b)/2$; e avaliamos $f(p).$
+\item Se $f(a)f(p)<0$, $b:=p$, senão $a:=p$.
+\item voltar p/ 1.
+\end{enumerate}
+
+$\frac{b-a}{2^n}=A_{tol} \rightarrow b-a=A_{tol}2^n \rightarrow \log b-a=\log(A_{tol}2^n)=\log(b-a)=\log A_{tol}+n \rightarrow n=\log(b-a)-\log(A{tol})$.
+
+Logo podemos fazer $n=[\log_2(b-a)-\log_2(A_{tol})]=[\log_2(\frac{b-a}{A_{tol}})]$
+
+
+
+\end{document}

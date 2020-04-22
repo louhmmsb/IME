@@ -1,0 +1,136 @@
+\documentclass[12pt, oneside]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{bussproofs}
+\usepackage{calrsfs}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[brazil]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\mytitle}[1]{\textbf{\underline{#1}}}
+\newcommand{\product}[3]{\displaystyle\prod_{#1}^#2 #3}
+\newcommand{\gsum}[3]{\displaystyle\sum_{#1}^#2 #3}
+  
+\geometry{verbose,a4paper,left=2cm,top=2cm,right=2cm,bottom=1cm}
+\title{Testes de Hipótese}
+\author{Lourenço Henrique Moinheiro Martins Sborz Bogo}
+\date{12/11/2019}
+\linespread{1.5}
+
+\begin{document}
+\maketitle
+\noindent\textbf{\underline{Exemplo 1}}: Suponha que vamos lançar uma moeda 100 vezes e estamos interessados em saber se a moeda é equilibrada ou não\\
+$H_0:p=\frac{1}{2}$, hipótese nula\\
+$H_1:p\neq\frac{1}{2}$, hipótese alternativa\\
+1\textordmasculine Erro: Rejeitar $H_0$ mas $H_0$ é verdadeira.\\
+2\textordmasculine Erro: Aceitar  $H_0$ mas $H_0$ é falso.\\
+Vamos considerar que caso nossa amostra tenha um número de caras entre 45\% e 55\%.\\
+$X$ = Número de caras\\
+$Z$ = Aproximação normal\\
+$\alpha = P(Rejeitar\: H_0|p=\frac{1}{2})=P(X>L|p=\frac{1}{2})+P(X<L|p=\frac{1}{2})=P(Z>\frac{L-50}{5})+\\P(Z<\frac{L-50}{5})$
+Teoria:\\
+\begin{description}
+\item[1\textordmasculine passo]: elaborar as hipóteses nulas$(H_0)$ e alternativa$(H_1 ou H_A)$.\\
+$H_0: \theta = \theta_0$, onde $\theta$ é um parâmetro:
+\begin{itemize}
+\item $\mu$
+\item $\rho$
+\item $\sigma^2$
+\end{itemize}
+e $\theta_0$ é uma constante.
+$H_1:$ Pode ser simples ou composta\\
+$H_1:\theta=\theta_1\\ H_1:\theta>\theta_0\\ H_1:\theta<\theta_0\\ H_1:\theta\neq\theta_1$\\
+\newpage
+\noindent\textbf{\underline{Def}}:\\Erro tipo I: Rejeitar $H_0$ mas $H_0$ é verdadeira\\
+Erro tipo II: Aceitar $H_0$ mas $H_0$ é falsa.
+\item[2\textordmasculine passo]: Fixar o nível significância $(\alpha)$ do teste.\\
+$\alpha = P(Rejeitar\: H_0|H_0\: \acute{e}\: verdadeira)$.\\
+$\alpha$ = 5\%, 3\%, 2,5\%.
+\item[3\textordmasculine passo]: A partir de $\alpha$ construir a Região Crítica, isto é, a região de rejeição de $H_0$.
+\item[4\textordmasculine passo]: Coletar a amostra e tomar a decisão.\\
+\textbf{\underline{Exemplo}}:\\
+$H_0: \mu = 6$\\
+$H_1: \mu < 6$\\
+$n=100$ (tamanho da amostra)\\
+$\bar{X}$ estimador de $\mu$.\\
+$\bar{X}\in R.C. \Rightarrow$ rejeito $H_0$.\\
+$0,05 = P(\bar{X}<L|\mu = 6)$\\
+Supondo que as notas distribuem-se segundo uma $Normal$.\\
+$\frac{\bar{X}-6}{\frac{S}{10}}\sim t_{99}$, g.l.\\
+$0,05=P(\frac{\bar{X}-6}{\frac{S}{10}}<\frac{L-6}{\frac{S}{10}})$\\
+Lembrando que $\frac{\bar{X}-6}{\frac{S}{10}} = T$\\
+$\frac{L-6}{\frac{S}{10}}=-165$\\
+$L=\frac{-165\times 5}{10}+6$\\
+$R.C. [0,\frac{-165\times 5}{10}+6]$
+\end{description}
+\textbf{\underline{Exemplo 2}}: Um fabricante afirma que produz pinos cuja resistência média à ruptura é $60kgf$. Uma indústria adquiriu um grande lote de pinos e deseja verificar se o lote atende as especificações. Para isso testou 16 pinos. Suponha que a avriância da resistência seja $25kgf^2$.\\
+$H_0: \mu=60$, hipótese nula\\
+$H_1: \mu<60$, hipótese alternativa\\
+$\alpha=P(Rejeitar\: H_0|H_0\: \acute{e}\: V)$\\
+Nesse caso, como $H_0$ é verdade, a média $\mu$ será $60$.\\
+$n=16$.\\
+Resistência $\sim N(\mu,\sigma^2)$\\
+$\bar{X}\sim N(60, \frac{25}{16})$\\
+$0,05 = P(\frac{\bar{X}-60}{frac{5}{4}}<\frac{L-60}{\frac{5}{4}})$\\
+Da tabela temos que o lado direito da desiguldade deve ser $-1,64$\\
+$\frac{L-60}{\frac{5}{4}}=-1,64\Rightarrow L=57,95$\\
+\noindent\textbf{\underline{Exemplo 3}}: Os registros dos últimos anos de um colégio  atestam para calouros admitidos uma nota média de 115. Para testar a hipótese de que a média de uma nova turma é a mesma das anteriores, retirou-se uma amostra de 20 notas obtendo-se média 118 e desvio 20.\\
+Use $\alpha=0,05$.\\
+$H_0: \mu=115$, hipótese nula\\
+$H_1: \mu\neq 115$, hipótese alternativa\\
+$\sigma^2=?$\\
+$n=20$\\
+$\bar{X}_{OBS}=118$\\
+$S=20$\\
+Supondo normalidade das notas:\\
+$t_{OBS}=\frac{\bar{X}-\mu_0}{\frac{S}{\sqrt{n}}}=\frac{118-115}{\frac{20}{\sqrt{20}}}=0,67$\\
+$t_{tabela}=2,09$ (O $\alpha$ foi dado, portanto conseguimos achar esse valor apenas olhando a tabela)\\
+$P(\frac{\bar{X}-115}{\sqrt{20}}<\frac{l-115}{\sqrt{20}})=0,025\Rightarrow$\\
+$\Rightarrow \frac{l-115}{\sqrt{20}}=-2,09\Rightarrow\\ l=-2,09\sqrt{20}+115\\ L=2,09\sqrt{20}+115$\\
+$\bar{X}<l$\\
+$\bar{X}>L$\\
+\noindent\textbf{\underline{Exemplo 4}}: Um estudo é realizado para determinar a relação entre uma certa droga e certa anomalia em embriões de frango. Injetou-se a droga em 50 ovos fertilizados no 4\textordmasculine dia de incubação. No 20\textordmasculine dia de incubação os embriões foram examinados e 7 deles apresentaram a anomalia. Suponha que se deseja averiguar se a proporção verdadeira é inferir a $25\%$ a um nível de significância de $5\%$.\\
+$H_0: p=0,25$, Hipótese nula\\
+$H_1: p<0,25$, Hipótese alternativa\\\
+Rejeitar o $H_0$, sendo que ele é verdade é um erro grave, diferente do contrário, pois iríamos injetar mais remédio sendo que ele causaria mais anomalias.\\
+$\hat{P}_{OBS}=\frac{7}{50}=0,14$\\
+$P(\hat{p}<L|p=0,25)=0,05$\\
+Pelo \textbf{Teorema do Limite Central} temos que $\hat{p}\sim N(p,\frac{p(1-p)}{n})$\\
+Sob $H_0$:\\
+$\frac{\hat{p}-0,25}{\sqrt{\frac{0,25.0,75}{50}}}\sim N(0,1)$\\
+$P(\frac{\hat{p}-0,25}{\sqrt{\frac{0,25.0,75}{50}}}<\frac{L-0,25}{\sqrt{\frac{0,25.0,75}{50}}})=5\%\Rightarrow$\\
+$\Rightarrow\frac{L-0,25}{\sqrt{\frac{0,25.0,75}{50}}}$\\
+$\frac{0,14-0,25}{\sqrt{\frac{0,25.0,75}{50}}}=-1,7963\Rightarrow$\\
+$\Rightarrow$ Há evidências para rejeitar $H_0$\\
+\noindent\textbf{\underline{Def}}: Nível Descritivo $(\hat{\alpha})$\\
+Observada amostra calcula-se a probabilidade de ter sido observado o valor da amostra ou mais extremos do que ele supondo $H_0$ verdadeira.\\
+\noindent\textbf{\underline{Exemplo 5}}: Uma das maneiras de manter sob controle a qualidade de um produto é controlar sua variabilidade. Uma máquina de encher pacotes de café está regulada para ter $\mu=500g$ e $\sigma=10g$. O  peso segue uma normal. Colheu-se uma amostra de 16 pacotes e observou-se $S^2=169g^2$. Você diria que a máquina está desregulada quanto a variância? $\alpha=5\%$.\\
+$H_0: \sigma^2=100$, Hipótese nula\\
+$H_1: \sigma^2>100$, Hipótese alternativa\\
+Sabe-se que $\frac{(n-1)S^2}{\sigma^2}\sim \chi_{(n-1)}^2$.\\
+$0,05=P(S^2>L|\sigma^2=100)=P(\frac{15S^2}{100}>\frac{15L}{100})$\\
+$\frac{15L}{100}=25\Rightarrow L=\frac{500}{3}=166,7\Rightarrow$\\
+Tenho motivos para rejeitar a hipótese pois $166,7<169$.\\
+\mytitle{Testes de Hipótese em Comparando duas Populações}:
+\mytitle{Exemplo 1}: Uma indústria deseja testar se a produtividade média dos operários do período diurno é igual a do noturno. Para isso foram coletados duas amostras, uma de cada período, observando-se a produção de cada operário. Os resultados foram:\\
+Diurno: $N=15$, $\gsum{i=0}{N}{x_i}=180$, $\gsum{i=0}{N}{x_i^2}=2660$\\
+Noturno: $N=15$, $\gsum{i=0}{N}{x_i}=150$, $\gsum{i=0}{N}{x_i^2}=2980$\\
+De acordo com esses resultados, qual é sua conclusão?\\
+Vamos supor que produtividade é uma V.A. $Normal$.\\
+\begin{description}
+\item[1\textordmasculine passo]: Verificar se as variâncias são ou não iguais.\\
+  $H_0: \sigma_D^2=\sigma_N^2$\\
+  $H_1: \sigma_D^2\neq\sigma_N^2$\\
+  Estatística: $\frac{S_D^2}{S_N^2}\sim F(14,14)\Rightarrow\frac{\frac{S_D^2}{\sigma_D^2}}{\frac{S_N^2}{\sigma_N^2}}$\\
+  $\alpha=5\%\Rightarrow 0,05=P(\frac{S_D^2}{S_N^2}<l)+P(\frac{S_D^2}{S_N^2}>L)\Rightarrow L=2,98 \: l=\frac{1}{2,98}$ (Retirado da tabela)\\
+  $S^2=\frac{\gsum{i=0}{n}{(x_i-\bar{x})^2}}{n-1} =\frac{\gsum{i=0}{n}{x_i^2}-2\gsum{i=0}{n}{x_i\bar{x}+\gsum{i=0}{n}{\bar{x}^2}}}{n-1}$
+\end{description}
+\end{document}

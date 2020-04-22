@@ -1,0 +1,55 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage[brazil]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{bussproofs}
+\usepackage[table]{xcolor}
+\usepackage{gensymb}
+\graphicspath{{./images}}
+\geometry{verbose,a4paper,left=2cm,top=2cm,right=3cm,bottom=3cm}
+\title{Lista 4 - Álgebra Linear}
+\author{}
+\date{}
+\linespread{1.5}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\lk}{\left\{}
+\newcommand{\rk}{\right\}}
+\newcommand{\product}[3]{\displaystyle\prod_{#1}^#2 #3}
+\newcommand{\gsum}[3]{\displaystyle\sum_{#1}^#2 #3}
+\newcommand{\mytitle}[1]{\textbf{\underline{#1}}}
+\begin{document}
+\maketitle
+\mytitle{Assuntos}:
+\begin{enumerate}
+\item Autovalores e Autovetores
+\item Matrizes ortogonais, simétricas, diagonais e matrizes com posto 1
+\item Teorema Espectral
+\item Diagonalização
+\item Eliminação de Gauss (Escalonamento)
+\item Espaço Nulo de matrizes
+\item Espaço Coluna de matrizes
+\item Espaço Linha de matrizes
+\item $dimR(A)+dimN(A)=0$ (Relações entre os espaços de uma matriz)
+\item Transformações Lineares ($(T(x)=Ax)$)
+\end{enumerate}
+\begin{description}
+\item[Exemplo 1]: $A$ é uma matriz anti-simétrica se $A^T=-A$. Podemos escrever qualquer matriz como a soma de uma matriz simétrica com uma anti-simétrica.\\
+  \mytitle{Resposta}: $A=\frac{1}{2}(A+A^T)+\frac{1}{2}(A-A^T)$, $(A+A^T)$ é simétrica e $(A-A^T)$ é anti-simétrica.
+\item[Exemplo 2]: Se $M$ é uma matriz simétrica, então $M=\gsum{i=0}{n}{\lambda_i v_iv_i^T}$, onde $\lambda_1\dots\lambda_n$ são os autovalores de A e $\{v_1\dots v_n\}$ é a base ortonormal de autovetores de A (Teorema Espectral) (Ele VAI cobrar em uma questão).\\
+\item[Exemplo 3]: Se $M$ é matriz simétrica, sem eigenvalue nulo, então podemos escrever $M^-1$ como $\gsum{i=0}{n}{\frac{1}{\lambda_i}v_iv_i^t}$.\\
+  \mytitle{Prova}: Queremos provar que $(\gsum{i=0}{n}{\frac{1}{\lambda_i}v_iv_i^t})M=I$. Então $(\gsum{j=0}{n}{\lambda_jv_jv_j^t})(\gsum{i=0}{n}{\frac{1}{\lambda_i}v_iv_i^t}$. Quando $i\neq j$ o termo zera, pois a  base é ortonormal. Quando $i=j$, temos $\gsum{i=j=0}{n}{\lambda_i\frac{1}{\lambda_i}v_iv_i^Tv_iv_i^T}=\gsum{i=j=0}{n}{\lambda_i\frac{1}{\lambda_i}v_iv_i^T}=\gsum{i=j=0}{n}{v_iv_i^T}=I(1)$.\\
+  $(1)$ Seja $M=\gsum{i=0}{n}{v_iv_i^T}$. $Mx=x$, para qualquer vetor $x$.
+\end{description}
+\mytitle{Matrizes com Posto 1 (Revisão)}:\\
+Sempre $M=a.b^T\Rightarrow\\
+\Rightarrow Mb=||b||^2a\\
+\Rightarrow Ma=(b^Ta)a\Rightarrow$ Então, o vetor $a$ é um eigenvector, com eigenvalue $\lambda= b^Ta$.\\
+Os autovalores de $A$ são: $\{b^Ta,0,0,\dots,0\}$, com o $0$ tendo multiplicidade $n-1$.
+\end{document}

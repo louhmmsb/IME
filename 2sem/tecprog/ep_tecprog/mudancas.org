@@ -1,0 +1,46 @@
+#+TITLE: Mudancas em corpo
+
+
+** DONE struct Corpo:
+  * NOVOS CAMPOS:
+  
+  *struct corpo *prox*
+  Para podermos montar uma lista com os corpos presentes.
+
+  *union objeto*
+  Para podermos selecionar qual campo vamos utilizar.
+
+  *WINDOW *imagem [MAX_PICS ]*
+  *WINDOW *mascara [MAX_PICS]*
+  Agora fara mais sentido o struct corpo guardar a imagem do objeto
+
+  *int identificador*
+  Para saber se esse corpo aponta para uma nave, planeta, etc.
+
+  * NOVOS MACROS:
+
+  PLANETA 1  
+  NAVE 2
+  PROJETIL 3
+  
+** DONE structs.c 
+  
+  Para facilitar a inicializacao dos objetos;
+  - [X] corpo * new_nave ();
+  - [X] corpo * new_planeta ();
+  - [X] corpo * new_projetil ();
+  - [ ] void init_nave (corpo);
+  
+** DONE simulacao.h e simulacao.c
+- [X] *Criar* funcao super geral: *desenha corpo ()*
+
+- [X] *Modifcar* funcao *le_entradas()*
+- [X] *Modificar* funcao *atualiza_posicao()*
+- [X] *Modificar* funcao *free_corpos*
+
+** DONE entrada.h e entrada.c
+- [X] *Modifcar* funcao *seta_variaveis()*
+- [X] *Modifcar* funcao *seta_imagens()* (Pode receber um corpo)  
+  - No atual estado eu não preciso modificar a função
+** DONE main.c
+- [X] *ReEscrever* a main (Tá uma bagunça)  

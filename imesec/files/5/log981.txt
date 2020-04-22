@@ -1,0 +1,454 @@
+[    25.131] X.Org X Server 1.11.3 Release Date: 2011-12-16
+[    25.131] X Protocol Version 11, Revision 0
+[    25.131] Build Operating System: Linux 2.6.42-23-generic x86_64 Ubuntu
+[    25.131] Current Operating System: Linux mightymoose 3.2.0-35-generic #55-Ubuntu SMP Wed Dec 5 17:42:16 UTC 2012 x86_64
+[    25.131] Kernel command line: BOOT_IMAGE=/boot/vmlinuz-3.2.0-35-generic root=UUID=1a457833-e069-4987-b17b-6dec0b2164b8 ro quiet splash vt.handoff=7
+[    25.131] Build Date: 29 August 2012  12:12:33AM
+[    25.131] xorg-server 2:1.11.4-0ubuntu10.8 (For technical support please see http://www.ubuntu.com/support) 
+[    25.131] Current version of pixman: 0.24.4
+[    25.131] 	Before reporting problems, check http://wiki.x.org
+	to make sure that you have the latest version.
+[    25.131] Markers: (--) probed, (**) from config file, (==) default setting,
+	(++) from command line, (!!) notice, (II) informational,
+	(WW) warning, (EE) error, (NI) not implemented, (??) unknown.
+[    25.131] (==) Log file: "/var/log/Xorg.0.log", Time: Thu Jan 10 10:42:33 2013
+[    25.131] (==) Using config file: "/etc/X11/xorg.conf"
+[    25.131] (==) Using system config directory "/usr/share/X11/xorg.conf.d"
+[    25.132] (==) ServerLayout "Layout0"
+[    25.132] (**) |-->Screen "Screen0" (0)
+[    25.132] (**) |   |-->Monitor "Monitor0"
+[    25.132] (**) |   |-->Device "Device0"
+[    25.132] (**) |-->Input Device "Keyboard0"
+[    25.132] (**) |-->Input Device "Mouse0"
+[    25.132] (==) Automatically adding devices
+[    25.132] (==) Automatically enabling devices
+[    25.132] (WW) The directory "/usr/share/fonts/X11/cyrillic" does not exist.
+[    25.132] 	Entry deleted from font path.
+[    25.132] (WW) The directory "/usr/share/fonts/X11/100dpi/" does not exist.
+[    25.132] 	Entry deleted from font path.
+[    25.132] (WW) The directory "/usr/share/fonts/X11/75dpi/" does not exist.
+[    25.132] 	Entry deleted from font path.
+[    25.132] (WW) The directory "/usr/share/fonts/X11/100dpi" does not exist.
+[    25.132] 	Entry deleted from font path.
+[    25.132] (WW) The directory "/usr/share/fonts/X11/75dpi" does not exist.
+[    25.132] 	Entry deleted from font path.
+[    25.132] (WW) The directory "/var/lib/defoma/x-ttcidfont-conf.d/dirs/TrueType" does not exist.
+[    25.132] 	Entry deleted from font path.
+[    25.132] (==) FontPath set to:
+	/usr/share/fonts/X11/misc,
+	/usr/share/fonts/X11/Type1,
+	built-ins
+[    25.132] (==) ModulePath set to "/usr/lib/x86_64-linux-gnu/xorg/extra-modules,/usr/lib/xorg/extra-modules,/usr/lib/xorg/modules"
+[    25.132] (WW) Hotplugging is on, devices using drivers 'kbd', 'mouse' or 'vmmouse' will be disabled.
+[    25.132] (WW) Disabling Keyboard0
+[    25.132] (WW) Disabling Mouse0
+[    25.132] (II) Loader magic: 0x7f28d1be3b00
+[    25.132] (II) Module ABI versions:
+[    25.132] 	X.Org ANSI C Emulation: 0.4
+[    25.132] 	X.Org Video Driver: 11.0
+[    25.132] 	X.Org XInput driver : 16.0
+[    25.132] 	X.Org Server Extension : 6.0
+[    25.133] (--) PCI:*(0:1:0:0) 10de:1189:3842:2673 rev 161, Mem @ 0xf5000000/16777216, 0xe8000000/134217728, 0xf0000000/33554432, I/O @ 0x0000e000/128, BIOS @ 0x????????/524288
+[    25.133] (II) Open ACPI successful (/var/run/acpid.socket)
+[    25.133] (II) LoadModule: "extmod"
+[    25.136] (II) Loading /usr/lib/xorg/modules/extensions/libextmod.so
+[    25.136] (II) Module extmod: vendor="X.Org Foundation"
+[    25.136] 	compiled for 1.11.3, module version = 1.0.0
+[    25.136] 	Module class: X.Org Server Extension
+[    25.136] 	ABI class: X.Org Server Extension, version 6.0
+[    25.136] (II) Loading extension MIT-SCREEN-SAVER
+[    25.136] (II) Loading extension XFree86-VidModeExtension
+[    25.136] (II) Loading extension XFree86-DGA
+[    25.136] (II) Loading extension DPMS
+[    25.136] (II) Loading extension XVideo
+[    25.136] (II) Loading extension XVideo-MotionCompensation
+[    25.136] (II) Loading extension X-Resource
+[    25.136] (II) LoadModule: "dbe"
+[    25.137] (II) Loading /usr/lib/xorg/modules/extensions/libdbe.so
+[    25.137] (II) Module dbe: vendor="X.Org Foundation"
+[    25.137] 	compiled for 1.11.3, module version = 1.0.0
+[    25.137] 	Module class: X.Org Server Extension
+[    25.137] 	ABI class: X.Org Server Extension, version 6.0
+[    25.137] (II) Loading extension DOUBLE-BUFFER
+[    25.137] (II) LoadModule: "glx"
+[    25.137] (II) Loading /usr/lib/xorg/modules/extensions/libglx.so
+[    25.160] (II) Module glx: vendor="NVIDIA Corporation"
+[    25.160] 	compiled for 4.0.2, module version = 1.0.0
+[    25.160] 	Module class: X.Org Server Extension
+[    25.160] (II) NVIDIA GLX Module  310.19  Thu Nov  8 01:12:43 PST 2012
+[    25.160] (II) Loading extension GLX
+[    25.160] (II) LoadModule: "record"
+[    25.160] (II) Loading /usr/lib/xorg/modules/extensions/librecord.so
+[    25.160] (II) Module record: vendor="X.Org Foundation"
+[    25.160] 	compiled for 1.11.3, module version = 1.13.0
+[    25.160] 	Module class: X.Org Server Extension
+[    25.160] 	ABI class: X.Org Server Extension, version 6.0
+[    25.160] (II) Loading extension RECORD
+[    25.160] (II) LoadModule: "dri"
+[    25.160] (II) Loading /usr/lib/xorg/modules/extensions/libdri.so
+[    25.160] (II) Module dri: vendor="X.Org Foundation"
+[    25.160] 	compiled for 1.11.3, module version = 1.0.0
+[    25.160] 	ABI class: X.Org Server Extension, version 6.0
+[    25.160] (II) Loading extension XFree86-DRI
+[    25.160] (II) LoadModule: "dri2"
+[    25.160] (II) Loading /usr/lib/xorg/modules/extensions/libdri2.so
+[    25.161] (II) Module dri2: vendor="X.Org Foundation"
+[    25.161] 	compiled for 1.11.3, module version = 1.2.0
+[    25.161] 	ABI class: X.Org Server Extension, version 6.0
+[    25.161] (II) Loading extension DRI2
+[    25.161] (II) LoadModule: "nvidia"
+[    25.161] (II) Loading /usr/lib/xorg/modules/drivers/nvidia_drv.so
+[    25.161] (II) Module nvidia: vendor="NVIDIA Corporation"
+[    25.161] 	compiled for 4.0.2, module version = 1.0.0
+[    25.161] 	Module class: X.Org Video Driver
+[    25.161] (II) NVIDIA dlloader X Driver  310.19  Thu Nov  8 00:53:33 PST 2012
+[    25.161] (II) NVIDIA Unified Driver for all Supported NVIDIA GPUs
+[    25.161] (++) using VT number 7
+
+[    25.161] (II) Loading sub module "wfb"
+[    25.161] (II) LoadModule: "wfb"
+[    25.161] (II) Loading /usr/lib/xorg/modules/libwfb.so
+[    25.161] (II) Module wfb: vendor="X.Org Foundation"
+[    25.161] 	compiled for 1.11.3, module version = 1.0.0
+[    25.161] 	ABI class: X.Org ANSI C Emulation, version 0.4
+[    25.161] (II) Loading sub module "ramdac"
+[    25.161] (II) LoadModule: "ramdac"
+[    25.161] (II) Module "ramdac" already built-in
+[    25.161] (II) Loading /usr/lib/xorg/modules/drivers/nvidia_drv.so
+[    25.161] (II) Loading /usr/lib/xorg/modules/libwfb.so
+[    25.161] (II) NVIDIA(0): Creating default Display subsection in Screen section
+	"Screen0" for depth/fbbpp 24/32
+[    25.161] (**) NVIDIA(0): Depth 24, (--) framebuffer bpp 32
+[    25.161] (==) NVIDIA(0): RGB weight 888
+[    25.161] (==) NVIDIA(0): Default visual is TrueColor
+[    25.161] (==) NVIDIA(0): Using gamma correction (1.0, 1.0, 1.0)
+[    25.161] (**) NVIDIA(0): Enabling 2D acceleration
+[    25.765] (II) NVIDIA(GPU-0): Display (ViewSonic VX2739 Series (DFP-0)) does not support
+[    25.765] (II) NVIDIA(GPU-0):     NVIDIA 3D Vision stereo.
+[    25.771] (II) NVIDIA(GPU-0): Display (ViewSonic VX2739 Series (DFP-3)) does not support
+[    25.771] (II) NVIDIA(GPU-0):     NVIDIA 3D Vision stereo.
+[    25.772] (II) NVIDIA(0): NVIDIA GPU GeForce GTX 670 (GK104) at PCI:1:0:0 (GPU-0)
+[    25.772] (--) NVIDIA(0): Memory: 4194304 kBytes
+[    25.772] (--) NVIDIA(0): VideoBIOS: 80.04.4b.00.71
+[    25.772] (II) NVIDIA(0): Detected PCI Express Link width: 16X
+[    25.775] (--) NVIDIA(0): Valid display device(s) on GeForce GTX 670 at PCI:1:0:0
+[    25.775] (--) NVIDIA(0):     CRT-0
+[    25.775] (--) NVIDIA(0):     ViewSonic VX2739 Series (DFP-0) (connected)
+[    25.775] (--) NVIDIA(0):     DFP-1
+[    25.775] (--) NVIDIA(0):     DFP-2
+[    25.775] (--) NVIDIA(0):     ViewSonic VX2739 Series (DFP-3) (connected)
+[    25.775] (--) NVIDIA(0):     DFP-4
+[    25.775] (--) NVIDIA(0): CRT-0: 400.0 MHz maximum pixel clock
+[    25.775] (--) NVIDIA(0): ViewSonic VX2739 Series (DFP-0): 330.0 MHz maximum pixel clock
+[    25.775] (--) NVIDIA(0): ViewSonic VX2739 Series (DFP-0): Internal Dual Link TMDS
+[    25.775] (--) NVIDIA(0): DFP-1: 165.0 MHz maximum pixel clock
+[    25.775] (--) NVIDIA(0): DFP-1: Internal Single Link TMDS
+[    25.775] (--) NVIDIA(0): DFP-2: 165.0 MHz maximum pixel clock
+[    25.775] (--) NVIDIA(0): DFP-2: Internal Single Link TMDS
+[    25.775] (--) NVIDIA(0): ViewSonic VX2739 Series (DFP-3): 330.0 MHz maximum pixel clock
+[    25.775] (--) NVIDIA(0): ViewSonic VX2739 Series (DFP-3): Internal Dual Link TMDS
+[    25.775] (--) NVIDIA(0): DFP-4: 960.0 MHz maximum pixel clock
+[    25.775] (--) NVIDIA(0): DFP-4: Internal DisplayPort
+[    25.775] (**) NVIDIA(0): Using HorizSync/VertRefresh ranges from the EDID for display
+[    25.775] (**) NVIDIA(0):     device ViewSonic VX2739 Series (DFP-0) (Using EDID
+[    25.775] (**) NVIDIA(0):     frequencies has been enabled on all display devices.)
+[    25.777] (**) NVIDIA(0): Using HorizSync/VertRefresh ranges from the EDID for display
+[    25.777] (**) NVIDIA(0):     device ViewSonic VX2739 Series (DFP-3) (Using EDID
+[    25.777] (**) NVIDIA(0):     frequencies has been enabled on all display devices.)
+[    25.778] (==) NVIDIA(0): 
+[    25.778] (==) NVIDIA(0): No modes were requested; the default mode "nvidia-auto-select"
+[    25.778] (==) NVIDIA(0):     will be used as the requested mode.
+[    25.778] (==) NVIDIA(0): 
+[    25.778] (II) NVIDIA(0): Validated MetaModes:
+[    25.778] (II) NVIDIA(0):     "DFP-0:nvidia-auto-select,DFP-3:nvidia-auto-select"
+[    25.778] (II) NVIDIA(0): Virtual screen size determined to be 3840 x 1080
+[    25.812] (--) NVIDIA(0): DPI set to (81, 80); computed from "UseEdidDpi" X config
+[    25.813] (--) NVIDIA(0):     option
+[    25.813] (--) Depth 24 pixmap format is 32 bpp
+[    25.813] (II) NVIDIA: Using 3072.00 MB of virtual memory for indirect memory
+[    25.813] (II) NVIDIA:     access.
+[    25.818] (II) NVIDIA(0): Setting mode "DFP-0:nvidia-auto-select,DFP-3:nvidia-auto-select"
+[    25.923] (II) Loading extension NV-GLX
+[    25.977] (==) NVIDIA(0): Disabling shared memory pixmaps
+[    25.977] (==) NVIDIA(0): Backing store disabled
+[    25.977] (==) NVIDIA(0): Silken mouse enabled
+[    25.978] (**) NVIDIA(0): DPMS enabled
+[    25.978] (II) Loading extension NV-CONTROL
+[    25.979] (II) Loading extension XINERAMA
+[    25.979] (II) Loading sub module "dri2"
+[    25.979] (II) LoadModule: "dri2"
+[    25.979] (II) Loading /usr/lib/xorg/modules/extensions/libdri2.so
+[    25.979] (II) Module dri2: vendor="X.Org Foundation"
+[    25.979] 	compiled for 1.11.3, module version = 1.2.0
+[    25.979] 	ABI class: X.Org Server Extension, version 6.0
+[    25.979] (II) NVIDIA(0): [DRI2] Setup complete
+[    25.979] (II) NVIDIA(0): [DRI2]   VDPAU driver: nvidia
+[    25.979] (--) RandR disabled
+[    25.979] (II) Initializing built-in extension Generic Event Extension
+[    25.979] (II) Initializing built-in extension SHAPE
+[    25.979] (II) Initializing built-in extension MIT-SHM
+[    25.979] (II) Initializing built-in extension XInputExtension
+[    25.979] (II) Initializing built-in extension XTEST
+[    25.979] (II) Initializing built-in extension BIG-REQUESTS
+[    25.979] (II) Initializing built-in extension SYNC
+[    25.979] (II) Initializing built-in extension XKEYBOARD
+[    25.979] (II) Initializing built-in extension XC-MISC
+[    25.979] (II) Initializing built-in extension SECURITY
+[    25.979] (II) Initializing built-in extension XINERAMA
+[    25.979] (II) Initializing built-in extension XFIXES
+[    25.979] (II) Initializing built-in extension RENDER
+[    25.979] (II) Initializing built-in extension RANDR
+[    25.979] (II) Initializing built-in extension COMPOSITE
+[    25.979] (II) Initializing built-in extension DAMAGE
+[    25.979] (II) Initializing extension GLX
+[    25.988] (II) XKB: reuse xkmfile /var/lib/xkb/server-B20D7FC79C7F597315E3E501AEF10E0D866E8E92.xkm
+[    25.989] (II) config/udev: Adding input device Power Button (/dev/input/event1)
+[    25.989] (**) Power Button: Applying InputClass "evdev keyboard catchall"
+[    25.989] (II) LoadModule: "evdev"
+[    25.989] (II) Loading /usr/lib/xorg/modules/input/evdev_drv.so
+[    25.989] (II) Module evdev: vendor="X.Org Foundation"
+[    25.989] 	compiled for 1.11.3, module version = 2.7.0
+[    25.989] 	Module class: X.Org XInput Driver
+[    25.989] 	ABI class: X.Org XInput driver, version 16.0
+[    25.989] (II) Using input driver 'evdev' for 'Power Button'
+[    25.989] (II) Loading /usr/lib/xorg/modules/input/evdev_drv.so
+[    25.989] (**) Power Button: always reports core events
+[    25.989] (**) evdev: Power Button: Device: "/dev/input/event1"
+[    25.989] (--) evdev: Power Button: Vendor 0 Product 0x1
+[    25.989] (--) evdev: Power Button: Found keys
+[    25.989] (II) evdev: Power Button: Configuring as keyboard
+[    25.989] (**) Option "config_info" "udev:/sys/devices/LNXSYSTM:00/LNXPWRBN:00/input/input1/event1"
+[    25.989] (II) XINPUT: Adding extended input device "Power Button" (type: KEYBOARD, id 6)
+[    25.989] (**) Option "xkb_rules" "evdev"
+[    25.989] (**) Option "xkb_model" "pc105"
+[    25.989] (**) Option "xkb_layout" "us"
+[    25.989] (**) Option "xkb_variant" "dvorak"
+[    25.990] (II) XKB: reuse xkmfile /var/lib/xkb/server-67E01E0DB470BCE62CC253395E30321B147B483E.xkm
+[    25.990] (II) config/udev: Adding input device Power Button (/dev/input/event0)
+[    25.990] (**) Power Button: Applying InputClass "evdev keyboard catchall"
+[    25.990] (II) Using input driver 'evdev' for 'Power Button'
+[    25.990] (II) Loading /usr/lib/xorg/modules/input/evdev_drv.so
+[    25.990] (**) Power Button: always reports core events
+[    25.990] (**) evdev: Power Button: Device: "/dev/input/event0"
+[    25.990] (--) evdev: Power Button: Vendor 0 Product 0x1
+[    25.990] (--) evdev: Power Button: Found keys
+[    25.990] (II) evdev: Power Button: Configuring as keyboard
+[    25.990] (**) Option "config_info" "udev:/sys/devices/LNXSYSTM:00/device:00/PNP0C0C:00/input/input0/event0"
+[    25.990] (II) XINPUT: Adding extended input device "Power Button" (type: KEYBOARD, id 7)
+[    25.990] (**) Option "xkb_rules" "evdev"
+[    25.990] (**) Option "xkb_model" "pc105"
+[    25.990] (**) Option "xkb_layout" "us"
+[    25.990] (**) Option "xkb_variant" "dvorak"
+[    25.990] (II) config/udev: Adding input device HDA NVidia HDMI/DP,pcm=9 (/dev/input/event15)
+[    25.990] (II) No input driver specified, ignoring this device.
+[    25.990] (II) This device may have been added with another device file.
+[    25.990] (II) config/udev: Adding input device HDA NVidia HDMI/DP,pcm=8 (/dev/input/event16)
+[    25.990] (II) No input driver specified, ignoring this device.
+[    25.990] (II) This device may have been added with another device file.
+[    25.991] (II) config/udev: Adding input device HDA NVidia HDMI/DP,pcm=7 (/dev/input/event17)
+[    25.991] (II) No input driver specified, ignoring this device.
+[    25.991] (II) This device may have been added with another device file.
+[    25.991] (II) config/udev: Adding input device HDA NVidia HDMI/DP,pcm=3 (/dev/input/event18)
+[    25.991] (II) No input driver specified, ignoring this device.
+[    25.991] (II) This device may have been added with another device file.
+[    25.991] (II) config/udev: Adding input device HD Pro Webcam C920 (/dev/input/event6)
+[    25.991] (**) HD Pro Webcam C920: Applying InputClass "evdev keyboard catchall"
+[    25.991] (II) Using input driver 'evdev' for 'HD Pro Webcam C920'
+[    25.991] (II) Loading /usr/lib/xorg/modules/input/evdev_drv.so
+[    25.991] (**) HD Pro Webcam C920: always reports core events
+[    25.991] (**) evdev: HD Pro Webcam C920: Device: "/dev/input/event6"
+[    25.991] (--) evdev: HD Pro Webcam C920: Vendor 0x46d Product 0x82d
+[    25.991] (--) evdev: HD Pro Webcam C920: Found keys
+[    25.991] (II) evdev: HD Pro Webcam C920: Configuring as keyboard
+[    25.991] (**) Option "config_info" "udev:/sys/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.5/1-1.5.3/1-1.5.3:1.0/input/input6/event6"
+[    25.991] (II) XINPUT: Adding extended input device "HD Pro Webcam C920" (type: KEYBOARD, id 8)
+[    25.991] (**) Option "xkb_rules" "evdev"
+[    25.991] (**) Option "xkb_model" "pc105"
+[    25.991] (**) Option "xkb_layout" "us"
+[    25.991] (**) Option "xkb_variant" "dvorak"
+[    25.991] (II) config/udev: Adding input device   USB Keyboard (/dev/input/event4)
+[    25.991] (**)   USB Keyboard: Applying InputClass "evdev keyboard catchall"
+[    25.991] (II) Using input driver 'evdev' for '  USB Keyboard'
+[    25.991] (II) Loading /usr/lib/xorg/modules/input/evdev_drv.so
+[    25.991] (**)   USB Keyboard: always reports core events
+[    25.991] (**) evdev:   USB Keyboard: Device: "/dev/input/event4"
+[    25.991] (--) evdev:   USB Keyboard: Vendor 0x4d9 Product 0x1702
+[    25.991] (--) evdev:   USB Keyboard: Found keys
+[    25.991] (II) evdev:   USB Keyboard: Configuring as keyboard
+[    25.991] (**) Option "config_info" "udev:/sys/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.6/1-1.6.1/1-1.6.1:1.0/input/input4/event4"
+[    25.991] (II) XINPUT: Adding extended input device "  USB Keyboard" (type: KEYBOARD, id 9)
+[    25.991] (**) Option "xkb_rules" "evdev"
+[    25.991] (**) Option "xkb_model" "pc105"
+[    25.991] (**) Option "xkb_layout" "us"
+[    25.991] (**) Option "xkb_variant" "dvorak"
+[    25.991] (II) config/udev: Adding input device   USB Keyboard (/dev/input/event5)
+[    25.991] (**)   USB Keyboard: Applying InputClass "evdev keyboard catchall"
+[    25.991] (II) Using input driver 'evdev' for '  USB Keyboard'
+[    25.991] (II) Loading /usr/lib/xorg/modules/input/evdev_drv.so
+[    25.991] (**)   USB Keyboard: always reports core events
+[    25.991] (**) evdev:   USB Keyboard: Device: "/dev/input/event5"
+[    25.991] (--) evdev:   USB Keyboard: Vendor 0x4d9 Product 0x1702
+[    25.991] (--) evdev:   USB Keyboard: Found keys
+[    25.991] (II) evdev:   USB Keyboard: Configuring as keyboard
+[    25.991] (**) Option "config_info" "udev:/sys/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.6/1-1.6.1/1-1.6.1:1.1/input/input5/event5"
+[    25.991] (II) XINPUT: Adding extended input device "  USB Keyboard" (type: KEYBOARD, id 10)
+[    25.991] (**) Option "xkb_rules" "evdev"
+[    25.991] (**) Option "xkb_model" "pc105"
+[    25.991] (**) Option "xkb_layout" "us"
+[    25.991] (**) Option "xkb_variant" "dvorak"
+[    25.992] (II) config/udev: Adding input device HDA Intel PCH Rear Mic (/dev/input/event10)
+[    25.992] (II) No input driver specified, ignoring this device.
+[    25.992] (II) This device may have been added with another device file.
+[    25.992] (II) config/udev: Adding input device HDA Intel PCH Front Headphone (/dev/input/event11)
+[    25.992] (II) No input driver specified, ignoring this device.
+[    25.992] (II) This device may have been added with another device file.
+[    25.992] (II) config/udev: Adding input device HDA Intel PCH Line-Out CLFE (/dev/input/event12)
+[    25.992] (II) No input driver specified, ignoring this device.
+[    25.992] (II) This device may have been added with another device file.
+[    25.992] (II) config/udev: Adding input device HDA Intel PCH Line-Out Surround (/dev/input/event13)
+[    25.992] (II) No input driver specified, ignoring this device.
+[    25.992] (II) This device may have been added with another device file.
+[    25.992] (II) config/udev: Adding input device HDA Intel PCH Line-Out Front (/dev/input/event14)
+[    25.992] (II) No input driver specified, ignoring this device.
+[    25.992] (II) This device may have been added with another device file.
+[    25.992] (II) config/udev: Adding input device HDA Intel PCH Line (/dev/input/event8)
+[    25.992] (II) No input driver specified, ignoring this device.
+[    25.992] (II) This device may have been added with another device file.
+[    25.992] (II) config/udev: Adding input device HDA Intel PCH Front Mic (/dev/input/event9)
+[    25.992] (II) No input driver specified, ignoring this device.
+[    25.992] (II) This device may have been added with another device file.
+[    25.992] (II) config/udev: Adding input device Logitech USB Receiver (/dev/input/event2)
+[    25.992] (**) Logitech USB Receiver: Applying InputClass "evdev pointer catchall"
+[    25.992] (II) Using input driver 'evdev' for 'Logitech USB Receiver'
+[    25.992] (II) Loading /usr/lib/xorg/modules/input/evdev_drv.so
+[    25.992] (**) Logitech USB Receiver: always reports core events
+[    25.992] (**) evdev: Logitech USB Receiver: Device: "/dev/input/event2"
+[    25.992] (--) evdev: Logitech USB Receiver: Vendor 0x46d Product 0xc52f
+[    25.992] (--) evdev: Logitech USB Receiver: Found 20 mouse buttons
+[    25.992] (--) evdev: Logitech USB Receiver: Found scroll wheel(s)
+[    25.992] (--) evdev: Logitech USB Receiver: Found relative axes
+[    25.992] (--) evdev: Logitech USB Receiver: Found x and y relative axes
+[    25.992] (II) evdev: Logitech USB Receiver: Configuring as mouse
+[    25.992] (II) evdev: Logitech USB Receiver: Adding scrollwheel support
+[    25.992] (**) evdev: Logitech USB Receiver: YAxisMapping: buttons 4 and 5
+[    25.992] (**) evdev: Logitech USB Receiver: EmulateWheelButton: 4, EmulateWheelInertia: 10, EmulateWheelTimeout: 200
+[    25.992] (**) Option "config_info" "udev:/sys/devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1.6/2-1.6:1.0/input/input2/event2"
+[    25.992] (II) XINPUT: Adding extended input device "Logitech USB Receiver" (type: MOUSE, id 11)
+[    25.992] (II) evdev: Logitech USB Receiver: initialized for relative axes.
+[    25.992] (**) Logitech USB Receiver: (accel) keeping acceleration scheme 1
+[    25.992] (**) Logitech USB Receiver: (accel) acceleration profile 0
+[    25.992] (**) Logitech USB Receiver: (accel) acceleration factor: 2.000
+[    25.992] (**) Logitech USB Receiver: (accel) acceleration threshold: 4
+[    25.993] (II) config/udev: Adding input device Logitech USB Receiver (/dev/input/mouse0)
+[    25.993] (II) No input driver specified, ignoring this device.
+[    25.993] (II) This device may have been added with another device file.
+[    25.993] (II) config/udev: Adding input device Logitech USB Receiver (/dev/input/event3)
+[    25.993] (**) Logitech USB Receiver: Applying InputClass "evdev keyboard catchall"
+[    25.993] (II) Using input driver 'evdev' for 'Logitech USB Receiver'
+[    25.993] (II) Loading /usr/lib/xorg/modules/input/evdev_drv.so
+[    25.993] (**) Logitech USB Receiver: always reports core events
+[    25.993] (**) evdev: Logitech USB Receiver: Device: "/dev/input/event3"
+[    25.993] (--) evdev: Logitech USB Receiver: Vendor 0x46d Product 0xc52f
+[    25.993] (--) evdev: Logitech USB Receiver: Found 1 mouse buttons
+[    25.993] (--) evdev: Logitech USB Receiver: Found scroll wheel(s)
+[    25.993] (--) evdev: Logitech USB Receiver: Found relative axes
+[    25.993] (II) evdev: Logitech USB Receiver: Forcing relative x/y axes to exist.
+[    25.993] (--) evdev: Logitech USB Receiver: Found absolute axes
+[    25.993] (II) evdev: Logitech USB Receiver: Forcing absolute x/y axes to exist.
+[    25.993] (--) evdev: Logitech USB Receiver: Found keys
+[    25.993] (II) evdev: Logitech USB Receiver: Configuring as mouse
+[    25.993] (II) evdev: Logitech USB Receiver: Configuring as keyboard
+[    25.993] (II) evdev: Logitech USB Receiver: Adding scrollwheel support
+[    25.993] (**) evdev: Logitech USB Receiver: YAxisMapping: buttons 4 and 5
+[    25.993] (**) evdev: Logitech USB Receiver: EmulateWheelButton: 4, EmulateWheelInertia: 10, EmulateWheelTimeout: 200
+[    25.993] (**) Option "config_info" "udev:/sys/devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1.6/2-1.6:1.1/input/input3/event3"
+[    25.993] (II) XINPUT: Adding extended input device "Logitech USB Receiver" (type: KEYBOARD, id 12)
+[    25.993] (**) Option "xkb_rules" "evdev"
+[    25.993] (**) Option "xkb_model" "pc105"
+[    25.993] (**) Option "xkb_layout" "us"
+[    25.993] (**) Option "xkb_variant" "dvorak"
+[    25.993] (II) evdev: Logitech USB Receiver: initialized for relative axes.
+[    25.993] (WW) evdev: Logitech USB Receiver: ignoring absolute axes.
+[    25.993] (**) Logitech USB Receiver: (accel) keeping acceleration scheme 1
+[    25.993] (**) Logitech USB Receiver: (accel) acceleration profile 0
+[    25.993] (**) Logitech USB Receiver: (accel) acceleration factor: 2.000
+[    25.993] (**) Logitech USB Receiver: (accel) acceleration threshold: 4
+[    25.993] (II) config/udev: Adding input device Eee PC WMI hotkeys (/dev/input/event7)
+[    25.993] (**) Eee PC WMI hotkeys: Applying InputClass "evdev keyboard catchall"
+[    25.993] (II) Using input driver 'evdev' for 'Eee PC WMI hotkeys'
+[    25.993] (II) Loading /usr/lib/xorg/modules/input/evdev_drv.so
+[    25.993] (**) Eee PC WMI hotkeys: always reports core events
+[    25.993] (**) evdev: Eee PC WMI hotkeys: Device: "/dev/input/event7"
+[    25.993] (--) evdev: Eee PC WMI hotkeys: Vendor 0 Product 0
+[    25.993] (--) evdev: Eee PC WMI hotkeys: Found keys
+[    25.993] (II) evdev: Eee PC WMI hotkeys: Configuring as keyboard
+[    25.993] (**) Option "config_info" "udev:/sys/devices/platform/eeepc-wmi/input/input7/event7"
+[    25.993] (II) XINPUT: Adding extended input device "Eee PC WMI hotkeys" (type: KEYBOARD, id 13)
+[    25.993] (**) Option "xkb_rules" "evdev"
+[    25.993] (**) Option "xkb_model" "pc105"
+[    25.993] (**) Option "xkb_layout" "us"
+[    25.993] (**) Option "xkb_variant" "dvorak"
+[    26.190] (II) NVIDIA(GPU-0): Display (ViewSonic VX2739 Series (DFP-0)) does not support
+[    26.190] (II) NVIDIA(GPU-0):     NVIDIA 3D Vision stereo.
+[    26.191] (**) NVIDIA(0): Using HorizSync/VertRefresh ranges from the EDID for display
+[    26.191] (**) NVIDIA(0):     device ViewSonic VX2739 Series (DFP-0) (Using EDID
+[    26.191] (**) NVIDIA(0):     frequencies has been enabled on all display devices.)
+[    26.198] (II) NVIDIA(GPU-0): Display (ViewSonic VX2739 Series (DFP-3)) does not support
+[    26.198] (II) NVIDIA(GPU-0):     NVIDIA 3D Vision stereo.
+[    26.198] (**) NVIDIA(0): Using HorizSync/VertRefresh ranges from the EDID for display
+[    26.198] (**) NVIDIA(0):     device ViewSonic VX2739 Series (DFP-3) (Using EDID
+[    26.198] (**) NVIDIA(0):     frequencies has been enabled on all display devices.)
+[    26.314] (II) XKB: reuse xkmfile /var/lib/xkb/server-03AF3717FF3AB439A4BAABA686CCB40771CDF520.xkm
+[    26.315] (II) XKB: reuse xkmfile /var/lib/xkb/server-03AF3717FF3AB439A4BAABA686CCB40771CDF520.xkm
+[    28.503] (II) NVIDIA(GPU-0): Display (ViewSonic VX2739 Series (DFP-0)) does not support
+[    28.503] (II) NVIDIA(GPU-0):     NVIDIA 3D Vision stereo.
+[    28.503] (**) NVIDIA(0): Using HorizSync/VertRefresh ranges from the EDID for display
+[    28.503] (**) NVIDIA(0):     device ViewSonic VX2739 Series (DFP-0) (Using EDID
+[    28.503] (**) NVIDIA(0):     frequencies has been enabled on all display devices.)
+[    28.510] (II) NVIDIA(GPU-0): Display (ViewSonic VX2739 Series (DFP-3)) does not support
+[    28.510] (II) NVIDIA(GPU-0):     NVIDIA 3D Vision stereo.
+[    28.510] (**) NVIDIA(0): Using HorizSync/VertRefresh ranges from the EDID for display
+[    28.510] (**) NVIDIA(0):     device ViewSonic VX2739 Series (DFP-3) (Using EDID
+[    28.510] (**) NVIDIA(0):     frequencies has been enabled on all display devices.)
+[   185.930] (II) XKB: reuse xkmfile /var/lib/xkb/server-34FC5959C5785E1E4DD9A023C966B3FAA214DD48.xkm
+[   189.277] (II) NVIDIA(GPU-0): Display (ViewSonic VX2739 Series (DFP-0)) does not support
+[   189.277] (II) NVIDIA(GPU-0):     NVIDIA 3D Vision stereo.
+[   189.277] (**) NVIDIA(0): Using HorizSync/VertRefresh ranges from the EDID for display
+[   189.277] (**) NVIDIA(0):     device ViewSonic VX2739 Series (DFP-0) (Using EDID
+[   189.277] (**) NVIDIA(0):     frequencies has been enabled on all display devices.)
+[   189.288] (II) NVIDIA(GPU-0): Display (ViewSonic VX2739 Series (DFP-3)) does not support
+[   189.288] (II) NVIDIA(GPU-0):     NVIDIA 3D Vision stereo.
+[   189.288] (**) NVIDIA(0): Using HorizSync/VertRefresh ranges from the EDID for display
+[   189.288] (**) NVIDIA(0):     device ViewSonic VX2739 Series (DFP-3) (Using EDID
+[   189.288] (**) NVIDIA(0):     frequencies has been enabled on all display devices.)
+[   189.374] (II) NVIDIA(GPU-0): Display (ViewSonic VX2739 Series (DFP-0)) does not support
+[   189.374] (II) NVIDIA(GPU-0):     NVIDIA 3D Vision stereo.
+[   189.374] (**) NVIDIA(0): Using HorizSync/VertRefresh ranges from the EDID for display
+[   189.374] (**) NVIDIA(0):     device ViewSonic VX2739 Series (DFP-0) (Using EDID
+[   189.374] (**) NVIDIA(0):     frequencies has been enabled on all display devices.)
+[   189.384] (II) NVIDIA(GPU-0): Display (ViewSonic VX2739 Series (DFP-3)) does not support
+[   189.384] (II) NVIDIA(GPU-0):     NVIDIA 3D Vision stereo.
+[   189.384] (**) NVIDIA(0): Using HorizSync/VertRefresh ranges from the EDID for display
+[   189.384] (**) NVIDIA(0):     device ViewSonic VX2739 Series (DFP-3) (Using EDID
+[   189.384] (**) NVIDIA(0):     frequencies has been enabled on all display devices.)
+[   189.511] (II) XKB: reuse xkmfile /var/lib/xkb/server-34FC5959C5785E1E4DD9A023C966B3FAA214DD48.xkm
+[   189.536] (II) XKB: reuse xkmfile /var/lib/xkb/server-67E01E0DB470BCE62CC253395E30321B147B483E.xkm
+[   189.543] (II) XKB: reuse xkmfile /var/lib/xkb/server-34FC5959C5785E1E4DD9A023C966B3FAA214DD48.xkm
+[   189.545] (II) XKB: reuse xkmfile /var/lib/xkb/server-34FC5959C5785E1E4DD9A023C966B3FAA214DD48.xkm
+[   189.547] (II) XKB: reuse xkmfile /var/lib/xkb/server-34FC5959C5785E1E4DD9A023C966B3FAA214DD48.xkm
+[   189.549] (II) XKB: reuse xkmfile /var/lib/xkb/server-34FC5959C5785E1E4DD9A023C966B3FAA214DD48.xkm
+[   189.552] (II) XKB: reuse xkmfile /var/lib/xkb/server-34FC5959C5785E1E4DD9A023C966B3FAA214DD48.xkm
+[   189.554] (II) XKB: reuse xkmfile /var/lib/xkb/server-34FC5959C5785E1E4DD9A023C966B3FAA214DD48.xkm
+[   189.556] (II) XKB: reuse xkmfile /var/lib/xkb/server-34FC5959C5785E1E4DD9A023C966B3FAA214DD48.xkm
+[   189.559] (II) XKB: reuse xkmfile /var/lib/xkb/server-34FC5959C5785E1E4DD9A023C966B3FAA214DD48.xkm
+[   189.561] (II) XKB: reuse xkmfile /var/lib/xkb/server-34FC5959C5785E1E4DD9A023C966B3FAA214DD48.xkm
+[   209.557] (II) NVIDIA(GPU-0): Display (ViewSonic VX2739 Series (DFP-0)) does not support
+[   209.557] (II) NVIDIA(GPU-0):     NVIDIA 3D Vision stereo.
+[   209.557] (**) NVIDIA(0): Using HorizSync/VertRefresh ranges from the EDID for display
+[   209.557] (**) NVIDIA(0):     device ViewSonic VX2739 Series (DFP-0) (Using EDID
+[   209.557] (**) NVIDIA(0):     frequencies has been enabled on all display devices.)
+[   209.565] (II) NVIDIA(GPU-0): Display (ViewSonic VX2739 Series (DFP-3)) does not support
+[   209.565] (II) NVIDIA(GPU-0):     NVIDIA 3D Vision stereo.
+[   209.565] (**) NVIDIA(0): Using HorizSync/VertRefresh ranges from the EDID for display
+[   209.565] (**) NVIDIA(0):     device ViewSonic VX2739 Series (DFP-3) (Using EDID
+[   209.565] (**) NVIDIA(0):     frequencies has been enabled on all display devices.)

@@ -1,0 +1,6 @@
+\babel@toc {brazil}{}
+\contentsline {chapter}{\numberline {1}Sequ\IeC {\^e}ncias Num\IeC {\'e}ricas}{5}
+\contentsline {section}{\numberline {1.1}Introdu\IeC {\c c}\IeC {\~a}o}{5}
+\contentsline {section}{\numberline {1.2}Limites}{5}
+\contentsline {section}{\numberline {1.3}Propriedades Alg\IeC {\'e}bricas dos Limites}{6}
+\contentsline {section}{\numberline {1.4}Outras Propriedades}{6}

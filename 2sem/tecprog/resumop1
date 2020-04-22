@@ -1,0 +1,96 @@
+Segmentos de memoria:
+
+Pilha de Execução: Mais importante
+
+
+
+
+
+Acesso à memória:
+
+       Imediato:
+       Ex: add $2, %eax
+       Soma o número 2 ao registrador eax
+
+       Direto:
+       Ex: mov 200, %ebx
+       Move o valor que está no espaço de memória 200 ao registrador eax
+
+       Indireto:
+       Ex: add %rdx, (%rax)
+       Soma o número que está em rdx ao valor que está no espaço da memória cujo número é o valor em rax
+
+       Indexado:
+       Ex: mov 200(%ebx), %eax
+       Move o valor que está no espaço da memória (200 + valor em ebx) ao registrador eax
+
+
+Flags: Bits com significado especial que os processadores usam para tratar resultados de operações, como desvios condicionais.
+       Os mais famosos são: CF, PF, AF, ZF, SF, OF, DF
+       CF: Carry
+       PF: Paridade
+       AF: Ajuste
+       ZF: Zero 
+       SF: Sinal 
+       OF: Overflow
+       DF: Direção
+
+Chamadas de Sistema (Linux 64 bits):
+	 As chamadas são feitas pelo comando: syscall
+	 No %rax colocamos a instrução que queremos executar
+	 Nos outros registradores colocamos coisas dependendo da instrução que queremos executar
+
+Manipulação da Pilha:
+	    Empilhar:
+	    push valor = sub $8, %rsp
+	                 movq valor, (%rsp)
+
+            Desempilhar:
+	    pop dest = movq (%rsp), dest
+	    	       add $8, %rsp
+
+	    Outras operações:
+	    pusha
+	    popa
+	    pushf
+	    popf dest
+
+	    Chamada e retorno de subrotinas:
+	    Chamada da rotina que começa em endereço:
+	    call endereço = push %rpi
+	                    jmp endereço
+
+	    O retorno é feito simplesmente pela instrução ret:
+            ret = pop tmp
+	          jmp tmp
+
+Passagem de parâmetros: É bem diferente em 32 e 64 bits (pilha cresce pra baixo)
+	 32 bits: Os parâmetros ficam em cima do endereço de retorno, e logo embaixo do dereço de retorno fica a base anterior.
+	 64 bits: Os 6 primeiros parâmetros são passados para registradores.
+
+Bibliotecas:
+	Estática e Dinâmica: A diferença é que a dinâmica é preparada durante a execução do programa
+
+Sistema operacional:
+	Streams: Sequência de bytes represetam arquivos ou dispositivos da mesma forma.
+		 Entrada padrão, saída padrão, saída padrão de erro.
+		 É possível transferir dados de um stream para outro (redirecionamento): Pipes.
+		 Abrir ou fechar streams é como dar fopen em C, e depois fclose. O fopen da um endereço de struct onde será guardado os dados de um arquivo e o fclose libera esse struct.
+
+Controle de acesso: Pode se dar permissões para o dono do arquivo, para o grupo do dono do arquivo e para o resto do mundo.
+
+Background e Foreground (&), sequência (; &&), concorrente e paralelo (| &  parallel).
+
+Bash:
+	Controle de processos:
+	Ctrl-D: Final de entrada
+	Ctrl-C: Término (kill)
+	Ctrl-Z: Dormir
+	fg
+	bg
+	jobs
+
+Variáveis de Ambiente e Expressões em Bash.
+
+
+
