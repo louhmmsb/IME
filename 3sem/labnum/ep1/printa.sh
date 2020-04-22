@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $# -ne 1 ]
+if [ $# -ne 3 ]
 then
     echo "Para usar passe o número de .txt"
     exit
@@ -8,7 +8,7 @@ fi
 
 echo "set xrange [-2:2]">printa.gnu
 echo "set yrange [-2:2]">>printa.gnu
-echo "set terminal png medium size 600 400 enhanced">>printa.gnu
+echo "set terminal png enhanced size $2,$3">>printa.gnu
 echo "set output 'grafico.png'">>printa.gnu
 echo "set style line 1 lc rgb 'orange' pt 0">>printa.gnu
 echo "set style line 2 lc rgb 'green' pt 0">>printa.gnu

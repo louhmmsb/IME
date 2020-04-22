@@ -101,8 +101,8 @@ double complex newton(int i, double complex x0, double epsilon);
 
 int main(){
 
-    int qualfunc, deu = 0, nraizes = 0, i = 0;
-    double epsilon, epsilonI, x0r, x0i, xnr, xni;
+    int qualfunc, deu = 0, nraizes = 0, i = 0, nH, nV;
+    double epsilon, x0r, x0i, xnr, xni, epsilonH, epsilonV;
     double complex x0, xn, p, calc, raizes[MAXRAIZES];
     char keep, name[22], command[25];
     FILE *files[MAXRAIZES];
@@ -112,8 +112,14 @@ int main(){
     printf("Qual epsilon voce quer usar: ");
     scanf("%lf", &epsilon);
 
-    printf("Qual a distância dos intervalos: ");
-    scanf("%lf", &epsilonI);
+    printf("Quantos pontos você quer na vertical: ");
+    scanf("%d", &nV);
+
+    printf("Quantos pontos você quer na horizontal: ");
+    scanf("%d", &nH);
+    
+    //printf("Qual a distância dos intervalos: ");
+    //scanf("%lf", &epsilonI);
     
     printf("Qual das seguintes funcoes voce quer simular:\n");
     printf("0:x^4 - 1 \n");
@@ -135,9 +141,12 @@ int main(){
     scanf("%lf", &xni);
     xn = xnr + xni * I;
 
-    for(p = x0; cimag(p) >= cimag(xn); p -= epsilonI * I){
+    epsilonH = (xnr - x0r)/nH;
+    epsilonV = (xni = x0i)/nV;
 
-        for(; creal(p) <= creal(xn); p += epsilonI){
+    for(p = x0; cimag(p) >= cimag(xn); p -= epsilonV * I){
+
+        for(; creal(p) <= creal(xn); p += epsilonH){
 
             convergiu = 1;
             calc = newton(qualfunc, p, epsilon);
@@ -194,7 +203,7 @@ int main(){
             
     }
 
-    sprintf(command, "./printa.sh %d", nraizes+1);
+    sprintf(command, "./printa.sh %d %d %d", nraizes+1, nH, nV);
 
     system(command);
     return 0;
