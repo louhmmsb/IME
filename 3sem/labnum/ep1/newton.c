@@ -80,6 +80,8 @@ double complex df4(double complex x){
     return 8*x*x*x*x*x*x*x + 60*x*x*x;
     
 }
+
+
 /*Aqui termina o bloco onde defino as funcoes matematicas*/
 
 /*Essa funcao avalia a funcao de indice i no ponto x0*/
@@ -89,7 +91,7 @@ double complex eval(int i, double complex x0);
 double complex evalD(int i, double complex x0);
 
 /*Aqui eu defino o array onde guardo todas as funcoes e suas derivadas*/
-double complex (*funarr[5][2])(double complex) = { {f0, df0}, {f1, df1}, {f2, df2}, {f3, df3}, {f4, df4} };
+double complex (*funarr[6][2])(double complex) = { {f0, df0}, {f1, df1}, {f2, df2}, {f3, df3}, {f4, df4} };
 
 /*Essa funcao faz a conta do metodo de newton (x - f(x)/f'(x)) para a funcao de indice i, no ponto x0*/
 double complex g(int i, double complex x0);

@@ -1,0 +1,54 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage[brazil]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{bussproofs}
+\usepackage[table]{xcolor}
+\usepackage{gensymb}
+\graphicspath{{./images}}
+\geometry{verbose,a4paper,left=2cm,top=2cm,right=3cm,bottom=3cm}
+\title{Relatorio}
+\author{Lourenço Henrique Moinheiro Martins Sborz Bogo}
+\date{}
+\linespread{1.5}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\product}[3]{\displaystyle\prod_{#1}^#2 #3}
+\newcommand{\gsum}[3]{\displaystyle\sum_{#1}^#2 #3}
+\newcommand{\mytitle}[1]{\textbf{\underline{#1}}}
+\newcommand{\ring}[1]{\langle #1 \rangle}
+
+
+\begin{document}
+
+\maketitle
+
+\mytitle{Parte 1 do EP: Método do Ponto Fixo}
+
+Para o método do ponto fixo, eu escolhi a função de ponto fixo $g(x) = x - \frac{f(x)}{f'(x)}$. Essa, por ser também, a função do Método de Newton, achará todas as raízes dependendo apenas do ponto inicial estar dentro de um certo intervalo que contenha a raiz.
+
+Para achar cada uma das raízes foi usada precisão de $10^{-8}$ e os seguintes pontos iniciais:
+
+$
+\begin{cases}
+  
+  X_0 = 1.5 \to 1.487962 \\
+  X_0 = -0.5 \to -0.539835 \\
+  X_0 = y2.5 \to 2.617867 
+  
+\end{cases}\\
+$
+
+\mytitle{Parte 2 do EP: Método de Newton}
+
+Fiz essa parte do EP com uma aproximação um pouco diferente. Fiz uma pequena interface para que seja mais fácil utilizar o EP sem ter que mexer no código fonte. Ele pede primeiro para que seja passadddo quantos pixeis serão calculados em cada direção, depois ele pede os pontos u e l, respectivamente, depois é pedida a precisão e por último
+são oferecidas 5 funções para plotar. Explicarei como adcionar outras funções mais a frente.
+
+
+\end{document}

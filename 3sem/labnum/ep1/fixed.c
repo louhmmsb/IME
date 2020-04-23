@@ -52,15 +52,10 @@ int main(){
         printf("Digite o x0 para procurar uma das raizes: ");
         scanf("%lf", &x0);
 
-        printf("Qual funcao de ponto fixo voce quer usar? (A função 2 acha todas as raizes)\n");
-        printf("1: x - f(x)\n");
-        printf("2: x - f(x)/df(x)\n");
         fflush(stdin);
-        scanf("%d", &qualfunc);
+        qualfunc = 1;
 
         if(qualfunc == 1) func = g1;
-        else if(qualfunc == 2) func = g2;
-        
         
         raiz = gk(func, epsilon, x0);
 
@@ -93,12 +88,6 @@ double df(double x){
 }
 
 double g1(double x){
-
-    return x - f(x);
-    
-}
-
-double g2(double x){
 
     return x - f(x)/df(x);
     
