@@ -4,15 +4,14 @@
 #include <complex.h>
 #include <string.h>
 
+/*Esse sera o limite de iteracoes para assumir que o ponto nao converge*/
 #define LIMITE 30
-#define MAXRAIZES 15
+
+#define MAXRAIZES 50
 
 int convergiu;
 
-
-int comp(double complex x, double complex y, double epsilon);
-
-
+/*Aqui começa o bloco onde defino as funcoes matematicas e suas derivadas*/
 double complex f0(double complex x){
 
     return x*x*x*x - 1;
@@ -81,53 +80,38 @@ double complex df4(double complex x){
     return 8*x*x*x*x*x*x*x + 60*x*x*x;
     
 }
+/*Aqui termina o bloco onde defino as funcoes matematicas*/
 
-
+/*Essa funcao avalia a funcao de indice i no ponto x0*/
 double complex eval(int i, double complex x0);
 
-
+/*Essa funcao avalia a derivada da funcao de indice i no ponto x0*/
 double complex evalD(int i, double complex x0);
 
-
+/*Aqui eu defino o array onde guardo todas as funcoes e suas derivadas*/
 double complex (*funarr[5][2])(double complex) = { {f0, df0}, {f1, df1}, {f2, df2}, {f3, df3}, {f4, df4} };
 
-
+/*Essa funcao faz a conta do metodo de newton (x - f(x)/f'(x)) para a funcao de indice i, no ponto x0*/
 double complex g(int i, double complex x0);
 
-
+/*Essa funcao aplica o metodo de newton para a funcao de indice i no ponto x0, com precisao de epsilon*/
 double complex newton(int i, double complex x0, double epsilon);
 
+/*Essa funcao cria os arquivos de texto com os pontos usando um script de bash, os plota em gnuplot e depois deleta os arquivos de texto*/
+void newton_basins(double complex x0, double complex xn, int nH, int nV);
 
 
 int main(){
 
-    int qualfunc, deu = 0, nraizes = 0, i = 0, nH, nV;
-    double epsilon, x0r, x0i, xnr, xni, epsilonH, epsilonV;
-    double complex x0, xn, p, calc, raizes[MAXRAIZES];
-    char keep, name[22], command[25];
-    FILE *files[MAXRAIZES];
-
-    files[MAXRAIZES-1] = fopen("n.txt", "w");
-    
-    printf("Qual epsilon voce quer usar: ");
-    scanf("%lf", &epsilon);
+    int nH, nV;
+    double x0r, x0i, xnr, xni;
+    double complex x0, xn;
 
     printf("Quantos pontos você quer na vertical: ");
     scanf("%d", &nV);
 
     printf("Quantos pontos você quer na horizontal: ");
     scanf("%d", &nH);
-    
-    //printf("Qual a distância dos intervalos: ");
-    //scanf("%lf", &epsilonI);
-    
-    printf("Qual das seguintes funcoes voce quer simular:\n");
-    printf("0:x^4 - 1 \n");
-    printf("1:x^2 + 1 \n");
-    printf("2:x^3 - 1 \n");
-    printf("3:x^3 - x \n");
-    printf("4:x^8 + 15x^4 - 16 \n");
-    scanf("%d", &qualfunc);
 
     printf("Digite o x0r: ");
     scanf("%lf", &x0r);
@@ -141,6 +125,94 @@ int main(){
     scanf("%lf", &xni);
     xn = xnr + xni * I;
 
+    newton_basins(x0, xn, nH, nV);
+    
+    return 0;
+    
+}
+
+/*Aqui estao as implementacoes das funcoes que foram declaradas em cima da main*/
+int comp(double complex x, double complex y, double epsilon){
+
+    if(cabs(x-y)<epsilon) return 1;
+    return 0;
+    
+}
+
+double complex eval(int i, double complex x0){
+
+    return funarr[i][0](x0);
+    
+}
+
+double complex evalD(int i, double complex x0){
+
+    return funarr[i][1](x0);
+    
+}
+
+double complex g(int i, double complex x0){
+
+    double complex a = x0 - funarr[i][0](x0)/funarr[i][1](x0);
+    return a;
+    
+}
+
+double complex newton(int i, double complex x0, double epsilon){
+
+    double complex x, calc;
+    int j = 0;
+    
+    x = g(i, x0);
+
+    for(j = 0; j < LIMITE; j++){
+
+        if(cabs(funarr[i][1](x)) < epsilon){
+
+            convergiu = 0;
+            break;
+                
+        }
+        
+        calc = g(i, x);
+
+        if(cabs(funarr[i][0](x)) < epsilon) break;
+        x = calc;
+        
+    }
+    
+    if(j == LIMITE) convergiu = 0;
+    return x;
+    
+}
+
+void newton_basins(double complex x0, double complex xn, int nH, int nV){
+
+    int qualfunc, deu = 0, nraizes = 0, i = 0;
+    double epsilon, x0r, x0i, xnr, xni, epsilonH, epsilonV;
+    double complex p, calc, raizes[MAXRAIZES];
+    char name[22], command[25];
+    FILE *files[MAXRAIZES];
+
+    files[MAXRAIZES-1] = fopen("n.txt", "w");
+    
+    printf("Qual epsilon voce quer usar: ");
+    scanf("%lf", &epsilon);
+    
+    printf("Qual das seguintes funcoes voce quer simular:\n");
+    printf("0:x^4 - 1 \n");
+    printf("1:x^2 + 1 \n");
+    printf("2:x^3 - 1 \n");
+    printf("3:x^3 - x \n");
+    printf("4:x^8 + 15x^4 - 16 \n");
+    scanf("%d", &qualfunc);
+
+    xnr = creal(xn);
+    x0r = creal(x0);
+
+    xni = cimag(xn);
+    x0i = cimag(x0);
+
     epsilonH = (xnr - x0r)/nH;
     epsilonV = (xni = x0i)/nV;
 
@@ -152,7 +224,6 @@ int main(){
             calc = newton(qualfunc, p, epsilon);
 
             if(convergiu){
-                //printf("%lf + %lfi converge para %lf + %lfi\n", creal(p), cimag(p), creal(calc), cimag(calc));
                     
                 deu = 0;
                 for(i=0; i<nraizes; i++){
@@ -206,80 +277,6 @@ int main(){
     sprintf(command, "./printa.sh %d %d %d", nraizes+1, nH, nV);
 
     system(command);
-    return 0;
-    
-}
-
-
-
-
-
-//int comp(double complex x, double complex y, double epsilon){
-
-//if(abs(creal(x)-creal(y)) < epsilon && abs(cimag(x)-cimag(y)) < epsilon) return 1;
-//return 0;
-    
-//}
-
-int comp(double complex x, double complex y, double epsilon){
-
-    if(cabs(x-y)<epsilon) return 1;
-    return 0;
-    
-}
-
-double complex eval(int i, double complex x0){
-
-    return funarr[i][0](x0);
-    
-}
-
-double complex evalD(int i, double complex x0){
-
-    return funarr[i][1](x0);
-    
-}
-
-double complex g(int i, double complex x0){
-
-    double complex a = x0 - funarr[i][0](x0)/funarr[i][1](x0);
-    return a;
-    
-}
-
-double complex newton(int i, double complex x0, double epsilon){
-
-    double complex x, calc;
-    int j = 0;
-    
-    x = g(i, x0);
-
-    for(j = 0; j < LIMITE; j++){
-
-        if(cabs(funarr[i][1](x)) < epsilon){
-
-            convergiu = 0;
-            break;
-                
-        }
-        
-        calc = g(i, x);
-
-        //if(cabs(funarr[i][0](calc)) > cabs(funarr[i][0](x))){
-            
-        //printf("Esse x0 não esta convergindo para uma raiz\n");
-        //convergiu = 0;
-        //break;
-            
-        //}
-        
-        //if(comp(calc, x, epsilon)) break;
-        if(cabs(funarr[i][0](x)) < epsilon) break;
-        x = calc;
-        
-    }
-    
-    if(j == LIMITE) convergiu = 0;
-    return x;
+    return;
     
 }
