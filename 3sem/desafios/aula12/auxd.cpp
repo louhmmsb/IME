@@ -8,7 +8,7 @@ int main(){
 
     cout<<"{2, ";
     
-    for(int i=3; i<1000; i+=2){
+    for(int i=3; i<1000000; i+=2){
 
         bool aux = true;
 

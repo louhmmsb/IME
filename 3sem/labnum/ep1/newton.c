@@ -274,6 +274,8 @@ void newton_basins(double complex x0, double complex xn, int nH, int nV){
             
     }
 
+    fclose(files[MAXRAIZES - 1]);
+
     sprintf(command, "./printa.sh %d %d %d", nraizes+1, nH, nV);
 
     system(command);
