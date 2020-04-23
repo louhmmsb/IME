@@ -19,7 +19,7 @@ class BRTNode{
   public:
     void setChave(Chave nova);
     void setData(Item nova);
-    void change();
+    void setColor();
     void setEsq(BRTNode *newEsq);
     void setDir(BRTNode *newDir);
     void setSS(int size);
@@ -50,9 +50,11 @@ void BRTNode<Chave, Item>::setData(Item novo){
 }
 
 template<class Chave, class Item>
-void BRTNode<Chave, Item>::change(){
+void BRTNode<Chave, Item>::setColor(char novaCor){
 
-    color = (color == 'r')?  'b' : 'r';
+    if(novaCor == 'r' || novaCor == 'b')
+        color = novaCor;
+    else cout<<"Cor inválida";
     
 }
 
@@ -119,6 +121,15 @@ int BRTNode<Chave, Item>::getSS(){
     
 }
 
+template<class Chave, class Item>
+BRTNode<Chave, Item>::BRTNode(){
+
+    color = 'r';
+    subSize = 1;
+    esq = dir = nullptr;
+    
+}
+
 //classe que implementa a st usando uma Black-Red Tree
 template<class Chave, class Item>
 class BRT : public st<Chave, Item>{
@@ -128,6 +139,7 @@ class BRT : public st<Chave, Item>{
     void rotEsq(BRTNode<Chave, Item> *&root);
     void rotDir(BRTNode<Chave, Item> *&root);
     void insereAux(Chave nova, Item novo, BRTNode<Chave, Item> *&w);
+    void fixTree(BRTNode<Chave, Item> *&w);
     void removeAux(Chave chave, BRTNode<Chave, Item> *&w);
     void killTree(BRTNode<Chave, Item> *root);
 
@@ -150,8 +162,56 @@ BRT<Chave, Item>::BRT(){
 }
 
 template<class Chave, class Item>
-void insereAux(Chave nova, Item novo){
+void BRT<Chave, Item>::rotEsq(BRTNode<Chave, Item> *&root){
 
     
+    
+}
+
+template<class Chave, class Item>
+void BRT<Chave, Item>::insereAux(Chave nova, Item novo, BRTNode<Chave, Item> *&w){
+
+    if(w->getChave() == nova){
+
+        w->setData(att(w->getData(), novo));
+        return;
+        
+    }
+    
+    if(w == nullptr){
+
+        w = new BRTNode<Chave, Item>();
+        w->setChave(nova);
+        w->setData(1);
+        
+    }
+    
+    if(nova < w->getChave()){
+
+        insereAux(nova, novo, w->getEsq());
+        
+    }
+
+    else if(nova > w-getChave()){
+
+        insereAux(nova, novo, w->getDir());
+        
+    }
+    
+}
+
+template<class Chave, class Item>
+void BRT<Chave, Item>::insere(Chave nova, Item novo){
+
+    if(raiz == nullptr){
+
+        raiz = new BRTNode<Chave, Item>();
+        raiz->setColor('b');
+        raiz->setChave(nova);
+        raiz->setData(1);
+        
+    }
+
+    else insereAux(nova, novo, raiz);
     
 }
