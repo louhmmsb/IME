@@ -12,10 +12,11 @@
 \usepackage{bussproofs}
 \usepackage[table]{xcolor}
 \usepackage{gensymb}
+\usepackage{hyperref}
 \graphicspath{{./images}}
 \geometry{verbose,a4paper,left=2cm,top=2cm,right=3cm,bottom=3cm}
 \title{Relatorio}
-\author{Lourenço Henrique Moinheiro Martins Sborz Bogo}
+\author{Lourenço Henrique Moinheiro Martins Sborz Bogo - 11208005}
 \date{}
 \linespread{1.5}
 \newcommand{\real}{\mathbb{R}}
@@ -31,7 +32,7 @@
 
 \mytitle{Parte 1 do EP: Método do Ponto Fixo}
 
-Para o método do ponto fixo, eu escolhi a função de ponto fixo $g(x) = x - \frac{f(x)}{f'(x)}$. Essa, por ser também, a função do Método de Newton, achará todas as raízes dependendo apenas do ponto inicial estar dentro de um certo intervalo que contenha a raiz.
+Para a primeira parte do EP, eu escolhi a função de ponto fixo $g(x) = x - \frac{f(x)}{f'(x)}$. Como essa é a função do Método de Newton, se usarmos um ponto inicial "próximo" o suficiente da raiz, dentro de um certo intervalo, iremos achá-la.
 
 Para achar cada uma das raízes foi usada precisão de $10^{-8}$ e os seguintes pontos iniciais:
 
@@ -40,15 +41,66 @@ $
   
   X_0 = 1.5 \to 1.487962 \\
   X_0 = -0.5 \to -0.539835 \\
-  X_0 = y2.5 \to 2.617867 
+  X_0 = 2.5 \to 2.617867 \\
   
 \end{cases}\\
 $
 
+Essa parte do EP é implementada em apenas um arquivo, o fixed.c, que contém tudo que foi pedido e está devidamente comentado.
+
+\mytitle{Detalhes de Implementação:}
+
+\begin{itemize}
+
+\item Optei também por usar ponteiros de funções pois isso facilitaria o resto da implementação.
+
+\end{itemize}
+
 \mytitle{Parte 2 do EP: Método de Newton}
 
-Fiz essa parte do EP com uma aproximação um pouco diferente. Fiz uma pequena interface para que seja mais fácil utilizar o EP sem ter que mexer no código fonte. Ele pede primeiro para que seja passadddo quantos pixeis serão calculados em cada direção, depois ele pede os pontos u e l, respectivamente, depois é pedida a precisão e por último
-são oferecidas 5 funções para plotar. Explicarei como adcionar outras funções mais a frente.
+Fiz essa parte do EP de uma maneira um pouco diferente da que foi pedida. Fiz uma pequena interface para que seja mais fácil utilizar o EP sem ter que mexer no código fonte. Ele pede primeiro para que seja passado quantos pixeis serão calculados em cada direção, depois, pede os pontos u e l, respectivamente, e por último são oferecidas 6 funções para plotar.
 
+O programa usa precisão de $10^{-8}$ para aplicar o método de newton e $10^{-5}$ para diferenciar as raízes. A segunda precisão maior pois caso isso não seja feito, acharíamos várias vezes a mesma raiz, em consequência das aproximações de double feitas pela computador.
+
+Escolhi algumas funções que estavam em artigos que li sobre fractais de Newton, coma a minha principal fonte sendo a \underline{\href{https://en.wikipedia.org/wiki/Newton\_fractal}{wikipedia}}.
+
+As funções implementadas no EP são:
+
+
+\begin{itemize}
+  
+\item  $x^4 - 1$
+\item  $x^2 + 1$
+\item  $x^3 - 1$
+\item  $x^3 - x$
+\item  $x^8 + 15x^4 - 16$
+\item  $sin(x) - 1$
+  
+\end{itemize}
+
+
+Os resultados dos experimentos podem ser vistos ao rodar o programa para uma das funções. O programa irá gerar um output chamado grafico.png, que é a imagem das bacias de convergência da função escolhida. O outro modo de utilizar o EP é rodar o script rodatudo.sh, que irá criar 7 bacias de convergência de uma vez e deixar suas imagens na pasta (paciência ao rodar esse script, ele demora um pouco).
+
+\mytitle{Implementação:} O EP é dividido em vários arquivos, cada um deles com suas respectivas funções a seguir:
+
+\begin{description}
+  
+\item[newton.c] É o arquivo principal, que calcula todos os pontos, os guarda em um arquivo chamado out.txt e depois chama o script printa.sh. O arquivo é dividido em várias funções, todas devidamente comentadas.
+\item[printa.sh] É o arquivo que chama o gnuplot e plota os gráficos a partir do arquivo out.txt, deletando todos os arquivos auxiliares após.
+\item[grafico.png] É a imagem da bacia de convergência.
+  
+\end{description}
+
+\mytitle{Detalhes de Implementação:}
+
+\begin{itemize}
+  
+\item Decidi usar uma matriz de ponteiros de funções para armazernar as funções matemáticas e suas derivadas, pois isso facilitaria o resto da implementação.
+\item Decidi usar 30 como limite de iterações pois como a convergência é quadrática (rápida), é muito provável que isso seja suficiente para achar a raiz. Colocar mais iterações deixaria o programa mais lerdo, e poderia causar problemas ao achar as raízes, como por exemplo, achar algumas que não existem.
+\item Decidi economizar o máximo possível no número de prints durante a execução do programa pois isso deixaria o programa muito mais lerdo também.
+\item O script rodatudo.sh calcula 1000x1000 pontos, pois isso é o suficiente para conseguir uma ótima resolução do fractal.
+\item Optei por deixar as imagens dentro do tar, pois é possível que quem for rodar o EP não tenha algum interpretador de bash, impedindo o uso dos scripts.
+  
+\end{itemize}
 
 \end{document}

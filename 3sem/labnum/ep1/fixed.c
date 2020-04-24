@@ -6,7 +6,7 @@
 //f'(x) = exp(x) - 4x;
 
 
-
+//booleado para saber se o metodo convergiu
 int convergiu;
 
 //função f dada no enunciado

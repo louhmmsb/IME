@@ -7,7 +7,7 @@
 /*Esse sera o limite de iteracoes para assumir que o ponto nao converge*/
 #define LIMITE 30
 
-#define MAXRAIZES 50
+#define MAXRAIZES 100000
 
 int convergiu;
 
@@ -81,6 +81,18 @@ double complex df4(double complex x){
     
 }
 
+double complex f5(double complex x){
+
+    return csin(x) - 1;
+    
+}
+
+double complex df5(double complex x){
+
+    return ccos(x);
+    
+}
+
 
 /*Aqui termina o bloco onde defino as funcoes matematicas*/
 
@@ -91,7 +103,7 @@ double complex eval(int i, double complex x0);
 double complex evalD(int i, double complex x0);
 
 /*Aqui eu defino o array onde guardo todas as funcoes e suas derivadas*/
-double complex (*funarr[6][2])(double complex) = { {f0, df0}, {f1, df1}, {f2, df2}, {f3, df3}, {f4, df4} };
+double complex (*funarr[6][2])(double complex) = { {f0, df0}, {f1, df1}, {f2, df2}, {f3, df3}, {f4, df4}, {f5, df5} };
 
 /*Essa funcao faz a conta do metodo de newton (x - f(x)/f'(x)) para a funcao de indice i, no ponto x0*/
 double complex g(int i, double complex x0);
@@ -99,7 +111,7 @@ double complex g(int i, double complex x0);
 /*Essa funcao aplica o metodo de newton para a funcao de indice i no ponto x0, com precisao de epsilon*/
 double complex newton(int i, double complex x0, double epsilon);
 
-/*Essa funcao cria os arquivos de texto com os pontos usando um script de bash, os plota em gnuplot e depois deleta os arquivos de texto*/
+/*Essa funcao cria os arquivos de texto com os pontos e usando um script em bash, os plota em gnuplot e depois deleta os arquivos de texto*/
 void newton_basins(double complex x0, double complex xn, int nH, int nV);
 
 
@@ -109,21 +121,18 @@ int main(){
     double x0r, x0i, xnr, xni;
     double complex x0, xn;
 
-    printf("Quantos pontos você quer na vertical: ");
-    scanf("%d", &nV);
+    printf("Qual resolução você quer (Pontos na HorizonalxPontos na Vertical): ") ;
+    scanf("%dx%d", &nH, &nV);
 
-    printf("Quantos pontos você quer na horizontal: ");
-    scanf("%d", &nH);
-
-    printf("Digite o x0r: ");
+    printf("Digite a parte real do ponto superior: ");
     scanf("%lf", &x0r);
-    printf("Digite o x0i: ");
+    printf("Digite a parte imaginária do ponto superior: ");
     scanf("%lf", &x0i);
     x0 = x0r + x0i * I;
 
-    printf("Digite o xnr: ");
+    printf("Digite a parte real do ponto inferior: ");
     scanf("%lf", &xnr);
-    printf("Digite o xni: ");
+    printf("Digite a parte imaginária do ponto inferior: ");
     scanf("%lf", &xni);
     xn = xnr + xni * I;
 
@@ -190,16 +199,13 @@ double complex newton(int i, double complex x0, double epsilon){
 
 void newton_basins(double complex x0, double complex xn, int nH, int nV){
 
-    int qualfunc, deu = 0, nraizes = 0, i = 0;
-    double epsilon, x0r, x0i, xnr, xni, epsilonH, epsilonV;
+    int qualfunc, deu = 0, nraizes = 1, i = 0;
+    double epsilon = 1e-8, x0r, x0i, xnr, xni, epsilonH, epsilonV;
     double complex p, calc, raizes[MAXRAIZES];
-    char name[22], command[25];
-    FILE *files[MAXRAIZES];
+    char command[300];
+    FILE *file;
 
-    files[MAXRAIZES-1] = fopen("n.txt", "w");
-    
-    printf("Qual epsilon voce quer usar: ");
-    scanf("%lf", &epsilon);
+    file = fopen("out.txt", "w");
     
     printf("Qual das seguintes funcoes voce quer simular:\n");
     printf("0:x^4 - 1 \n");
@@ -207,6 +213,7 @@ void newton_basins(double complex x0, double complex xn, int nH, int nV){
     printf("2:x^3 - 1 \n");
     printf("3:x^3 - x \n");
     printf("4:x^8 + 15x^4 - 16 \n");
+    printf("5:sin(x) - 1\n");
     scanf("%d", &qualfunc);
 
     xnr = creal(xn);
@@ -216,9 +223,11 @@ void newton_basins(double complex x0, double complex xn, int nH, int nV){
     x0i = cimag(x0);
 
     epsilonH = (xnr - x0r)/nH;
-    epsilonV = (xni = x0i)/nV;
+    epsilonV = (xni - x0i)/nV;
 
-    for(p = x0; cimag(p) >= cimag(xn); p -= epsilonV * I){
+    printf("Rodando...\n");
+    
+    for(p = x0; cimag(p) >= cimag(xn); p += epsilonV * I){
 
         for(; creal(p) <= creal(xn); p += epsilonH){
 
@@ -228,9 +237,9 @@ void newton_basins(double complex x0, double complex xn, int nH, int nV){
             if(convergiu){
                     
                 deu = 0;
-                for(i=0; i<nraizes; i++){
+                for(i=1; i<nraizes; i++){
 
-                    if(cabs(calc - raizes[i]) < epsilon){
+                    if(cabs(calc - raizes[i]) <= 1000*epsilon){
 
                         deu = 1;
                         break;
@@ -241,18 +250,15 @@ void newton_basins(double complex x0, double complex xn, int nH, int nV){
 
                 if(deu == 1){
 
-                    fprintf(files[i], "%lf %lf\n", creal(p), cimag(p));
+                    fprintf(file, "%lf %lf %d\n", creal(p), cimag(p), i);
                     
                 }
 
                 else {
 
-                    printf("Achei uma nova raiz: %lf %lfi\n", creal(calc), cimag(calc));
                     raizes[i] = calc;
                     nraizes++;
-                    sprintf(name, "%d.txt", i);
-                    files[i] = fopen(name, "w");
-                    fprintf(files[i], "%lf %lf\n", creal(p), cimag(p));
+                    fprintf(file, "%lf %lf %d\n", creal(p), cimag(p), i);
                         
                 }
                     
@@ -260,7 +266,7 @@ void newton_basins(double complex x0, double complex xn, int nH, int nV){
 
             else {
                 
-                fprintf(files[MAXRAIZES-1], "%lf %lf\n", creal(p), cimag(p));
+                fprintf(file, "%lf %lf %d\n", creal(p), cimag(p), 0);
                 
             }
                 
@@ -270,15 +276,11 @@ void newton_basins(double complex x0, double complex xn, int nH, int nV){
             
     }
 
-    for(i=0; i<nraizes; i++){
+    fclose(file);
 
-        fclose(files[i]);
-            
-    }
-
-    fclose(files[MAXRAIZES - 1]);
-
-    sprintf(command, "./printa.sh %d %d %d", nraizes+1, nH, nV);
+    
+    
+    sprintf(command, "./printa.sh %d %d %d %lf %lf %lf %lf", nraizes+1, nH, nV, x0r, xnr, xni, x0i);
 
     system(command);
     return;
