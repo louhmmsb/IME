@@ -10,6 +10,7 @@ int att(int antigo, int novo){
 #include "LL.h"
 #include "BST.h"
 #include "TREAP.h"
+#include "BRT.h"
 
 using namespace std;
 
@@ -19,7 +20,7 @@ void testa(st<string, int> *a);
 int main(){
 
     srand(0);
-    st<string, int> *a = new TREAP<string, int>();
+    st<string, int> *a = new BRT<string, int>();
     testa(a);
     //a->show();
     delete a;

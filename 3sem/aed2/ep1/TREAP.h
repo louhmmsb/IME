@@ -310,7 +310,7 @@ void TREAP<Chave, Item>::removeAux(Chave chave, TNode<Chave, Item> *&w){
         }
 
         //caso tenha os dois filhos
-        //desse jetio eu mando o nodo q eu tenho q remover pra baixo no treap até q ele se torne uma folha
+        //desse jeito eu mando o nodo q eu tenho q remover pra baixo no treap até q ele se torne uma folha
         if(w->getEsq() != nullptr && w->getDir() != nullptr){
 
             if(w->getEsq()->getPrio() < w->getDir()->getPrio()){
