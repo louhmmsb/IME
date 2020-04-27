@@ -8,13 +8,13 @@ typedef unsigned long long int ull;
 
 vector<ll> crivo;
 
-vector<pair <int, int> > leitor;
+vector<pair <ll, ll> > leitor;
 
 bool bob[212345];
     
 void fazCrivo(){
 
-    int index = 0;
+    ll index = 0;
 
     for(ll i=2; i<MAX; i++){
 
@@ -23,7 +23,7 @@ void fazCrivo(){
         if(i == 2) crivo.push_back(2);
         
         else {
-            for(ll j=0; j<crivo.size() && crivo[j]<(int)(sqrt(i)+1); j++){
+            for(ll j=0; j<crivo.size() && crivo[j]<(ll)(sqrt(i)+1); j++){
 
                 if(i%crivo[j] == 0){
 
@@ -47,7 +47,7 @@ void fazCrivo(){
                 
             }
             
-            if(index < leitor.size() && leitor[index].first == i*i){
+            while(index < leitor.size() && leitor[index].first == i*i){
 
                 bob[leitor[index].second] = true;
                 index++;
@@ -79,7 +79,7 @@ int main(){
 
     fazCrivo();
 
-    for(int i=0; i<n;i++){
+    for(ll i=0; i<n;i++){
 
         string aux = (bob[i])? "YES\n" : "NO\n";
         cout<<aux;

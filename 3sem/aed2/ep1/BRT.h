@@ -27,7 +27,6 @@ class BRTNode{
     Chave getChave();
     Item getData();
     char getColor();
-    int getPrio();
     BRTNode *&getEsq();
     BRTNode *&getDir();
     int getSS();
