@@ -247,6 +247,8 @@ int VO<Chave, Item>::search(Chave chave){
         
     }
 
+    atual = (top + bot)/2;
+
     if(array[atual].getChave() < chave) return atual + 1;
     else return atual;
     

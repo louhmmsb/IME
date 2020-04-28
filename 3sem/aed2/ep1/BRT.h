@@ -391,10 +391,11 @@ void BRT<Chave, Item>::removeMin(BRTNode<Chave, Item> *&root){
 
         delete root;
         root = nullptr;
+        return;
         
     }
 
-    if(!isRed(root->getEsq()) && !isRed(root->getEsq()->getEsq())){
+    else if(!isRed(root->getEsq()) && !isRed(root->getEsq()->getEsq())){
 
         moveVE(root);
         
@@ -412,7 +413,7 @@ void BRT<Chave, Item>::removeAux(Chave chave, BRTNode<Chave, Item> *&w){
 
     if(chave < w->getChave()){
 
-        if(!isRed(w->getEsq()) && !isRed(w->getEsq()->getEsq())) moveVE(w);
+        if(!isRed(w->getEsq()) && w->getEsq() != nullptr && !isRed(w->getEsq()->getEsq())) moveVE(w);
         removeAux(chave, w->getEsq());
         
     }
@@ -429,7 +430,7 @@ void BRT<Chave, Item>::removeAux(Chave chave, BRTNode<Chave, Item> *&w){
             
         }
 
-        if(!isRed(w->getDir()) && !isRed(w->getDir()->getEsq())) moveVD(w);
+        if(!isRed(w->getDir()) && w->getDir() != nullptr && !isRed(w->getDir()->getEsq())) moveVD(w);
         
         if(chave == w->getChave()){
 
@@ -452,6 +453,8 @@ void BRT<Chave, Item>::removeAux(Chave chave, BRTNode<Chave, Item> *&w){
 
 template<class Chave, class Item>
 void BRT<Chave, Item>::remove(Chave chave){
+
+    if(raiz == nullptr) return;
 
     if(!isRed(raiz->getEsq()) && !isRed(raiz->getDir())) raiz->setColor('r');
     

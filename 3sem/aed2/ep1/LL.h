@@ -261,6 +261,7 @@ void LD<Chave, Item>::remove(Chave chave){
             forward->getPrev()->setNext(forward->getNext());
             forward->getNext()->setPrev(forward->getPrev());
             delete forward;
+            return;
             
         }
 
@@ -269,6 +270,7 @@ void LD<Chave, Item>::remove(Chave chave){
             backward->getPrev()->setNext(backward->getNext());
             backward->getNext()->setPrev(backward->getPrev());
             delete backward;
+            return;
             
         }
         
@@ -336,7 +338,6 @@ Chave LD<Chave, Item>::seleciona(int k){
     return {};
     
 }
-
 
 //classe que implementa a st usando lista ligad ordenada
 template<class Chave, class Item>
@@ -604,9 +605,5 @@ Chave LO<Chave, Item>::seleciona(int k){
     return forward->getChave();
     
 }
-
-
-
-
 
 #endif

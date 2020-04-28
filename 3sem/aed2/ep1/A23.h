@@ -353,6 +353,7 @@ void A23<Chave, Item>::insereAux(Chave nova, Item novo, A23Node<Chave, Item> *&r
 
                 root->setDataEsq(att(root->getDataEsq(), novo));
                 cresceu = false;
+                return;
 
             }
 
@@ -367,6 +368,9 @@ void A23<Chave, Item>::insereAux(Chave nova, Item novo, A23Node<Chave, Item> *&r
                     root->setDataEsq(novo);
 
                     cresceu  = false;
+
+                    root->set3(true);
+                    return;
                     
                 }
 
@@ -374,6 +378,11 @@ void A23<Chave, Item>::insereAux(Chave nova, Item novo, A23Node<Chave, Item> *&r
 
                     root->setChaveDir(nova);
                     root->setDataDir(novo);
+
+                    cresceu = false;
+                    
+                    root->set3(true);
+                    return;
                     
                 }
                 
@@ -509,7 +518,7 @@ void A23<Chave, Item>::insereAux(Chave nova, Item novo, A23Node<Chave, Item> *&r
                     root->set3(false);
 
                     novoMeio->setEsq(root);
-                    novoMeio->setDir(root->getDir());
+                    novoMeio->setMeio(root->getDir());
 
                     root->setDir(nullptr);
 
@@ -525,66 +534,75 @@ void A23<Chave, Item>::insereAux(Chave nova, Item novo, A23Node<Chave, Item> *&r
 
                 insereAux(nova, novo, root->getMeio());
 
-                A23Node<Chave, Item> *e = new A23Node<Chave, Item>(), *d = new A23Node<Chave, Item>(), *aux;
+                if(cresceu){
 
-                e->set3(false);
-                e->setBuraco(false);
-                d->set3(false);
-                d->setBuraco(false);
-                root->getMeio()->set3(false);
-                root->getMeio()->setBuraco(false);
+                    A23Node<Chave, Item> *e = new A23Node<Chave, Item>(), *d = new A23Node<Chave, Item>(), *aux;
 
-                e->setChaveEsq(root->getChaveEsq());
-                e->setDataEsq(root->getDataEsq());
+                    e->set3(false);
+                    e->setBuraco(false);
+                    d->set3(false);
+                    d->setBuraco(false);
+                    root->getMeio()->set3(false);
+                    root->getMeio()->setBuraco(false);
 
-                d->setChaveEsq(root->getChaveDir());
-                d->setDataEsq(root->getDataDir());
+                    e->setChaveEsq(root->getChaveEsq());
+                    e->setDataEsq(root->getDataEsq());
 
-                e->setEsq(root->getEsq());
-                e->setMeio(root->getMeio()->getEsq());
+                    d->setChaveEsq(root->getChaveDir());
+                    d->setDataEsq(root->getDataDir());
 
-                d->setEsq(root->getMeio()->getMeio());
-                e->setMeio(root->getDir());
+                    e->setEsq(root->getEsq());
+                    e->setMeio(root->getMeio()->getEsq());
 
-                root->getMeio()->setEsq(e);
-                root->getMeio()->setMeio(d);
+                    d->setEsq(root->getMeio()->getMeio());
+                    d->setMeio(root->getDir());
 
-                aux = root;
+                    root->getMeio()->setEsq(e);
+                    root->getMeio()->setMeio(d);
 
-                root = root->getMeio();
+                    aux = root;
 
-                delete aux;
+                    root = root->getMeio();
 
-                cresceu = true;
+                    delete aux;
+
+                    cresceu = true;
+
+                }
 
             }
 
             else {
 
                 insereAux(nova, novo, root->getEsq());
-                A23Node<Chave, Item> *novoMeio = new A23Node<Chave, Item>();
 
-                novoMeio->set3(false);
-                novoMeio->setBuraco(false);
-                root->set3(false);
-                root->setBuraco(false);
+                if(cresceu){
+                    
+                    A23Node<Chave, Item> *novoMeio = new A23Node<Chave, Item>();
 
-                novoMeio->setChaveEsq(root->getChaveEsq());
-                novoMeio->setDataEsq(root->getDataEsq());
+                    novoMeio->set3(false);
+                    novoMeio->setBuraco(false);
+                    root->set3(false);
+                    root->setBuraco(false);
 
-                novoMeio->setEsq(root->getEsq());
+                    novoMeio->setChaveEsq(root->getChaveEsq());
+                    novoMeio->setDataEsq(root->getDataEsq());
 
-                root->setChaveEsq(root->getChaveDir());
-                root->setDataEsq(root->getDataDir());
-                root->setEsq(root->getMeio());
-                root->setMeio(root->getDir());
-                root->setDir(nullptr);
+                    novoMeio->setEsq(root->getEsq());
 
-                novoMeio->setDir(root);
+                    root->setChaveEsq(root->getChaveDir());
+                    root->setDataEsq(root->getDataDir());
+                    root->setEsq(root->getMeio());
+                    root->setMeio(root->getDir());
+                    root->setDir(nullptr);
+
+                    novoMeio->setMeio(root);
                 
-                root = novoMeio;
+                    root = novoMeio;
 
-                cresceu = true;
+                    cresceu = true;
+
+                }
 
             }
             
@@ -599,14 +617,16 @@ void A23<Chave, Item>::insere(Chave nova, Item novo){
 
     if(raiz == nullptr){
 
+        raiz = new A23Node<Chave,Item>();
         raiz->setChaveEsq(nova);
         raiz->setDataEsq(1);
         raiz->set3(false);
         raiz->setBuraco(false);
+        raiz->setEsq(nullptr);
         
     }
 
-    insereAux(nova, novo, raiz);
+    else insereAux(nova, novo, raiz);
     
 }
 
@@ -636,41 +656,43 @@ Item A23<Chave, Item>::devolve(Chave chave){
 template<class Chave, class Item>
 void A23<Chave, Item>::caso1(A23Node<Chave, Item> *&root){
 
-    if(root->getDir()->isBuraco()){
+    if(root->getMeio()->isBuraco()){
 
         root->getEsq()->setChaveDir(root->getChaveEsq());
         root->getEsq()->setDataDir(root->getDataEsq());
 
-        root->getEsq()->setDir(root->getDir()->getMeio());
-        delete root->getDir();
-        root->setDir(nullptr);
+        root->getEsq()->setDir(root->getMeio()->getMeio());
+        delete root->getMeio();
         
         root->getEsq()->set3(true);
 
         root->setBuraco(true);
 
         root->setMeio(root->getEsq());
+
+        root->setEsq(nullptr);
         
         
     }
 
     else if(root->getEsq()->isBuraco()){
 
-        root->getDir()->setChaveEsq(root->getChaveEsq());
-        root->getDir()->setDataEsq(root->getDataEsq());
+        root->getMeio()->setChaveDir(root->getMeio()->getChaveEsq());
+        root->getMeio()->setDataDir(root->getMeio()->getDataEsq());
 
-        root->getDir()->setDir(root->getDir()->getMeio());
-        root->getDir()->setMeio(root->getDir()->getEsq()); 
-        root->getDir()->setEsq(root->getEsq()->getMeio());
+        root->getMeio()->setChaveEsq(root->getChaveEsq());
+        root->getMeio()->setDataEsq(root->getDataEsq());
+
+        root->getMeio()->setDir(root->getMeio()->getMeio());
+        root->getMeio()->setMeio(root->getMeio()->getEsq()); 
+        root->getMeio()->setEsq(root->getEsq()->getMeio());
         
         delete root->getEsq();
         root->setEsq(nullptr);
 
-        root->getDir()->set3(true);
+        root->getMeio()->set3(true);
         
         root->setBuraco(true);
-
-        root->setMeio(root->getDir());
         
     }
     
@@ -679,19 +701,19 @@ void A23<Chave, Item>::caso1(A23Node<Chave, Item> *&root){
 template<class Chave, class Item>
 void A23<Chave, Item>::caso2(A23Node<Chave, Item> *&root){
 
-    if(root->getDir()->isBuraco()){
+    if(root->getMeio()->isBuraco()){
 
-        root->getDir()->setBuraco(false);
-        root->getDir()->set3(false);
+        root->getMeio()->setBuraco(false);
+        root->getMeio()->set3(false);
         root->getEsq()->set3(false);
 
-        root->getDir()->setChaveEsq(root->getChaveEsq());
-        root->getDir()->setDataEsq(root->getDataEsq());
+        root->getMeio()->setChaveEsq(root->getChaveEsq());
+        root->getMeio()->setDataEsq(root->getDataEsq());
 
         root->setChaveEsq(root->getEsq()->getChaveDir());
         root->setDataEsq(root->getEsq()->getDataDir());
 
-        root->getDir()->setEsq(root->getEsq()->getDir());
+        root->getMeio()->setEsq(root->getEsq()->getDir());
         root->getEsq()->setDir(nullptr);
         
     }
@@ -700,23 +722,23 @@ void A23<Chave, Item>::caso2(A23Node<Chave, Item> *&root){
 
         root->getEsq()->setBuraco(false);
         root->getEsq()->set3(false);
-        root->getDir()->set3(false);
+        root->getMeio()->set3(false);
         root->set3(false);
 
         root->getEsq()->setChaveEsq(root->getChaveEsq());
         root->getEsq()->setDataEsq(root->getDataEsq());
 
-        root->setChaveEsq(root->getDir()->getChaveEsq());
-        root->setDataEsq(root->getDir()->getDataEsq());
+        root->setChaveEsq(root->getMeio()->getChaveEsq());
+        root->setDataEsq(root->getMeio()->getDataEsq());
 
-        root->getDir()->setChaveEsq(root->getDir()->getChaveDir());
-        root->getDir()->setDataEsq(root->getDir()->getDataDir());
+        root->getMeio()->setChaveEsq(root->getMeio()->getChaveDir());
+        root->getMeio()->setDataEsq(root->getMeio()->getDataDir());
 
         root->getEsq()->setEsq(root->getEsq()->getMeio());
-        root->getEsq()->setMeio(root->getDir()->getEsq());
-        root->getDir()->setEsq(root->getDir()->getMeio());
-        root->getDir()->setMeio(root->getDir()->getDir());
-        root->getDir()->setDir(nullptr);
+        root->getEsq()->setMeio(root->getMeio()->getEsq());
+        root->getMeio()->setEsq(root->getMeio()->getMeio());
+        root->getMeio()->setMeio(root->getMeio()->getDir());
+        root->getMeio()->setDir(nullptr);
         
     }
     
@@ -728,6 +750,7 @@ void A23<Chave, Item>::caso3(A23Node<Chave, Item> *&root){
     if(root->getDir()->isBuraco()){
         
         root->set3(false);
+        root->getMeio()->set3(true);
 
         root->getMeio()->setChaveDir(root->getChaveDir());
         root->getMeio()->setDataDir(root->getDataEsq());
@@ -742,12 +765,16 @@ void A23<Chave, Item>::caso3(A23Node<Chave, Item> *&root){
     else if(root->getEsq()->isBuraco()){
 
         root->set3(false);
+        root->getMeio()->set3(true);
 
         root->getMeio()->setChaveDir(root->getMeio()->getChaveEsq());
         root->getMeio()->setDataDir(root->getMeio()->getDataEsq());
 
         root->getMeio()->setChaveEsq(root->getChaveEsq());
         root->getMeio()->setDataEsq(root->getDataEsq());
+
+        root->setChaveEsq(root->getChaveDir());
+        root->setDataEsq(root->getDataDir());
 
         root->getMeio()->setDir(root->getMeio()->getMeio());
         root->getMeio()->setMeio(root->getMeio()->getEsq());
@@ -766,9 +793,13 @@ void A23<Chave, Item>::caso3(A23Node<Chave, Item> *&root){
     else if(root->getMeio()->isBuraco()){
 
         root->set3(false);
+        root->getEsq()->set3(true);
 
         root->getEsq()->setChaveDir(root->getChaveEsq());
         root->getEsq()->setDataDir(root->getDataEsq());
+
+        root->setChaveEsq(root->getChaveDir());
+        root->setDataEsq(root->getDataDir());
 
         root->getEsq()->setDir(root->getMeio()->getMeio());
 
@@ -850,6 +881,8 @@ void A23<Chave, Item>::caso4(A23Node<Chave, Item> *&root){
 template<class Chave, class Item>
 void A23<Chave,Item>::removeMin(A23Node<Chave, Item> *&root){
 
+    if(root == nullptr) return;
+
     if(root->getEsq() == nullptr){
 
         if(root->is3()){
@@ -858,6 +891,8 @@ void A23<Chave,Item>::removeMin(A23Node<Chave, Item> *&root){
             root->setDataEsq(root->getDataDir());
 
             root->set3(false);
+
+            return;
             
         }
 
@@ -926,11 +961,23 @@ A23Node<Chave, Item> A23<Chave, Item>::achaMin(A23Node<Chave, Item> *root){
 template<class Chave, class Item>
 void A23<Chave, Item>::removeAux(Chave chave, A23Node<Chave, Item> *&root){
 
+    if(root == nullptr) return;
+
     if(root->getEsq() == nullptr){
 
-        if(chave == root->getChaveEsq()) removeMin(root);
+        if(chave == root->getChaveEsq()){
 
-        else if(root->is3() && chave == root->getChaveDir()) root->set3(false);
+            removeMin(root);
+            return;
+
+        }
+
+        else if(root->is3() && chave == root->getChaveDir()){
+
+            root->set3(false);
+            return;
+
+        }
         
     }
 
@@ -942,7 +989,7 @@ void A23<Chave, Item>::removeAux(Chave chave, A23Node<Chave, Item> *&root){
             root->setChaveEsq(aux.getChaveEsq());
             root->setDataEsq(aux.getDataEsq());
 
-            removeMin(root->getDir());
+            removeMin(root->getMeio());
             
         }
 
@@ -977,14 +1024,14 @@ void A23<Chave, Item>::removeAux(Chave chave, A23Node<Chave, Item> *&root){
 
     if(!root->is3()){
 
-        if(root->getEsq()->isBuraco()){
+        if(root->getEsq() != nullptr && root->getEsq()->isBuraco()){
         
             if(!root->getMeio()->is3()) caso1(root);
             else if(root->getMeio()->is3()) caso2(root);
             
         }
 
-        else if(root->getMeio()->isBuraco()){
+        else if(root->getMeio() != nullptr && root->getMeio()->isBuraco()){
 
             if(!root->getEsq()->is3()) caso1(root);
             else if(root->getEsq()->is3()) caso2(root);
@@ -995,21 +1042,21 @@ void A23<Chave, Item>::removeAux(Chave chave, A23Node<Chave, Item> *&root){
     
     else if(root->is3()){
         
-        if(root->getEsq()->isBuraco()){
+        if(root->getEsq() != nullptr && root->getEsq()->isBuraco()){
             
             if(!root->getMeio()->is3()) caso3(root);
             else if(root->getMeio()->is3()) caso4(root);
             
         }
         
-        else if(root->getMeio()->isBuraco()){
+        else if(root->getMeio() != nullptr && root->getMeio()->isBuraco()){
             
             if(!root->getEsq()->is3()) caso3(root);
             else if(root->getEsq()->is3()) caso4(root);
             
         }
         
-        else if(root->getDir()->isBuraco()){
+        else if(root->getDir() != nullptr && root->getDir()->isBuraco()){
             
             if(!root->getMeio()->is3()) caso3(root);
             else if(root->getMeio()->is3()) caso4(root);
@@ -1023,6 +1070,8 @@ void A23<Chave, Item>::removeAux(Chave chave, A23Node<Chave, Item> *&root){
 template<class Chave, class Item>
 void A23<Chave, Item>::remove(Chave chave){
 
+    if(raiz == nullptr) return;
+    
     removeAux(chave, raiz);
     
     if(raiz->isBuraco()){
@@ -1099,7 +1148,7 @@ Chave A23<Chave, Item>::seleciona(int k){
 
     A23Node<Chave, Item> *aux = raiz;
     
-    while(1){
+    while(aux != nullptr){
 
         int tamE = sizeTree(aux->getEsq());
 
@@ -1108,13 +1157,13 @@ Chave A23<Chave, Item>::seleciona(int k){
         else if(k > tamE){
 
             if(aux->is3()){
-
+                
                 int tamM = sizeTree(aux->getMeio());
 
                 if(k < tamE + tamM + 1){
 
                     aux = aux->getMeio();
-                    k -= (tamE+1);
+                    k -= (tamE + 1);
                 
                 }
 
@@ -1129,7 +1178,12 @@ Chave A23<Chave, Item>::seleciona(int k){
 
             }
 
-            aux = aux->getMeio();
+            else {
+
+                aux = aux->getMeio();
+                k -= (tamE + 1);
+
+            }
 
         }
 

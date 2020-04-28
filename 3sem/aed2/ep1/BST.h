@@ -119,6 +119,7 @@ class BST : public st<Chave, Item>{
     bool vazia;
     void insereAux(Chave nova, Item novo, BSTNode<Chave, Item> *w);
     BSTNode<Chave, Item> *fMin(BSTNode<Chave, Item> *w);
+    BSTNode<Chave, Item> *removeMin(BSTNode<Chave, Item> *w);
     BSTNode<Chave, Item> *removeAux(Chave chave, BSTNode<Chave, Item> *w);
     void killTree(BSTNode<Chave, Item> *root);
 
@@ -144,13 +145,13 @@ BST<Chave, Item>::BST(){
 template<class Chave, class Item>
 void BST<Chave, Item>::killTree(BSTNode<Chave, Item> *root){
 
-    BSTNode<Chave, Item> *e = root->getEsq(), *d = root->getDir();
+    if(root == nullptr) return;
+    
+    killTree(root->getEsq());
+    killTree(root->getDir());
 
     delete root;
-
-    if(e != nullptr) killTree(e);
-
-    if(d != nullptr) killTree(d);
+        
     
 }
 
@@ -249,7 +250,7 @@ Item BST<Chave, Item>::devolve(Chave chave){
 template<class Chave, class Item>
 BSTNode<Chave, Item>* BST<Chave, Item>::fMin(BSTNode<Chave, Item> *w){
 
-    w = w->getDir();
+    if(w == nullptr) return nullptr;
     
     while(w->getEsq() != nullptr) w = w->getEsq();
 
@@ -258,9 +259,64 @@ BSTNode<Chave, Item>* BST<Chave, Item>::fMin(BSTNode<Chave, Item> *w){
 }
 
 template<class Chave, class Item>
+BSTNode<Chave, Item>* BST<Chave, Item>::removeMin(BSTNode<Chave, Item> *root){
+
+    if(root == nullptr) return nullptr;
+
+    if(root->getEsq() == nullptr){
+
+        BSTNode<Chave, Item> *aux = root->getDir();
+
+        delete root;
+        return aux;
+        
+    }
+
+    else{
+
+        root->setEsq(removeMin(root->getEsq()));
+        return root;
+        
+    }
+    
+}
+
+template<class Chave, class Item>
 BSTNode<Chave, Item>* BST<Chave, Item>::removeAux(Chave chave, BSTNode<Chave, Item> *w){
 
-    if(chave < w->getChave()){
+    if(w == nullptr) return nullptr;
+    
+    if(chave == w->getChave()){
+
+        if(w->getDir() == nullptr){
+
+            BSTNode<Chave, Item> *aux = w->getEsq();
+            
+            delete w;
+            
+            return aux;
+            
+        }
+
+        else {
+
+            BSTNode<Chave, Item> *aux;
+
+            aux = fMin(w->getDir());
+            if(aux != nullptr){
+                
+                w->setChave(aux->getChave());
+                w->setData(aux->getData());
+
+            }
+            w->setDir(removeMin(w->getDir()));
+            
+        }
+            
+        
+    }
+    
+    else if(chave < w->getChave()){
 
         w->setEsq(removeAux(chave, w->getEsq()));
         w->setSS((((w->getDir() == nullptr)? 0 : w->getDir()->getSS())) + (((w->getEsq() == nullptr)? 0 : w->getEsq()->getSS())) + 1);
@@ -271,33 +327,6 @@ BSTNode<Chave, Item>* BST<Chave, Item>::removeAux(Chave chave, BSTNode<Chave, It
 
         w->setDir(removeAux(chave, w->getDir()));
         w->setSS((((w->getDir() == nullptr)? 0 : w->getDir()->getSS())) + (((w->getEsq() == nullptr)? 0 : w->getEsq()->getSS())) + 1);
-        
-    }
-
-    else {
-
-        if(w->getEsq() == nullptr && w->getDir() == nullptr){
-
-            return nullptr;
-            
-        }
-
-        else if(w->getDir() == nullptr){
-
-            return w->getEsq();
-            
-        }
-
-        else {
-
-            BSTNode<Chave, Item> *p = fMin(w);
-
-            w->setChave(p->getChave());
-            w->setData(p->getData());
-
-            w->setDir(removeAux(p->getChave(), w->getDir()));
-            
-        }
         
     }
 

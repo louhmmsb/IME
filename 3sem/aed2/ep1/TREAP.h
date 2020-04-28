@@ -157,13 +157,12 @@ TREAP<Chave, Item>::TREAP(){
 template<class Chave, class Item>
 void TREAP<Chave, Item>::killTree(TNode<Chave, Item> *root){
 
-    TNode<Chave, Item> *e = root->getEsq(), *d = root->getDir();
+    if(root == nullptr) return;
+
+    killTree(root->getEsq());
+    killTree(root->getDir());
 
     delete root;
-
-    if(e != nullptr) killTree(e);
-
-    if(d != nullptr) killTree(d);
     
 }
 
@@ -287,15 +286,13 @@ void TREAP<Chave, Item>::removeAux(Chave chave, TNode<Chave, Item> *&w){
 
     if(chave < w->getChave()){
 
-        TNode<Chave, Item> *t = w->getEsq();
-        removeAux(chave, t);
+        removeAux(chave, w->getEsq());
                   
     }
 
     else if(chave > w->getChave()){
             
-        TNode<Chave, Item> *t = w->getDir();
-        removeAux(chave, t);
+        removeAux(chave, w->getDir());
 
     }
     
@@ -306,19 +303,19 @@ void TREAP<Chave, Item>::removeAux(Chave chave, TNode<Chave, Item> *&w){
 
             delete w;
             w = nullptr;
+            return;
             
         }
 
         //caso tenha os dois filhos
         //desse jeito eu mando o nodo q eu tenho q remover pra baixo no treap até q ele se torne uma folha
-        if(w->getEsq() != nullptr && w->getDir() != nullptr){
+        else if(w->getEsq() != nullptr && w->getDir() != nullptr){
 
             if(w->getEsq()->getPrio() < w->getDir()->getPrio()){
                 
                 rotEsq(w);
-
-                TNode<Chave, Item> *t = w->getEsq();
-                removeAux(chave, t);
+                
+                removeAux(chave, w->getEsq());
 
             }
 
@@ -326,8 +323,7 @@ void TREAP<Chave, Item>::removeAux(Chave chave, TNode<Chave, Item> *&w){
 
                 rotDir(w);
 
-                TNode<Chave, Item> *t = w->getDir();
-                removeAux(chave, t);
+                removeAux(chave, w->getDir());
             
             }
 
@@ -336,9 +332,10 @@ void TREAP<Chave, Item>::removeAux(Chave chave, TNode<Chave, Item> *&w){
         //caso só tenha um filho eu só preciso remover o nodo e colar o filho dele no resto da árvore
         else {
 
-            TNode<Chave, Item> *f = (w->getEsq() != nullptr)? w->getEsq() : w->getDir(), *kill = w;
+            TNode<Chave, Item> *f = (w->getEsq() != nullptr)? w->getEsq() : w->getDir();
             
-            delete kill;
+            delete w;
+            w = nullptr;
             w = f;
                 
         }
@@ -351,6 +348,8 @@ void TREAP<Chave, Item>::removeAux(Chave chave, TNode<Chave, Item> *&w){
 
 template<class Chave, class Item>
 void TREAP<Chave, Item>::remove(Chave chave){
+
+    if(raiz == nullptr) return;
 
     removeAux(chave, raiz);
     
