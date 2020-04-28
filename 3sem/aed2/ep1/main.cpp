@@ -12,7 +12,6 @@ int att(int antigo, int novo){
 #include "BRT.h"
 #include "A23.h"
 #include "HASH.h"
-#include <wchar.h>
 
 using namespace std;
 
@@ -39,7 +38,7 @@ int main(int argc, char** argv){
 
     if(argc != 3){
 
-        cout<<"Para usar a tabela passe o nome do arrquivo de texto, e depois passe alguma das seguintes opções: \n";
+        cout<<"Para usar a tabela passe o nome do arquivo de texto, e depois passe alguma das seguintes opções: \n";
         cout<<"Para vetor desordenado use: VD\n";
         cout<<"Para vetor ordenado use: VO\n";
         cout<<"Para lista ligada desordenado use: LD\n";
@@ -48,7 +47,7 @@ int main(int argc, char** argv){
         cout<<"Para Treap use: TR\n";
         cout<<"Para Árvore 2-3 use: A23\n";
         cout<<"Para Rubro Negra use: RN\n";
-        cout<<"Para hash table use: HS\n";
+        cout<<"Para Hash Table use: HS\n";
         return 0;
         
     }
@@ -90,7 +89,15 @@ int main(int argc, char** argv){
         
     }
     
-    testa(ST, arg1);
+    //testa(ST, arg1);
+
+    cout<<"Entrando na prompt de testes, possíveis ações: \n";
+    cout<<"insere [chave]\n";
+    cout<<"devolve [chave]\n";
+    cout<<"remove [chave]\n";
+    cout<<"rank [chave]\n";
+    cout<<"seleciona [rank]\n";
+    cout<<"q (para sair da promp do jeito correto)\n\n";
 
     while(true){
 
@@ -98,7 +105,7 @@ int main(int argc, char** argv){
         int argi;
 
         cout.flush();
-        cout<<"O que você quer fazer?\n";
+        cout<<">>>  ";
         cout.flush();
         cin>>opc;
 
@@ -106,6 +113,7 @@ int main(int argc, char** argv){
             
             cin>>args;
             ST->insere(args, 1);
+            cout<<"Inserido o "<<args<<" na tabela.\n";
             
         }
 
@@ -120,6 +128,7 @@ int main(int argc, char** argv){
 
             cin>>args;
             ST->remove(args);
+            cout<<"Removido o "<<args<<" da tabela.\n";
             
         }
 
@@ -127,7 +136,6 @@ int main(int argc, char** argv){
 
             cin>>args;
             cout<<ST->rank(args)<<endl;
-            
             
         }
 
@@ -138,8 +146,19 @@ int main(int argc, char** argv){
             
         }
 
-        else cout<<"Digite uma opção válida\n";
-        
+        else if(opc == "q"){
+
+            break;
+            
+        }
+
+        else {
+
+            cout<<"Digite uma opção válida\n";
+            char c;
+            while((c = getchar()) != '\n');
+
+        }
         
     }
     
