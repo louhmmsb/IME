@@ -7,10 +7,11 @@ all : ep1
 ep1 : main.cpp $(h)
 	$(CC) $(FLAGS) -o main.out main.cpp
 
-tar : $(h) main.cpp Makefile relatorio.pdf
+tar : *.h main.cpp Makefile relatorio.pdf
 	mkdir $(NUSP)
 	echo $(NUSP) >> info.txt
 	echo $(EMAIL) >> info.txt
-	cp -t $(NUSP)/ info.txt
+	cp -t $(NUSP)/ info.txt $^
 
 	tar -cvf $(NUSP).tar $(NUSP)/
+	rm -rf $(NUSP)/
