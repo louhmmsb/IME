@@ -1,0 +1,105 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage[brazil]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{bussproofs}
+\usepackage[table]{xcolor}
+\usepackage{gensymb}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\graphicspath{{./images}}
+\geometry{verbose,a4paper,left=2cm,top=2cm,right=3cm,bottom=3cm}
+\title{Relatório - EP2 AED2}
+\author{Lourenço Henrique Moinheiro Martins Sborz Bogo - 11208005}
+\date{}
+\linespread{1.5}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\product}[3]{\displaystyle\prod_{#1}^#2 #3}
+\newcommand{\gsum}[3]{\displaystyle\sum_{#1}^#2 #3}
+\newcommand{\mytitle}[1]{\textbf{\underline{#1}}}
+\newcommand{\ring}[1]{\langle #1 \rangle}
+
+\begin{document}
+
+\maketitle
+
+Nesse EP implementei 9 symbol tables , cada uma usando uma estrutura de dado diferente.
+
+\mytitle{Como usar o EP}
+
+Para usar o EP, deve-se usar \texttt{./main.out <arquivo\_de\_texto> <estrutura\_de\_dado>}, por exemplo: \texttt{./main.out teste.txt RN}.
+
+Os tipos de estrutura são:
+
+\begin{itemize}
+  
+\item VD
+  
+\item VO
+  
+\item LD
+  
+\item LO
+  
+\item AB
+  
+\item TR
+  
+\item A23
+  
+\item RN
+  
+\item HS
+  
+\end{itemize}
+
+Além disso, pode-se usar alguma combinação dos seguintes argumentos extras, para uma execução diferente:
+
+\begin{itemize}
+  
+\item Ao chamar o EP com \texttt{s} (ex: \texttt{./main.out teste.txt RN s}), ele irá mostrar as todas as inserções feitas ao carregar o arquivo \texttt{teste.txt}.
+  
+\item Ao chamar o EP com \texttt{t} (ex: \texttt{./main.out teste.txt RN t}), ele irá mostrar os tempos de cada operação feita durante o modo iterativo.
+  
+\item Ao chamar o EP com \texttt{e} (ex: \texttt{./main.out teste.txt RN e}), ele não irá entrar no modo iterativo e irá inserir todas as palavras do arquivo, depois realizar todas as operações em todas as chaves, calcular e printar o tempo médio e total de cada operação e terminar.
+  
+\end{itemize}
+
+\mytitle{Escolhas de Implementação}
+
+\begin{description}
+  
+\item[Vetores:] Aqui não foi usado nada de especial. No caso do vetor ordenado utilizei uma implementação de busca binária que caso não encontre um certo elemento, ela devolve o índice onde esse elemento deve ser inserido.
+  
+\item[Listas:] Aqui eu optei por usar nodos com ponteiros para o anterior e, também, um nodo como cabeça e um como cauda (lista duplamente ligada com cabeça). Decidi fazer dessa maneira pois é mais rápido para achar os elementos, já que percorro a tabela pelos dois lados. Na lista ordenada as buscas são bem mais rápidas, pois caso o ponteiro que percorre pela esquerda ache um elemento maior que o q estou procurando, ou o ponteiro da direita ache um menor, pode-se concluir que o elemento que procuro  não está na lista e terminamos a busca.
+  
+\item[Árvore de Busca Binária:] Aqui foi feita uma árvore de busca binária comum, não balanceada.
+  
+\item[Treap:] Usei uma implementação de treap com uma remoção um pouco diferente. Para remover um elemento, com rotações vou levando-o até folha e ao chegar eu simplesmente deleto ele, mantendo todas as propriedades de ABB. A propriedade de treap se mantém caso as rotações sejam feitas para o lado certo, o que é garantido na minha implementação.
+  
+\item[Árvore 2-3:] Minha implementação da 2-3 foi feita baseada em uma implementação da \textcolor{blue}{\underline{\href{https://www.cs.princeton.edu/~dpw/courses/cos326-12/ass/2-3-trees.pdf}{Princeton University}}}.
+  
+\item[Árvore Rubro Negra:] Optei por fazer a implementação do \textcolor{blue}{\underline{\href{https://algs4.cs.princeton.edu/33balanced/RedBlackBST.java.html}{Sedgewick}}} da Árvore Rubro Negra.
+  
+\item[Hash Table:] Utilizei a \texttt{Rolling Hash} como função de hash e optei pelo método de encadeamento separado para tratar as colisões. O tamanho do vetor está setado para \texttt{MAXHASH} que é uma constante definida na \texttt{main} (por padrão seu valor é 10000).
+  
+\end{description}
+
+\mytitle{Experimentos}
+
+Todas as operações foram testadas com o valgrind e não houve nenhum erro/memory leak em qualquer symbol table.
+
+Com os  experimentos pude concluir na prática algo que já conhecia na teoria. A diferença de tempo das symbol tables que têm operações quadráticas para as lineares, é tão gritante quanto a diferença das lineares para as logarítmicas. A tabela feita a partir de uma hash table é praticamente inutilizável para as operações \texttt{rank} e \texttt{seleciona}, e as duas desordenadas (vetor e lista), também são muito piores que as outras. O vetor ordenado e a lista ordenada têm algumas operações muito rápidas mas em média perdem para as árvores que têm operações em \texttt{O($\log{N}$)}, com exceção da árvore de busca binária, que pode ser linear em alguns casos.
+
+Testei o EP para casos pequenos (100 - 10000) e para casos grandes (100000 - 1000000). Nos casos menores, o vetor ordenado foi o que se saiu melhor, pois o seu tempo para calcular \texttt{rank} é \texttt{O(1)}, e a operação mais demorada é o \texttt{seleciona}, que, no caso dessa estrutura, utiliza a função \texttt{rank}. Já para casos maiores, as funções \texttt{remove} e \texttt{insere} começam a exigir muito, fazendo com que as árvores, que as executam em tempo \texttt{O($\log{N}$)}, sejam mais rápidas que o vetor ordenado, que as executa em \texttt{O(N)}.
+
+\mytitle{OBSERVAÇÃO:} Todas as árvores, com exceção da 2-3 guardam em cada nó o tamanho da sub-árvore cuja raiz é esse nó, otimizando \textbf{muito} as operações \texttt{rank} e \texttt{seleciona}. Na 2-3 eu tentei fazer isso, mas não consegui, logo ela acaba sendo pior que as outras nessas operações.
+
+\end{document}
