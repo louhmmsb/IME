@@ -15,3 +15,4 @@ tar : *.h main.cpp Makefile relatorio.pdf
 
 	tar -cvf $(NUSP).tar $(NUSP)/
 	rm -rf $(NUSP)/
+	rm info.txt
