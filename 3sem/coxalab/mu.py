@@ -15,25 +15,20 @@ def calcula(oldPos, deltaT):
     return newPos
 
 def main():
-    resp = []
+    X = []
+    Y = []
     atual = d0
     for i in range(10):
-        resp.append(atual)
+        X.append(atual[0])
+        Y.append(atual[1])
         atual = calcula(atual, 0.1)
-
-    respX = []
-    respY = []
-    for pos in resp:
-        respX.append(pos[0])
-        respY.append(pos[1])
-
 
     plt.title("Trajetória da Partícula")
     plt.xlabel("Pos X")
     plt.ylabel("Pos Y")
     plt.xlim(0, 10)
     plt.ylim(0, 10)
-    plt.plot(respX, respY, color="k")
+    plt.plot(X, Y, color="k")
     plt.show()
 
 

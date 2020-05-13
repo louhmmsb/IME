@@ -16,32 +16,21 @@ def calcula(oldPos, oldVel, deltaT):
     return newPos, newVel
 
 def main():
-    respPos = []
-    respVel = []
+    X = []
+    Y = []
     atualPos = d0
     atualVel = v0
     for i in range(1000000):
-        respPos.append(atualPos)
-        respVel.append(atualVel)
+        X.append(atualPos[0])
+        Y.append(atualPos[1])
         atualPos, atualVel = calcula(atualPos, atualVel, 1e-3)
 
-    respXpos = []
-    respYpos = []
-    respXvel = []
-    respYvel = []
-    for i in range(len(respPos)):
-        respXpos.append(respPos[i][0])
-        respYpos.append(respPos[i][1])
-        respXvel.append(respVel[i][0])
-        respYvel.append(respVel[i][1])
-
-        
     plt.title("Trajetória da Partícula")
     plt.xlabel("Pos X")
     plt.ylabel("Pos Y")
 #    plt.xlim(0, 100000)
 #    plt.ylim(0, 100000)
-    plt.plot(respXpos, respYpos, color="k")
+    plt.plot(X, Y, color="k")
     plt.show()
 
 
