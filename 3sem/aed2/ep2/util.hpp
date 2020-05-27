@@ -12,6 +12,13 @@ class pair{
   public:
     A first;
     B second;
+    pair(A, B);
+};
+
+template<class A, class B>
+pair::pair(A a, B b){
+    first = a;
+    second = b;
 }
 
 //retorna o mínimo entre dois números
