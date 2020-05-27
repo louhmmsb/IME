@@ -9,35 +9,38 @@ using namespace std;
 typedef long long int ll;
 typedef unsigned long long int ull;
 
+ll sas(ll a, ll b){
+    if(a%b == 0) return a/b;
+    return a/b+1;
+}
+
 int main(){
     ll n, m;
     ll q;
 
     cin>>n>>m>>q;
+    ll aux = __gcd(n, m);
+    //cout<<__gcd(n, m)<<endl;
 
     for(int i=0; i<q; i++){
-        int sx, sy, ex, ey;
+        ll sx, sy, ex, ey;
         cin>>sx>>sy>>ex>>ey;
-        int sd = sy*360/n;
-        int ed = ey*360/m;
 
-        if(sx == 1 && ex == 1){
-            int aux = 360/n;
-            if(sd/aux == ed/aux) cout<<"YES\n";
-            else cout<<"NO\n";
-        }
-        else if(sx == 2 && ex == 2){
-            int aux = 360/m;
-            if(sd/aux == ed/aux) cout<<"YES\n";
-            else cout<<"NO\n";
-        }
-        else{
-            int aux = __gcd(n, m);
-            aux = 360/aux;
+        if(sx == 1) sx = n;
+        else sx = m;
+        if(ex == 1) ex = n;
+        else ex = m;
 
-            if(sd/aux == ed/aux) cout<<"YES\n";
-            else cout<<"NO\n";
-        }
+        sx = sx/aux;
+        ex = ex/aux;
+
+        bool deu = false;
+        if(sas(ey, ex) == sas(sy, sx)) deu = true;
+        if(aux == 1) deu = true;
+
+        if(deu) cout<<"YES\n";
+        else cout<<"NO\n";
     }
+        
     return 0;
 }

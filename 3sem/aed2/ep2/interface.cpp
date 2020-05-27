@@ -8,7 +8,8 @@ class Grafo{
     int minSize;
     
     //lista de adjacência
-    vector<vector<wstring>> adj;
+    vector<vector<pair<wstring, int>>> adj;
+    vector<wstring> words;
 
   public:
     Grafo(int k){
@@ -16,9 +17,12 @@ class Grafo{
         minSize = k;
     }
 
-    int insere(string palavra){
+    int insere(wstring palavra){
         /* Insere a palavra e retorna o número de arestas adicionados ao grafo,
         retorna -1 se a palavra já está no grafo ou tem tamanho menor que k*/
+        if(palavra.size() <= minSize) return -1;
+        
+
     }
 
     int vertices(){

@@ -6,6 +6,14 @@
 
 using namespace std;
 
+//classe para guardar pares de dados
+template<class A, class B>
+class pair{
+  public:
+    A first;
+    B second;
+}
+
 //retorna o mínimo entre dois números
 int min(int a, int b);
 
