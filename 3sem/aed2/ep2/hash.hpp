@@ -13,4 +13,4 @@ class hashTable{
     void insert(pair<key, value> a);
     void remove(key a);
     int find(key a);
-}
+};
