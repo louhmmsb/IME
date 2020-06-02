@@ -21,7 +21,7 @@ x_plota = []
 y_plota = []
 
 for i in range(len(x)-1):
-    a = (z[i+1]-z[i])
+    a = (z[i+1]-z[i])/(2*(x[i+1]-x[i]))
     b = (z[i])
     c = y[i]
     for j in np.arange(x[i], x[i+1], EPS):
@@ -29,9 +29,21 @@ for i in range(len(x)-1):
         x_plota.append(j)
         y_plota.append(a*t*t + b*t + c)
 
+
+seno = [np.sin(x) for x in x_plota]
+
+err = 0
+x = 0
+for i in range(len(x_plota)):
+    err += abs(y_plota[i]-seno[i])
+    x += 1
+    
+err = err/x
+
 plt.plot(x_plota, y_plota, color="green", label="Interpolado")
-plt.plot(x_plota, [np.sin(x) for x in x_plota], label="sin(x)", linestyle=":", color="red")
+plt.plot(x_plota, seno, label="sin(x)", linestyle=":", color="red")
 plt.title("Comparação do seno")
+plt.text(0, -1, "Erro = " + str(err))
 
 plt.legend()
 plt.savefig("graf.png", dpi=1000)

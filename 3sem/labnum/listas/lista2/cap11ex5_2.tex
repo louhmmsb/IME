@@ -1,0 +1,159 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage[brazil]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{bussproofs}
+\usepackage[table]{xcolor}
+\usepackage{gensymb}
+\usepackage{hyperref}
+\graphicspath{{./images}}
+\geometry{verbose,a4paper,left=1cm,top=2cm,right=3cm,bottom=3cm}
+\title{Cap11 Ex5}
+\author{Lourenço Henrique Moinheiro Martins Sborz Bogo - 11208005}
+\date{}
+\linespread{1.5}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\product}[3]{\displaystyle\prod_{#1}^#2 #3}
+\newcommand{\gsum}[3]{\displaystyle\sum_{#1}^#2 #3}
+\newcommand{\mytitle}[1]{\textbf{\underline{#1}}}
+\newcommand{\ring}[1]{\langle #1 \rangle}
+\newcommand{\code}[1]{\mbox{\texttt{#1}}}
+\setcounter{MaxMatrixCols}{20}
+
+\begin{document}
+
+\maketitle
+
+Começaremos com um spline cúbico padrão, ou seja, temos as seguintes condições:
+
+\begin{enumerate}
+  
+\item $s_i(x_i) = f(x_i)$, $i = 0,\dots,n-1$
+  
+\item $s_i(x_{i+1}) = f(x_{i+1})$, $i = 0,\dots,n-1$
+  
+\item $s_i'(x_{i+1}) = s_{i+1}'(x_{i+1})$, $i = 0,\dots,n-2$
+  
+\item $s_i''(x_{i+1}) = s_{i+1}''(x_{i+1})$, $i = 0,\dots,n-2$
+  
+\end{enumerate}
+
+Onde:
+
+\begin{enumerate}
+  
+\item $s_i(x) = a_i+b_i(x-x_i)+c_i{(x-x_i)}^2+d_i{(x-x_i)}^3$
+  
+\item $s_i'(x) = b_i+2c_i{(x-x_i)}+3d_i{(x-x_i)}^2$
+  
+\item $s_i''(x) = 2c_i+6d_i{(x-x_i)}$
+  
+\end{enumerate}
+
+O que nós queremos inicialmente é determinar os coeficientes desses polinômios para $i = 0,1,\dots,n-1$
+
+Notação:
+\begin{itemize}
+
+\item $a_i = f(x_i)$, $i = 0,1,\dots,n-1$  
+  
+\item $h_i = x_{i+1}-x_i$, $i = 0,1,\dots,n-1$
+  
+\item $f[x_i, x_{i+1}] = \frac{f(x_{i+1})-f(x_{i})}{x_{i+1}-x_i}$
+  
+\end{itemize}
+
+Então, aplicando todas as condições impostas para splines cúbicos, chegaremos em:
+
+$h_{i-1}c_{i-1}+2(h_{i-1}+h_i)c_i+h_i c_{i+1} = 3(f[x_i, x_{i+1}]-f[x_{i-1}, x_i])$, $i = 1,\dots,n-1$.
+
+(Os passos dessa parte foram pulados pois estão todos no livro e o exercício em si começa agora).
+
+O sistema acima nos dará $n-1$ equações lineares, e queremos achar $n+1$ incógnitas. Ou seja, agora para fazer o not a knot, precisaremos apenas usar como nossas duas condições livres:
+
+\begin{itemize}
+  
+\item $d_0 = d_1$
+  
+\item $d_{n-1} = d_{n-2}$
+  
+\end{itemize}
+
+Peguemos do livro a equação para achar $d_i$:
+
+$d_i = \frac{c_{i+1}-c_i}{3h_i}$, $i = 0,\dots,n-1$.
+
+Vamos agora usar as condições impostas pelo knot a not:
+
+\begin{itemize}
+  
+\item $d_0 = d_1 \rightarrow \frac{c_1-c_0}{3h_0} = \frac{c_2-c_1}{3h_1} \rightarrow c_1-c_0 = \frac{h_0}{h_1}(c_2-c_1) \rightarrow c_0 = c_1 - \frac{h_0}{h_1}(c_2-c_1)$
+  
+\item $d_{n-2} = d_{n-1} \rightarrow \frac{c_{n-1}-c_{n-2}}{3h_{n-2}} = \frac{c_n-c_{n-1}}{3h_{n-1}} \rightarrow \frac{h_{n-1}}{h_{n-2}}(c_{n-1}-c_{n-2}) = c_n-c_{n-1} \rightarrow \\ \rightarrow c_n = c_{n-1} + \frac{h_{n-1}}{h_{n-2}}(c_{n-1}-c_{n-2})$
+  
+\end{itemize}
+
+Agora, pegaremos o o sistema que tínhamos antes e nos casos $i=1$ e $i=n-1$ iremos substituir $c_0$ e $c_{n}$ respecetivamente, resultando nesse novo sistema:
+
+$\begin{cases}
+  
+h_{i-1}c_{i-1}+2(h_{i-1}+h_i)c_i+h_i c_{i+1} = 3(f[x_i, x_{i+1}]-f[x_{i-1}, x_i])$, $i = 2,\dots,n-2 \\
+
+h_{0}(c_1 - \frac{h_0}{h_1}(c_2-c_1))+2(h_{0}+h_1)c_1+h_1 c_{2} = 3(f[x_1, x_{2}]-f[x_{0}, x_1]) \\
+
+h_{n-2}c_{n-2}+2(h_{n-2}+h_{n-1})c_{n-1}+h_{n-1} (c_{n-1} + \frac{h_{n-1}}{h_{n-2}}(c_{n-1}-c_{n-2})) = 3(f[x_{n-}, x_{n}]-f[x_{n-2}, x_{n-1}])
+  
+\end{cases}$
+
+Ou seja,
+
+$\begin{cases}
+  
+h_{i-1}c_{i-1}+2(h_{i-1}+h_i)c_i+h_i c_{i+1} = 3(f[x_i, x_{i+1}]-f[x_{i-1}, x_i])$, $i = 2,\dots,n-2 \\
+
+c_1(3h_0+2h_1+\frac{h_0^2}{h_1})+c_2(h_1-\frac{h_0^2}{h_1}) = 3(f[x_1, x_{2}]-f[x_{0}, x_1]) \\
+
+c_{n-1}(3h_{n-1}+2h_{n-2}+\frac{h_{n-1}^2}{h_{n-2}})+c_{n-2}(h_{n-2}-\frac{h_{n-1}^2}{h_{n-2}}) = 3(f[x_{n-}, x_{n}]-f[x_{n-2}, x_{n-1}])
+  
+\end{cases}$
+
+\newpage
+
+Agora, escrevendo esse sistema na forma matricial, temos:
+
+$H\vec{c} = \vec{f}$, com
+
+$
+H = \begin{bmatrix}
+
+  3h_0+2h_1+\frac{h_0^2}{h_1} && h_1-\frac{h_0^2}{h_1} \\
+  h_1 && 2(h_1+h_2) && h_2 \\
+  && h_2 && 2(h_2+h_3) && h_3 \\
+  && && \ddots && \ddots && \ddots \\
+  && && && h_{n-3} && 2(h_{n-3}+h_{n-2}) && h_{n-2} \\
+  && && && && h_{n-2}-\frac{h_{n-1}^2}{h_{n-2}} && 3h_{n-1}+2h_{n-2}+\frac{h_{n-1}^2}{h_{n-2}}
+   
+\end{bmatrix}$
+
+$\vec{c} = \begin{bmatrix}
+  
+  c_1 \\ c_2 \\ \vdots \\ c_{n-2} \\ c_{n-1}
+
+\end{bmatrix}$
+
+$\vec{f} = \begin{bmatrix}
+
+3(f[x_1, x_2]-f[x_0, x_1]) \\ 3(f[x_2, x_3]-f[x_1, x_2]) \\ \vdots \\ 3(f[x_{n-2}, x_{n-1}]-f[x_{n-3}, x_{n-2}]) \\ 3(f[x_{n-1}, x_{n}]-f[x_{n-2}, x_{n-1}])
+
+\end{bmatrix}$
+
+A matrix que estamos interessados para responder o exercício é a $H$, e podemos ver que ela é estritamente diagonal dominante e tridiagonal.
+
+\end{document}

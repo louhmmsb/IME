@@ -16,7 +16,7 @@
 \graphicspath{{./images}}
 \geometry{verbose,a4paper,left=2cm,top=2cm,right=3cm,bottom=3cm}
 \title{Algoritmo do Spline Quadrático}
-\author{}
+\author{Lourenço Henrique Moinheiro Martins Sborz Bogo - 11208005}
 \date{}
 \linespread{1.5}
 \newcommand{\real}{\mathbb{R}}
@@ -30,6 +30,8 @@
 \begin{document}
 
 \maketitle
+
+\section{Algoritmo}
 
 Dado um intervalo $[a,b]$ e uma divisão desse intervalo em n+1 pontos equidistantes, conseguimos fazer o spline quadrático de uma certa função, nesse intervalo. Além dessas condições iniciais, iremos precisar também do valor da função $f$ nos pontoss que queremos interpolar (óbvio) e também, da derivada da $f$ no ponto inicial do intervalo.
 
@@ -47,7 +49,7 @@ Notação que usarei:
   
 \end{itemize}
 
-\mytitle{Explicação do Algoritmo}
+\subsection{Explicação do Algoritmo}
 
 Inicialmente, iremos achar a derivada em todos os outros pontos recursivamente, a partir da derivada inicial com a fórmula:
 
@@ -57,7 +59,7 @@ Com todas as derivadas em mãos, agora podemos criar cada um dos polinômios que
 
 $Q_i(x) = \frac{z_{i+1}-z_{i}}{2(x_{i+1}-x_i)}(x-x_i)^2+z_i(x-x_i)+y_i$.
 
-\mytitle{Justificativa}
+\subsection{Justificativa}
 
 Primeiramente iremos precisar de $n-1$ polinômios de segundo grau (ou menos) contínuos, cujas derivadas também são contínuas. Ou seja necessitamos que:
 
@@ -71,7 +73,7 @@ Primeiramente iremos precisar de $n-1$ polinômios de segundo grau (ou menos) co
   
 \end{itemize}
 
-Como $Q(x)$ é um spline quadrático de nossa $f$, sua derivada seŕa um spline linear. Desse modo, surgem 4 novas condições:
+Para $Q(x)$ ser um spline quadrático precisamos das seguintes condições de continuidade:
 
 \begin{itemize}
   
@@ -94,5 +96,17 @@ Agora para achar os valores de $z_i$ iremos usar (2):
 $z_{i+1} = -z_i + 2(\frac{y_{i+1}-y_i}{x_{i+1}-x_i})$ (6).
 
 Com (6), conseguiremos computar $z_k$ dado $z_{k-1}$, logo precisaremos do $f'(a)$ para usar essa algoritmo.
+
+\section{Erro}
+
+Para o erro, iremos apenas usar o teorema do erro de interpolação polinomial para intervalos iguamente espaçados que diz que:
+
+$|R_n(x)| <= \frac{h^{n+1}}{4(n+1)}\displaystyle\max_{\xi \in [a,b]}|f^{(n+1)}(\xi) |$,
+
+com $n$ sendo o grau do polinômio que estamos usando para interpolar a função.
+
+\noindent No nosso caso, temos que:
+
+$|R_2(x)| <= \frac{h^{3}}{12}\displaystyle\max_{\xi \in [a,b]}|f^{(3)}(\xi) |$.
 
 \end{document}

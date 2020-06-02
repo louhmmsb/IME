@@ -9,7 +9,6 @@ class Grafo{
     int minSize;
     //número de arestas
     int nArestas;
-    
     //lista de adjacência
     vector<vector<pair<wstring, int>>> adj;
     //para descobrir qual palavra está em qual vértice
@@ -128,6 +127,7 @@ class Grafo{
         /* Retorna verdadeiro casa exista um ciclo que contenha ambas as palavras,
         falso caso contrário */
     }
+    
     int dfs(int ini){
         vis[ini] = true;
         compSize++;
