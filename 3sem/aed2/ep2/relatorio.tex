@@ -1,0 +1,87 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage[brazil]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{bussproofs}
+\usepackage[table]{xcolor}
+\usepackage{gensymb}
+\usepackage{hyperref}
+\graphicspath{{./images}}
+\geometry{verbose,a4paper,left=1cm,top=2cm,right=3cm,bottom=3cm}
+\title{Algoritmos e Estruturas de Dados 2 - EP2}
+\author{Lourenço Henrique Moinheiro Martins Sborz Bogo}
+\date{}
+\linespread{1.5}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\product}[3]{\displaystyle\prod_{#1}^#2 #3}
+\newcommand{\gsum}[3]{\displaystyle\sum_{#1}^#2 #3}
+\newcommand{\mytitle}[1]{\textbf{\underline{#1}}}
+\newcommand{\ring}[1]{\langle #1 \rangle}
+\newcommand{\code}[1]{\mbox{\texttt{#1}}}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Escolhas de Implementação}
+
+Primeiro problema que encontrei ao começar a implementar o EP foi: como eu saberia em que vértice uma certa palavra está, de maneira rápida? Para resolver isso, eu decidi usar uma HashTable, onde as chave é a string que contém a palavra e o valor é o nodo no qual ela está.
+
+Para implementar a HashTable, decidi fazer minha própria biblioteca de lista ligada, que transformei em uma biblioteca de fila para que pudesse ser usada na BFS também.
+
+Depois disso, implentar quase todas as funções do EP foi muito simples, com exceção das \texttt{emCiclo}, que demorei um pouco para pensar como fazer. Decidi implementar quase tudo usando DFS, menos o cálculo da distância onde optei por usar BFS.
+
+Tive que fazer duas funções DFS auxliares:
+
+\begin{description}
+\item[\texttt{int dfs(int)}] Roda uma dfs para o nodo passado como parâmetro e devolve o tamanho de sua componente.
+  
+\item[\texttt{void dfs(int, int, int, bool, int)}] Essa dfs foi a parte mais complicada de implementar do EP. Ela pode caso sejam passados só os 3 primeiros parâmetros para ela, ela irá procurar se existe ou não um ciclo que contém o primeiro parâmetro. Caso os 5 parâmetros sejam passados, a função irá fazer quase a mesma coisa, com a condição de que ao invés de buscar um ciclo no primeiro parâmetro, ela irá buscar um ciclo no primeiro parâmetro, que contenha o último.
+  
+\end{description}
+
+\newpage
+
+\section{Como usar}
+
+Para usar o EP, deve-se passar como argumento na linha de comando o \texttt{k} descrito no enunciado.
+
+Depois disso, basta digitar \texttt{help} na prompt, e aparecerá explicações para todos os comandos possíveis.
+
+\section{Experimentos}
+
+Primeiro experimento que decidi fazer é como textos de diferentes tipos se comportam:
+
+\begin{center}
+  \begin{tabular}{||c | c | c | c | c | c | c | c||} 
+    \hline
+    Livro & Vertices & Arestas & Componentes & Maior Comp. & Menor Comp. & Conexo & Denso \\ [0.5ex] 
+    \hline\hline
+    Memórias & 10976 & 8293 & 6307 & 2715 & 1 & False & False \\
+    \hline
+    Dom Casmurro & 9475 & 7825 & 5115 & 2393 & 1 & False & False \\ 
+    \hline
+    Quincas & 11335 & 9486 & 6195 & 2829 & 1 & False & False \\ 
+    \hline
+    The Raven & 445 & 197 & 309 & 51 & 1 & False & False \\ 
+    \hline
+    Discourse & 2819 & 1151 & 2040 & 372 & 1 & False & False \\ 
+    \hline
+    Critique & 7995 & 4593 & 5461 & 952 & 1 & False & False \\ 
+    \hline
+    Dom Casmurro & 9475 & 7825 & 5115 & 2393 & 1 & False & False \\ [1ex]
+    \hline
+  \end{tabular}
+\end{center}
+
+\mytitle{OBS} Todos os testes feitos na tabela a cima foram feitos com k = 1;
+
+\end{document}

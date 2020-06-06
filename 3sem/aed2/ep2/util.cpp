@@ -1,6 +1,6 @@
 /* Funções auxiliares do EP2 de Algoritmos e Estruturas de Dados 2 */
 
-#include <util.hpp>
+#include "util.hpp"
 
 using namespace std;
 
@@ -54,4 +54,16 @@ bool isNear(const wstring &r, const wstring &t){
     }
 
     return true;
+}
+
+wstring parser(wstring s){
+    wstring res = L"";
+    for(auto a : s) if(iswalnum(a)) res += towlower(a);
+    return res;
+}
+
+wstring parseCommand(wstring bruteCommand){
+    wstring refinedCommand = L"";
+    for(auto a : bruteCommand) refinedCommand.push_back(towlower(a));
+    return refinedCommand;
 }

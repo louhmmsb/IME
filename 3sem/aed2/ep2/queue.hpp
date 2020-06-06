@@ -68,7 +68,7 @@ queue<T>::~queue(){
 
 template<class T>
 bool queue<T>::empty(){
-    return size == 0;
+    return Size == 0;
 }
 
 template<class T>
@@ -138,7 +138,7 @@ class q_iter{
     class queue<T>::node *p = nullptr;
 
   public:
-    q_iter operator++(){
+    void operator++(){
         p = p->next;
     }
     T operator*(){
