@@ -28,6 +28,8 @@ class Grafo{
     int maxComp;
     //para guardar a menor componentes
     int minComp;
+    //para guardar o tamanho médio das componentes
+    double mediaComp;
     
   public:
     Grafo(int k){
@@ -60,6 +62,7 @@ class Grafo{
         vis.push_back(false);
         maxComp = -1;
         minComp = -1;
+        mediaComp = -10;
         return arestas;
     }
 
@@ -76,7 +79,6 @@ class Grafo{
     int componentes(){
         /* Retorna o número de componentes do grafo */
         int c = 0;
-        maxComp = 0;
         std::fill(vis.begin(), vis.end(), false);
         for(int i=0; i<(int)vis.size(); i++){
             if(vis[i] == true) continue;
@@ -84,8 +86,10 @@ class Grafo{
             int aux = dfs(i);
             maxComp = (maxComp > aux)? maxComp : aux;
             minComp = (minComp == -1 || minComp > aux)? aux : minComp;
+            mediaComp += (double)aux;
             c++;
         }
+        mediaComp = mediaComp/c;
         return c;
     }
 
@@ -117,7 +121,7 @@ class Grafo{
         if(!table.find(a) || !table.find(b)) return -1;
         std::fill(vis.begin(), vis.end(), false);
         queue<int> q;
-        int dist[sizeof(vis)];
+        int dist[adj.size()+100];
         memset(dist, 0x3f3f3f3f, sizeof(dist));
         int aux = table.getNode(a);
         q.push_back(aux);
@@ -193,6 +197,52 @@ class Grafo{
     int menorComp(){
         if(minComp == -1) componentes();
         return minComp;
+    }
+
+    double mComp(){
+        if(mediaComp <= -1) componentes();
+        return mediaComp;
+    }
+
+    double distMedia(){
+        std::fill(vis.begin(), vis.end(), false);
+        queue<int> q;
+        int dist[adj.size()+100];
+        double res = 0.0;
+        int cont = 0;
+        memset(dist, 0x3f3f3f3f, sizeof(dist));
+
+        for(size_t i=0; i<words.size(); i++){
+            int aux = table.getNode(words[i]);
+            if(vis[aux]) continue;
+            q.push_back(aux);
+            dist[aux] = 0;
+            vis[aux] = 1;
+        
+            while(!q.empty()){
+                int x = q.front();
+                q.pop_front();
+                for(auto y : adj[x]){
+                    if(!vis[y.second]){
+                        vis[y.second] = true;
+                        dist[y.second] = dist[x]+1;
+                        res += dist[y.second];
+                        cont++;
+                        q.push_back(y.second);
+                    }
+                }
+            }
+            std::fill(vis.begin(), vis.end(), false);
+            memset(dist, 0x3f3f3f3f, sizeof(dist));
+        }
+        
+        return res/cont;
+    }
+
+    double grauMedio(){
+        double resp = 0.0;
+        for(auto a : adj) resp += a.size();
+        return resp/adj.size();
     }
 
 };

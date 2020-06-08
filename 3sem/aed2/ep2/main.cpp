@@ -75,8 +75,17 @@ int main(int argc, char **argv){
         else if(comando == L"mincomp"){
             wcout<<g.menorComp()<<endl;
         }
+        else if(comando == L"mediaComp"){
+            wcout<<g.mComp()<<endl;
+        }
+        else if(comando == L"distmedia"){
+            wcout<<g.distMedia()<<endl;
+        }
         else if(comando == L"denso"){
             wcout<<((g.arestas() > (g.vertices()*g.vertices()))? L"True" : L"False")<<endl;
+        }
+        else if(comando == L"graumedio"){
+            wcout<<g.grauMedio()<<endl;
         }
         else if(comando == L"first") wcout<<"Ola, tudo bem?"<<endl;
         else if(comando == L"estat"){
@@ -85,6 +94,9 @@ int main(int argc, char **argv){
             wcout<<L"Número de componentes = "<<g.componentes()<<endl;
             wcout<<L"Tamanho da maior componente = "<<g.maiorComp()<<endl;
             wcout<<L"Tamanho da menor componente = "<<g.menorComp()<<endl;
+            wcout<<L"Tamanho médio das componentes = "<<g.mComp()<<endl;
+            wcout<<L"Distância média entre as palavras = "<<g.distMedia()<<endl;
+            wcout<<L"Grau médio dos vértices do grafo = "<<g.grauMedio()<<endl;
             wcout<<L"Conexo = "<<((g.conexo())? L"True" : L"False")<<endl;
             wcout<<L"Denso = "<<((g.arestas() > (g.vertices()*g.vertices()))? L"True" : L"False")<<endl;
         }

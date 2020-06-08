@@ -14,7 +14,7 @@
 \usepackage{gensymb}
 \usepackage{hyperref}
 \graphicspath{{./images}}
-\geometry{verbose,a4paper,left=1cm,top=2cm,right=3cm,bottom=3cm}
+\geometry{verbose,a3paper,left=3cm,top=2cm,right=3cm,bottom=3cm}
 \title{Algoritmos e Estruturas de Dados 2 - EP2}
 \author{Lourenço Henrique Moinheiro Martins Sborz Bogo}
 \date{}
@@ -33,22 +33,24 @@
 
 \section{Escolhas de Implementação}
 
-Primeiro problema que encontrei ao começar a implementar o EP foi: como eu saberia em que vértice uma certa palavra está, de maneira rápida? Para resolver isso, eu decidi usar uma HashTable, onde as chave é a string que contém a palavra e o valor é o nodo no qual ela está.
+Primeiro problema que encontrei ao começar a implementar o EP foi: como eu saberia em que vértice uma certa palavra está, de maneira rápida? Para resolver isso, eu decidi usar uma HashTable, onde as chaves são as strings que contêm as palavras e os valores são os nodos nos quais elas estão.
 
 Para implementar a HashTable, decidi fazer minha própria biblioteca de lista ligada, que transformei em uma biblioteca de fila para que pudesse ser usada na BFS também.
 
 Depois disso, implentar quase todas as funções do EP foi muito simples, com exceção das \texttt{emCiclo}, que demorei um pouco para pensar como fazer. Decidi implementar quase tudo usando DFS, menos o cálculo da distância onde optei por usar BFS.
 
-Tive que fazer duas funções DFS auxliares:
+Tive que fazer duas funções DFS auxiliares:
 
 \begin{description}
 \item[\texttt{int dfs(int)}] Roda uma dfs para o nodo passado como parâmetro e devolve o tamanho de sua componente.
   
-\item[\texttt{void dfs(int, int, int, bool, int)}] Essa dfs foi a parte mais complicada de implementar do EP. Ela pode caso sejam passados só os 3 primeiros parâmetros para ela, ela irá procurar se existe ou não um ciclo que contém o primeiro parâmetro. Caso os 5 parâmetros sejam passados, a função irá fazer quase a mesma coisa, com a condição de que ao invés de buscar um ciclo no primeiro parâmetro, ela irá buscar um ciclo no primeiro parâmetro, que contenha o último.
+\item[\texttt{void dfs(int, int, int, bool, int)}] Essa dfs foi a parte mais complicada de implementar do EP. Caso sejam passados só os 3 primeiros parâmetros para ela, ela irá procurar se existe ou não um ciclo que contém o primeiro parâmetro. Caso os 5 parâmetros sejam passados, a função irá fazer quase a mesma coisa, com a condição de que ao invés de buscar um ciclo no primeiro parâmetro, ela irá buscar um ciclo no primeiro parâmetro, que contenha o último parâmetro.
   
 \end{description}
 
-\newpage
+Além dessas funções, implementei mais algumas auxliares para descobrir a maior componente, a menor componente e o tamanho médio da componente, que são calculadas junto com o número de componentes, ou seja, quando um desses dados é pedido, todos são calculados para ganhar tempo.
+
+Para achar a distância média entre vértices, preferi não usar a função que acha a distãncia entre dois vértices, pois ficaria muito lerdo. Preferi fazer uma função separada que roda uma BFS para cada nodo e depois tira a média de todas as distâncias encontradas.
 
 \section{Como usar}
 
@@ -56,32 +58,53 @@ Para usar o EP, deve-se passar como argumento na linha de comando o \texttt{k} d
 
 Depois disso, basta digitar \texttt{help} na prompt, e aparecerá explicações para todos os comandos possíveis.
 
+\newpage
+
 \section{Experimentos}
 
-Primeiro experimento que decidi fazer é como textos de diferentes tipos se comportam:
+Vamos testar como o tipo do texto, sua língua e seu tamanho influenciam os resultados.
 
 \begin{center}
-  \begin{tabular}{||c | c | c | c | c | c | c | c||} 
+  \begin{tabular}{||c | c | c | c | c | c | c | c | c||} 
     \hline
-    Livro & Vertices & Arestas & Componentes & Maior Comp. & Menor Comp. & Conexo & Denso \\ [0.5ex] 
+    Livro & Vertices & Arestas & Componentes & Maior Comp. & Menor Comp. & Média Comp. & Dist. Média & Denso \\ [0.5ex] 
     \hline\hline
-    Memórias & 10976 & 8293 & 6307 & 2715 & 1 & False & False \\
+    Memórias & 10976 & 8293 & 6307 & 2715 & 1 & 1.738 & 8.71 & False \\
     \hline
-    Dom Casmurro & 9475 & 7825 & 5115 & 2393 & 1 & False & False \\ 
+    Dom Casmurro & 9475 & 7825 & 5115 & 2393 & 1 & 1.850 & 8.489 & False \\ 
     \hline
-    Quincas & 11335 & 9486 & 6195 & 2829 & 1 & False & False \\ 
+    Quincas & 11335 & 9486 & 6195 & 2829 & 1 & 1.820 & 8.740 & False \\ 
     \hline
-    The Raven & 445 & 197 & 309 & 51 & 1 & False & False \\ 
+    Huckleberry & 7301 & 8218 & 3647 & 2647 & 1 & 1.999 & 7.237 & False \\ 
     \hline
-    Discourse & 2819 & 1151 & 2040 & 372 & 1 & False & False \\ 
+    The Raven & 445 & 197 & 309 & 51 & 1 & 1.407 & 4.393 & False \\ 
     \hline
-    Critique & 7995 & 4593 & 5461 & 952 & 1 & False & False \\ 
+    Discourse & 2819 & 1151 & 2040 & 372 & 1 & 1.412 & 7.520 & False \\ 
     \hline
-    Dom Casmurro & 9475 & 7825 & 5115 & 2393 & 1 & False & False \\ [1ex]
+    Critique & 7995 & 4593 & 5461 & 952 & 1 & 1.462 & 7.227 & False \\ 
+    \hline
+    Manual GCC & 11781 & 11984 & 7083 & 2267 & 1 & 1.661 & 6.543 & False \\ 
+    \hline
+    Manual GHC & 1702 & 797 & 1307 & 131 & 1 & 1.294 & 4.380 & False \\ 
+    \hline
+    Manual wget & 2400 & 1591 & 1669 & 374 & 1 & 1.432 & 6.544 & False \\ 
+    \hline
+    Manual grep & 962 & 860 & 672 & 132 & 1 & 1.416 & 4.107 & False \\ [1ex]
+    \hline
     \hline
   \end{tabular}
 \end{center}
 
 \mytitle{OBS} Todos os testes feitos na tabela a cima foram feitos com k = 1;
+
+Percebemos com os testes feitos acima (e mais alguns q não coloquei na tabela) que, os fatores que mais influenciam os resultados são o tamanho do texto e o seu gênero, o que faz bastante sentido.
+
+O tamanho faz uma diferença gritante pois, quanto mais palavras têm um texto, mais difícil fica de usar palavras diferentes e mais palavra se conectam, fazendo com que o número de arestas fique mais próximo ou até maior que o número de vértices em alguns casos. Já, nos textos menores, as palavras têm menos oportunidades de se conectar com as outras, fazendo com que o número de arestas fique bem menor que o número de vértices.
+
+O gênero influencia menos que o tamanho no resultado, mas, podemos perceber que a média das componentes é menor nos manuais, do que nos livros de romance.
+
+Outra coisa que se nota é que nenhum dos grafos é denso, o que também é de certa maneira óbvio já que a condição para um grafo ser denso muito provavelmente não será atendida por nenhum texto real, com as condições que o EP impôs.
+
+A diferença entre as línguas só se torna evidente quando variamos o k. Por exemplo, textos em alemão tendem a se comportar de maneira diferente dos outros com um k grande, pois as palavras tendem a ser maiores. Em português o k ser alterado de 1 pra 3 faz muita diferença por causa dos artigos e preposições de 1 ou 2 letras que temos na língua.
 
 \end{document}
