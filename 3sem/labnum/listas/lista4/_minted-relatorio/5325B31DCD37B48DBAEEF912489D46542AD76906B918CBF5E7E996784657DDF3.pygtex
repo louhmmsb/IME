@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
+\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}Função que calcula a regra pedida no enunciado para a}
+\PYG{l+s+sd}{função f de derivada df\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+\PYG{k}{def} \PYG{n+nf}{trap}\PYG{p}{(}\PYG{n}{f}\PYG{p}{,} \PYG{n}{df}\PYG{p}{,} \PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{):}
+    \PYG{n}{c} \PYG{o}{=} \PYG{n}{b}\PYG{o}{\PYGZhy{}}\PYG{n}{a}
+    \PYG{k}{return} \PYG{p}{(}\PYG{n}{c}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{o}{*}\PYG{p}{(}\PYG{n}{f}\PYG{p}{(}\PYG{n}{a}\PYG{p}{)}\PYG{o}{+}\PYG{n}{f}\PYG{p}{(}\PYG{n}{b}\PYG{p}{))}\PYG{o}{+}\PYG{p}{((}\PYG{n}{c}\PYG{o}{*}\PYG{n}{c}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{12}\PYG{p}{)}\PYG{o}{*}\PYG{p}{(}\PYG{n}{df}\PYG{p}{(}\PYG{n}{a}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{n}{df}\PYG{p}{(}\PYG{n}{b}\PYG{p}{))}
+
+\PYG{k}{def} \PYG{n+nf}{g}\PYG{p}{(}\PYG{n}{x}\PYG{p}{):}
+    \PYG{k}{return} \PYG{n}{np}\PYG{o}{.}\PYG{n}{exp}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+
+\PYG{n}{res1} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{e} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}
+\PYG{n}{res2} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{e} \PYG{o}{\PYGZhy{}} \PYG{n}{np}\PYG{o}{.}\PYG{n}{e}\PYG{o}{**}\PYG{p}{(}\PYG{o}{.}\PYG{l+m+mi}{9}\PYG{p}{)}
+
+\PYG{n}{aprox1} \PYG{o}{=} \PYG{n}{trap}\PYG{p}{(}\PYG{n}{g}\PYG{p}{,} \PYG{n}{g}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{n}{aprox2} \PYG{o}{=} \PYG{n}{trap}\PYG{p}{(}\PYG{n}{g}\PYG{p}{,} \PYG{n}{g}\PYG{p}{,} \PYG{l+m+mf}{0.9}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}
+
+\PYG{n}{err1} \PYG{o}{=} \PYG{n}{res1} \PYG{o}{\PYGZhy{}} \PYG{n}{aprox1}
+\PYG{n}{err2} \PYG{o}{=} \PYG{n}{res2} \PYG{o}{\PYGZhy{}} \PYG{n}{aprox2}
+
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{err1}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{err2}\PYG{p}{)}
+\end{Verbatim}

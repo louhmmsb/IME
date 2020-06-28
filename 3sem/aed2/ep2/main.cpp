@@ -1,4 +1,7 @@
-#include "grafo.hpp"
+#include "bibs/grafo.hpp"
+#include <iomanip>
+
+#define fixedfloat(x) std::fixed<<std::setprecision(3)<<(x)
 
 using namespace std;
 
@@ -6,14 +9,42 @@ int main(int argc, char **argv){
     setlocale(LC_CTYPE, "");
     locale localPadrao("");
 
-    if(argc != 2){
-        cout<<"O programa deve ser chamado da seguinte maneira: ./main.out k, onde k é o tamanho mínimo das palavras que o grafo aceita. "<<endl;
+    if(argc < 2){
+        cout<<"O programa deve ser chamado da seguinte maneira: ./main.out k, onde k é o tamanho mínimo das palavras que o grafo aceita. O outro argumento é opional, e deve ser o nome do arquivo de texto a ser carregado."<<endl;
         return 0;
     }
     
     int minSize = atoi(argv[1]);
-    
+
     Grafo g(minSize);
+
+    string nome = "";
+    
+    if(argc >= 3){
+        for(int i=0; argv[2][i] != '\0'; i++){
+            nome += argv[2][i];
+        }
+        
+        wfstream arq(nome);
+        arq.imbue(localPadrao);
+        wstring p;
+        
+        while(arq>>p){
+            p = parser(p);
+            g.insere(p);
+        }
+    }
+
+    if(argc == 4){
+        string s = "";
+        for(int i=0; argv[3][i] != '\0'; i++){
+            s += argv[3][i];
+        }
+        if(s == "latex"){
+            wcout<<g.vertices()<<" & "<<g.arestas()<<" & "<<g.componentes()<<" & "<<g.maiorComp()<<" & "<<g.menorComp()<<" & "<<fixedfloat(g.mComp())<<" & "<<fixedfloat(g.distMedia())<<" & "<<((g.arestas() > (g.vertices()*g.vertices()))? L"True" : L"False")<<" \\\\"<<endl;
+            return 0;
+        }
+    }
 
     wstring comando = L"first";
     do{
@@ -113,6 +144,10 @@ int main(int argc, char **argv){
             wcout<<L"Para carregar um arquivo, digite: load nome_do_arquivo"<<endl;
             wcout<<L"Para descobrir o tamanho da maior componente do grafo, digite: maxcomp"<<endl;
             wcout<<L"Para descobrir o tamanho da menor componente do grafo, digite: mincomp"<<endl;
+            wcout<<L"Para descobrir o tamanho da médio das componentes do grafo, digite: mediacomp"<<endl;
+            wcout<<L"para descobrir a distância média entre os vértices do grafo, digite: distmedia"<<endl;
+            wcout<<L"Para descobrir se o grafo é denso, digite: denso"<<endl;
+            wcout<<L"Para descobrir o grau médio dos vértices do grafo, digite: graumedio"<<endl;
             wcout<<L"Para um resumo da estatísticas do grafo, digite: estat"<<endl;
             wcout<<L"Para fechar o programa corretamente sem memory leaks, use: ctrl d"<<endl;
         }

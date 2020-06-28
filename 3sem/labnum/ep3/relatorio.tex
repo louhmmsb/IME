@@ -1,0 +1,228 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage[brazil]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{bussproofs}
+\usepackage[table]{xcolor}
+\usepackage{gensymb}
+\usepackage{hyperref}
+\graphicspath{{./images}}
+\geometry{verbose,a4paper,left=2cm,top=2cm,right=3cm,bottom=3cm}
+\title{LabNum - EP3}
+\author{Lourenço Henrique Moinheiro Martins Sborz Bogo - 11208005}
+\date{}
+\linespread{1.5}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\product}[3]{\displaystyle\prod_{#1}^#2 #3}
+\newcommand{\gsum}[3]{\displaystyle\sum_{#1}^#2 #3}
+\newcommand{\mytitle}[1]{\textbf{\underline{#1}}}
+\newcommand{\ring}[1]{\langle #1 \rangle}
+\newcommand{\code}[1]{\mbox{\texttt{#1}}}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=C++,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4
+}
+
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+\section{Parte 1}
+
+\subsection{Implementação}
+
+A primeira parte do EP pedia para que, usando os dados de uma tabela, interpolássemos um certa função usando um polinômio e depois integrássemos o polinômio numericamente usando a Regra do Trapezóide e a Regra de Simpson.
+
+Para a parte da interpolação, optei por fazer usando o Polinômio de Newton, pois achei que seria mais fácil.
+
+Implementei o método usando as seguintes funções:
+
+\begin{description}
+  
+\item[\texttt{calcula\_den(int index)}] Essa função calcula a seguinte produtória $\product{i=0}{{index-1}}{x_{index}-x_i}$.
+  
+\item[\texttt{calcula\_p(int grau, double xp)}] Avalia o polinômio de ordem grau no ponto xp. Essa função só funciona caso os coeficientes necesssários para calcular esse polinômio já tenham sido calculados antes.
+  
+\item[\texttt{calcula\_a(int index)}] Calcula o coeficiente do termo de grau index do Polinômio de Newton.
+  
+\item[\texttt{calcula\_as()}] Calcula todos os coeficientes do polinômio.
+  
+\item[\texttt{trapezoid(int n)}] Pega $n$ pontos igualmente espaçados do polinômio de newton (já construído) e integra usando a Regra do Trapezóide.
+  
+\item[\texttt{simpsons(int n)}] Pega $2n$ pontos igualmente espaçados do polinômio de newton (já construído) e integra usando a Regra de Simpson.
+  
+\end{description}
+
+\newpage
+
+\subsection{Resultados}
+
+Percebi com testes que, por mais que a Regra de Simpson demore mais pra rodar, ela é muito mais eficiente no quesito de conseguir um resultado muito melhor, particionando o polinômio menos vezes.
+
+\begin{center}
+  \begin{tabular}{||c | c | c ||}
+    \hline
+    Partições & Trapezóide & Simpson \\ [0.5ex]
+    \hline\hline
+    10 & 117.832290 & 117.130914 \\
+    \hline
+    100 & 117.138600 & 117.131621 \\
+    \hline
+    1000 & 117.131691 & 117.131621 \\
+    \hline
+    10000 & 117.131622 & 117.131621 \\
+    \hline
+    100000 & 117.131621 & 117.131621 \\
+    \hline
+    1000000 & 117.131621 & 117.131621 \\
+    \hline
+    10000000 & 117.131621 & 117.131621 \\
+    \hline
+    100000000 & 117.131621 & 117.131621 \\
+    \hline
+  \end{tabular}
+\end{center}
+
+Percebe-se na tabela que, particionando o conjunto $10^2$ vezes e usando a regra de simpson, consegue-se o mesmo resultado até a sexta casa decimal que particionando o conjunto $10^5$ vezes e usando a Regra do Trapezóide.
+
+\newpage
+
+\section{Parte 2}
+
+\subsection{Implementação}
+
+Fiz dois programas nessa parte:
+
+\begin{description}
+  
+\item[\texttt{pt2.c}] Esse programa resolve as integrais dos itens 1, 2 e 3 do enunciado, usando o Método de Monte Carlo. O programa recebe como parâmetro o número de variáveis aleatórias que serão usadas para aplicar o método e o número de sementes que serão testadas (caso esse número seja 100, serão testadas as sementes de 0 a 100).
+  Sua saída será o menor erro encontrado (e sua semente), o maior erro encontrado (e sua semente) e o erro médio, para cada um dos métodos.
+
+  As integrais que calculei nesse programa e as substituições usadas foram as seguintes:
+  
+  $\displaystyle\int_0^1\sin{(x)}dx$
+  
+  $\displaystyle\int_3^7x^3dx = 4\displaystyle\int_0^1(4t+3)^3dt$
+
+  $\displaystyle\int_0^{\infty}e^{-x}dx = \displaystyle\int_0^1e^{-x}dx + \displaystyle\int_1^{\infty}e^{-x}dx \rightarrow x = \frac{1}{u} \quad dx = \frac{-1}{u^2}du \rightarrow \displaystyle\int_0^1e^{-x}dx + \displaystyle\int_1^0\frac{-e^{\frac{-1}{u}}}{u^2}du = \displaystyle\int_0^1e^{-x}dx + \displaystyle\int_0^1\frac{e^{\frac{-1}{u}}}{u^2}du = \displaystyle\int_0^1(e^{-x}+\frac{e^{\frac{-1}{x}}}{x^2})dx$
+
+  Depois de achar as substituições, foi muito simples. Apenas gerei valores aleatórios entre 0 e 1, apliquei na função que quero integrar e tirei a média dos resultados. Discutirei os resultados encontrados na seção de resultados.
+  
+\item[\texttt{circ.c}] Aqui eu resolvi o item 4 do enunciado usando o Método de Monte Carlo. Foi feita basicamente a mesma coisa que no programa descrito no item anterior, apenas com uma alteração para tratar o fato de que estamos em duas dimensões: ao invés de gerar 1 valor aleatório, eu gerei um par de valores aleatórios entre 0 e 1 e passei para a função que $g(x, y)$ dada no enunciado.
+
+  Tirei a média dos resultados, multipliquei por 4, e voilá! $\pi$ (pelo menos perto o suficiente).
+  
+\end{description}
+
+\newpage
+
+\subsection{Resultados}
+
+Colocarei aqui tabelas com os erros que obtive ao comparar as funções integradas analiticamente com as integradas por Monte Carlo:
+
+\begin{center}
+  \begin{tabular}{||c | c | c | c | c ||}
+    \hline
+    Função & Número de V.A. & Menor Erro & Maior Erro & Erro Médio \\ [0.5ex]
+    \hline\hline
+    $\sin{x}$ & 10 & 3.610268e-05 & 2.328637e-01 & 6.322206e-02 \\
+    \hline
+    $x^3$ & 10 & 1.113892e-01 & 3.824100e+02 & 9.294158e+01 \\
+    \hline
+    $e^{-x}$ & 10 & 2.390419e-05 & 1.184496e-01 & 3.206498e-02 \\
+    \hline
+    $\sin{x}$ & 100 & 4.442498e-06 & 8.549161e-02 & 1.889440e-02 \\
+    \hline
+    $x^3$ & 100 & 1.299647e-01 & 1.218060e+02 & 2.797397e+01 \\
+    \hline
+    $e^{-x}$ & 100 & 2.870791e-05 & 4.890248e-02 & 1.003721e-02 \\
+    \hline
+    $\sin{x}$ & 1000 & 6.023429e-06 & 2.526216e-02 & 6.077690e-03 \\
+    \hline
+    $x^3$ & 1000 & 3.933176e-02 & 3.620151e+01 & 8.935365e+00 \\
+    \hline
+    $e^{-x}$ & 1000 & 1.481880e-06 & 1.434760e-02 & 3.167431e-03 \\
+    \hline
+    $\sin{x}$ & 10000 & 3.760302e-06 & 8.087467e-03 & 1.978368e-03 \\
+    \hline
+    $x^3$ & 10000 & 7.316047e-03 & 1.157567e+01 & 2.853298e+00 \\
+    \hline
+    $e^{-x}$ & 10000 & 3.004806e-06 & 4.082099e-03 & 9.929621e-04 \\
+    \hline
+    $\sin{x}$ & 100000 & 1.330556e-06 & 2.676081e-03 & 6.605803e-04 \\
+    \hline
+    $x^3$ & 100000 & 3.156454e-03 & 3.921654e+00 & 9.587524e-01 \\
+    \hline
+    $e^{-x}$ & 100000 & 2.250376e-06 & 1.508875e-03 & 3.319549e-04 \\
+    \hline
+    $\sin{x}$ & 1000000 & 6.454527e-08 & 8.011643e-04 & 1.959469e-04 \\
+    \hline
+    $x^3$ & 1000000 & 1.348677e-03 & 1.181796e+00 & 2.842198e-01 \\
+    \hline
+    $e^{-x}$ & 1000000 & 3.699904e-07 & 4.150512e-04 & 1.036093e-04 \\
+    \hline
+  \end{tabular}
+\end{center}
+
+Podemos perceber que a função $x^3$ é a que se comporta da pior maneira em relação ao método, tendo erro médio $10^3$ vezes mais alto que os outros métodos.
+
+\newpage
+
+Agora para o círculo:
+
+\begin{center}
+  \begin{tabular}{||c | c | c | c ||}
+    \hline
+    Número de V.A. & Menor Erro & Maior Erro & Erro Médio \\ [0.5ex]
+    \hline\hline
+    10 & 0.458407 & 3.98126 & 2.62904 \\
+    \hline
+    100 & 0.000515128 & 0.706994 & 0.196243 \\
+    \hline
+    1000 & 0.000488647 & 0.178986 & 0.0444891 \\
+    \hline
+    10000 & 5.07252e-05 & 0.0575342 & 0.013288 \\
+    \hline
+    100000 & 1.34666e-05 & 0.0183472 & 0.00404787 \\
+    \hline
+    1000000 & 7.78275e-08 & 0.00525208 & 0.00126605 \\
+    \hline
+  \end{tabular}
+\end{center}
+
+
+
+\mytitle{OBS:} Foram testadas 1000 sementes para cada teste acima.
+
+\end{document}

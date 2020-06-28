@@ -1,0 +1,218 @@
+% Created 2020-06-26 sex 21:24
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\usepackage[hyperref, x11names]{xcolor}
+\hypersetup{colorlinks = true, urlcolor = SteelBlue4, linkcolor = black}
+\usepackage[brazilian]{babel}
+\author{Lourenço Henrique Moinheiro Martins Sborz Bogo - 11208005}
+\date{\today}
+\title{Exercícios do Capítulo 15}
+\hypersetup{
+ pdfauthor={Lourenço Henrique Moinheiro Martins Sborz Bogo - 11208005},
+ pdftitle={Exercícios do Capítulo 15},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.3.7)}, 
+ pdflang={Brazilian}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\newpage
+
+\section{Exercício 3}
+\label{sec:org6924670}
+\paragraph{}Precisamos deduzir a fórmula do erro da \emph{Midpoint Rule}.
+Para isso, primeiro vamos expandir a função \(f(x)\), que
+queremos, integrar usando taylor, até o termo de segunda ordem, 
+ao redor do ponto \(\frac{a+b}{2}\) (a e b são nossas bordas de
+integração):
+
+\(f(x) = f(\frac{a+b}{2}) + (x-\frac{a+b}{2})f'(\frac{a+b}{2}) + (x-\frac{a+b}{2})^2\frac{f''(\xi_x)}{2}\) \\
+
+Agora, iremos calcular o erro em si:
+
+\noindent\(\displaystyle\int_a^b f(x)dx - \displaystyle\int_a^b f(\frac{a+b}{2})dx = \\
+  = \displaystyle\int_a^b f(\frac{a+b}{2}) + (x-\frac{a+b}{2})f'(\frac{a+b}{2}) + (x-\frac{a+b}{2})^2\frac{f''(\xi_x)}{2} - f(\frac{a+b}{2}) = \\
+  = \displaystyle\int_a^b(x-(\frac{a+b}{2}))f'(\frac{a+b}{2}) + \frac{(x-\frac{a+b}{2})^2}{2}f''(\xi_x)dx = \\
+  = \displaystyle\int_a^b(x-(\frac{a+b}{2}))f'(\frac{a+b}{2}) + \displaystyle\int_a^b\frac{(x-\frac{a+b}{2})^2}{2}f''(\xi_x)dx = \\
+  = 0 + \frac{f''(\eta)}{2}\displaystyle\int_a^b(x-\frac{a+b}{2})^2dx\)  (Pelo T.V.M. para integrais) \(= \\ 
+  = \frac{(b-a)^3}{24}f''(\eta)\), \(\eta \in [a, b]\).
+
+\newpage
+
+\section{Exercício 4}
+\label{sec:orgbf65141}
+\subsection{(a)}
+\label{sec:org640d3e8}
+Sabemos que o erro da \emph{Hermite Cubic Interpolation} é:\\
+
+\(\displaystyle\frac{f^4(\eta)(x-a)^2(x-b)^2}{4!}\) \\
+
+\noindent Portanto podemos escrever:\\
+
+\(\displaystyle f(x) - p(x) = \frac{f^4(\eta)(x-a)^2(x-b)^2}{4!}\) \\
+
+\noindent Depois, integramos os dois lados de a até b, conseguindo:\\
+
+\(\displaystyle\int_a^b f(x) - p(x) 
+   = \displaystyle\int_a^b \frac{f^4(\eta)(x-a)^2(x-b)^2}{4!} \rightarrow \\
+   \rightarrow \displaystyle\int_a^b f(x) - \int_a^b p(x) =
+   \frac{f^4(\eta)}{4!}\int_a^b(x-a)^2(x-b)^2\) \\
+
+\noindent Ou seja, o erro de usarmos esse método para calcular a integral é \\
+\(\displaystyle\frac{f^4(\eta)}{4!}\displaystyle\int_a^b(x-a)^2(x-b)^2\).\\
+
+\noindent Agora precisamos simplificar essa expressão:\\
+
+\(\displaystyle\frac{f^4(\eta)}{4!}\displaystyle\int_a^b(x-a)^2(x-b)^2 = 
+   \frac{f^4(\eta)}{4!}\displaystyle\int_a^b(x^2-2ax+a^2)(x^2-2bx+b^2) = \\
+   = \frac{f^4(\eta)}{4!}\frac{6b^5-6a^5+10b^5+40ab^4+10a^2b^3-10a^5-10a^3b^2-40a^4b+15a^2+45a^4b-15b^5-45ab^4}{30} = \\
+   = \frac{f^4(\eta)(b-a)^5}{720}\), \(\eta \in [a, b]\).
+
+\newpage
+
+\subsection{(b)}
+\label{sec:org2aabeb3}
+
+\begin{minted}[]{py}
+import numpy as np
+
+'''Função que calcula a regra pedida no enunciado para a 
+função f de derivada df'''
+def trap(f, df, a, b):
+    c = b-a
+    return (c/2)*(f(a)+f(b))+((c*c)/12)*(df(a)-df(b))
+
+'''Função dada no enunciado (e^x)'''
+def g(x):
+    return np.exp(x)
+
+
+'''Apenas cálculo do erro'''
+res1 = np.e - 1
+res2 = np.e - np.e**(.9)
+
+aprox1 = trap(g, g, 0, 1)
+aprox2 = trap(g, g, 0.9, 1)
+
+err1 = abs(res1 - aprox1)
+err2 = abs(res2 - aprox2)
+
+print(err1)
+print(err2)
+\end{minted}
+
+\begin{center}
+\begin{tabular}{lllll}
+\hline
+Intervalo & Trapezoid & Simpson & Midpoint & Corrected\\
+\hline
+\hline
+[0, 1] & 0.1408 & \(6\cdot 10^{-4}\) & \(6.96\cdot 10^{-2}\) & \(2\cdot 10^{-3}\)\\
+\hline
+[0.9, 1] & \(2.2\cdot 10^{-4}\) & \(9\cdot 10^{-9}\) & \(1.1\cdot 10^{-4}\) & \(3.6\cdot 10^{-8}\)\\
+\hline
+\hline
+\end{tabular}
+\end{center}
+
+Podemos perceber que Corrigido aproximou melhor que a maioria dos outros métodos, com exceção do de Simpson,
+o que já era esperado, já que ele usa um polinômio de segundo grau, ao invés de um polinômio de primeiro.
+
+\newpage
+
+\section{Exercício 6}
+\label{sec:orgca210c3}
+\subsection{(a)}
+\label{sec:org5d2172b}
+Para conseguir a fórmula é muito simples. Ao invés de aplicar a fórmula direto
+em \([a, b]\), vamos quebrar o intervalo em vários intervalos menores, equidistantes,
+e aplicar a fórmula nesses intervalos.
+Começaremos com a notação:
+
+\begin{itemize}
+\item \(h = (a-b)/n\), com \(n\) sendo o número de sub-intervalos.
+\item \(x_i = a + ih\)
+\end{itemize}
+
+Temos então que a fórmula seria construída aplicando a fórmula do trapezío corrigida
+para os intervalos \([x_{i}, x_{i+1}]\): \\
+
+\(\displaystyle I_{cctr} = \sum_{i=0}^{n-1}(\frac{x_{i+1}-x_i}{2}(f(x_{i+1})+f(x_i))+\frac{(x_{i+1}-x_i)^2}{12}(f'(x_{i+1})-f'(x_i))) = \\
+   = \sum_{i=0}^{n-1}(\frac{h}{2}(f(x_{i+1})+f(x_i))+\frac{h^2}{12}(f'(x_{i+1})-f'(x_i))) = \\
+   = \frac{h}{2}\sum_{i=0}^{n-1}(f(x_{i+1})+f(x_i)) + \frac{h^2}{12}\sum_{i=0}^{n-1}(f'(x_{i+1})-f'(x_i))\)
+
+Agora, podemos perceber que a primeira parcela dessa soma: \\
+\(\displaystyle\frac{h}{2}\sum_{i=0}^{n-1}(f(x_{i+1})+f(x_i))\),
+é a regra do trapézio composto, e, que a segunda parcela vai se cancelar quase que inteira, sobrando apenas 
+\(f'(x_0)\) e \(f'(x_n)\), que são \(f'(a)\) e \(f'(b)\). 
+
+Fazendo, então, todas as simplificações necessárias, chegamos na seguinte fórmula: \\
+
+\(\displaystyle h(\frac{f(a)+f(b)}{2}+\sum_{i=1}^{n-1}f(x_i)) + h^2\frac{f'(a)-f'(b)}{12} = I_{tr} + h^2\frac{f'(a)-f'(b)}{12}\)
+
+\newpage
+
+Código: 
+\begin{minted}[]{python}
+import numpy as np
+
+n = 10
+a = 0;
+b = 1;
+h = (b-a)/n
+
+def nCorr(f, h, a, b):
+    fS = 0
+    for i in np.arange(a+h, b, h):
+	fS += f(i)
+
+    return h*(fS + (f(a)+f(b))/2)
+
+def corr(f, df, h, a, b):
+    resp = nCorr(f, h, a, b)
+    resp += (h*h*(df(a)-df(b)))/12
+    return resp
+
+def g(x):
+    return np.exp(-(x*x))
+
+def dg(x):
+    return -2*x*np.exp(-(x*x))
+
+print(f"Valor dado    = 0.746824133")
+print(f"Não corrigida = {nCorr(g, h, a, b)}")
+print(f"Corrigida     = {corr(g, dg, h, a, b)}")
+\end{minted}
+
+\begin{center}
+\begin{tabular}{rrr}
+Valor Dado no Enunciado & Não corrigida & Corrigida\\
+\hline
+0.746824133 & 0.746210796 & 0.746823928\\
+ &  & \\
+\end{tabular}
+\end{center}
+
+Podemos perceber que o erro na versão não corrigida é da ordem de \(10^{-4} = h^4\) e
+na versão corrigida é da ordem de \(10^{-6} = h^6\), ou seja, uma melhora da ordem de \(10^{-2} = h^2\) nos experimentos.
+
+\subsection{(b)}
+\label{sec:org03ea26c}
+\end{document}

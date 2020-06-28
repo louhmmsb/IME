@@ -25,7 +25,29 @@
 \newcommand{\mytitle}[1]{\textbf{\underline{#1}}}
 \newcommand{\ring}[1]{\langle #1 \rangle}
 \newcommand{\code}[1]{\mbox{\texttt{#1}}}
+\usepackage{listings}
+\usepackage{color}
 
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=C++,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4
+}
 
 \begin{document}
 
@@ -64,47 +86,314 @@ Depois disso, basta digitar \texttt{help} na prompt, e aparecerá explicações 
 
 Vamos testar como o tipo do texto, sua língua e seu tamanho influenciam os resultados.
 
+\subsection{Romances}
+
+\subsubsection{Português}
+
+\noindent\mytitle{k=1}
 \begin{center}
-  \begin{tabular}{||c | c | c | c | c | c | c | c | c||} 
-    \hline
-    Livro & Vertices & Arestas & Componentes & Maior Comp. & Menor Comp. & Média Comp. & Dist. Média & Denso \\ [0.5ex] 
-    \hline\hline
-    Memórias & 10976 & 8293 & 6307 & 2715 & 1 & 1.738 & 8.71 & False \\
-    \hline
-    Dom Casmurro & 9475 & 7825 & 5115 & 2393 & 1 & 1.850 & 8.489 & False \\ 
-    \hline
-    Quincas & 11335 & 9486 & 6195 & 2829 & 1 & 1.820 & 8.740 & False \\ 
-    \hline
-    Huckleberry & 7301 & 8218 & 3647 & 2647 & 1 & 1.999 & 7.237 & False \\ 
-    \hline
-    The Raven & 445 & 197 & 309 & 51 & 1 & 1.407 & 4.393 & False \\ 
-    \hline
-    Discourse & 2819 & 1151 & 2040 & 372 & 1 & 1.412 & 7.520 & False \\ 
-    \hline
-    Critique & 7995 & 4593 & 5461 & 952 & 1 & 1.462 & 7.227 & False \\ 
-    \hline
-    Manual GCC & 11781 & 11984 & 7083 & 2267 & 1 & 1.661 & 6.543 & False \\ 
-    \hline
-    Manual GHC & 1702 & 797 & 1307 & 131 & 1 & 1.294 & 4.380 & False \\ 
-    \hline
-    Manual wget & 2400 & 1591 & 1669 & 374 & 1 & 1.432 & 6.544 & False \\ 
-    \hline
-    Manual grep & 962 & 860 & 672 & 132 & 1 & 1.416 & 4.107 & False \\ [1ex]
-    \hline
-    \hline
-  \end{tabular}
+\begin{tabular}{||c | c | c | c | c | c | c | c | c||}
+\hline
+Livro & Vertices & Arestas & Componentes & Maior Comp. & Menor Comp. & Média Comp. & Dist. Média & Denso \\ [0.5ex]
+\hline\hline
+cidade-e-as-serras.txt & 13405 & 9598 & 7444 & 3248 & 1 & 1.799 & 8.861 & False \\
+\hline
+domCasmurro.txt & 9475 & 7825 & 5115 & 2393 & 1 & 1.850 & 8.490 & False \\
+\hline
+memoriasPostumas.txt & 10976 & 8293 & 6307 & 2715 & 1 & 1.739 & 8.711 & False \\
+\hline
+quincasBorba.txt & 11335 & 9486 & 6195 & 2829 & 1 & 1.828 & 8.740 & False \\
+\hline
+reliquia.txt & 14655 & 10646 & 7991 & 3586 & 1 & 1.833 & 9.083 & False \\
+\hline
+\end{tabular}
 \end{center}
 
-\mytitle{OBS} Todos os testes feitos na tabela a cima foram feitos com k = 1;
+\noindent\mytitle{k=3}
+\begin{center}
+\begin{tabular}{||c | c | c | c | c | c | c | c | c||}
+\hline
+Livro & Vertices & Arestas & Componentes & Maior Comp. & Menor Comp. & Média Comp. & Dist. Média & Denso \\ [0.5ex]
+\hline\hline
+cidade-e-as-serras.txt & 13311 & 8915 & 7448 & 3151 & 1 & 1.786 & 9.003 & False \\
+\hline
+domCasmurro.txt & 9370 & 6917 & 5116 & 2289 & 1 & 1.830 & 8.692 & False \\
+\hline
+memoriasPostumas.txt & 10873 & 7434 & 6310 & 2602 & 1 & 1.722 & 8.954 & False \\
+\hline
+quincasBorba.txt & 11232 & 8505 & 6200 & 2721 & 1 & 1.810 & 8.947 & False \\
+\hline
+reliquia.txt & 14567 & 9970 & 7995 & 3492 & 1 & 1.821 & 9.212 & False \\
+\hline
+\end{tabular}
+\end{center}
 
-Percebemos com os testes feitos acima (e mais alguns q não coloquei na tabela) que, os fatores que mais influenciam os resultados são o tamanho do texto e o seu gênero, o que faz bastante sentido.
+\noindent\mytitle{k=5}
+\begin{center}
+\begin{tabular}{||c | c | c | c | c | c | c | c | c||}
+\hline
+Livro & Vertices & Arestas & Componentes & Maior Comp. & Menor Comp. & Média Comp. & Dist. Média & Denso \\ [0.5ex]
+\hline\hline
+cidade-e-as-serras.txt & 12527 & 6582 & 7488 & 2195 & 1 & 1.672 & 10.942 & False \\
+\hline
+domCasmurro.txt & 8626 & 4553 & 5163 & 1237 & 1 & 1.669 & 10.958 & False \\
+\hline
+memoriasPostumas.txt & 10061 & 4912 & 6377 & 1463 & 1 & 1.576 & 11.977 & False \\
+\hline
+quincasBorba.txt & 10408 & 5652 & 6262 & 1433 & 1 & 1.660 & 11.708 & False \\
+\hline
+reliquia.txt & 13738 & 7452 & 8048 & 2420 & 1 & 1.706 & 11.399 & False \\
+\hline
+\end{tabular}
+\end{center}
 
-O tamanho faz uma diferença gritante pois, quanto mais palavras têm um texto, mais difícil fica de usar palavras diferentes e mais palavra se conectam, fazendo com que o número de arestas fique mais próximo ou até maior que o número de vértices em alguns casos. Já, nos textos menores, as palavras têm menos oportunidades de se conectar com as outras, fazendo com que o número de arestas fique bem menor que o número de vértices.
+\subsubsection{Inglês}
 
-O gênero influencia menos que o tamanho no resultado, mas, podemos perceber que a média das componentes é menor nos manuais, do que nos livros de romance.
+\noindent\mytitle{k=1}
+\begin{center}
+\begin{tabular}{||c | c | c | c | c | c | c | c | c||}
+\hline
+Livro & Vertices & Arestas & Componentes & Maior Comp. & Menor Comp. & Média Comp. & Dist. Média & Denso \\ [0.5ex]
+\hline\hline
+adventuresHuckleberry.txt & 7301 & 8218 & 3647 & 2647 & 1 & 1.999 & 7.237 & False \\
+\hline
+adventuresTomSawyer.txt & 8128 & 6730 & 4695 & 2305 & 1 & 1.729 & 7.297 & False \\
+\hline
+frankstein.txt & 7173 & 4512 & 4479 & 1460 & 1 & 1.599 & 7.409 & False \\
+\hline
+ladySusan.txt & 2978 & 1435 & 2058 & 487 & 1 & 1.442 & 7.560 & False \\
+\hline
+lastMan.txt & 13902 & 10078 & 8397 & 3196 & 1 & 1.654 & 8.804 & False \\
+\hline
+prideAndPrejudice.txt & 6799 & 4023 & 4485 & 1177 & 1 & 1.514 & 7.268 & False \\
+\hline
+\end{tabular}
+\end{center}
 
-Outra coisa que se nota é que nenhum dos grafos é denso, o que também é de certa maneira óbvio já que a condição para um grafo ser denso muito provavelmente não será atendida por nenhum texto real, com as condições que o EP impôs.
+\noindent\mytitle{k=3}
+\begin{center}
+\begin{tabular}{||c | c | c | c | c | c | c | c | c||}
+\hline
+Livro & Vertices & Arestas & Componentes & Maior Comp. & Menor Comp. & Média Comp. & Dist. Média & Denso \\ [0.5ex]
+\hline\hline
+adventuresHuckleberry.txt & 7203 & 7294 & 3651 & 2542 & 1 & 1.970 & 7.433 & False \\
+\hline
+adventuresTomSawyer.txt & 8073 & 6327 & 4699 & 2238 & 1 & 1.716 & 7.392 & False \\
+\hline
+frankstein.txt & 7107 & 4118 & 4483 & 1388 & 1 & 1.583 & 7.674 & False \\
+\hline
+ladySusan.txt & 2932 & 1187 & 2066 & 431 & 1 & 1.414 & 8.779 & False \\
+\hline
+lastMan.txt & 13835 & 9536 & 8401 & 3125 & 1 & 1.646 & 8.960 & False \\
+\hline
+prideAndPrejudice.txt & 6698 & 3253 & 4490 & 1069 & 1 & 1.490 & 7.560 & False \\
+\hline
+\end{tabular}
+\end{center}
 
-A diferença entre as línguas só se torna evidente quando variamos o k. Por exemplo, textos em alemão tendem a se comportar de maneira diferente dos outros com um k grande, pois as palavras tendem a ser maiores. Em português o k ser alterado de 1 pra 3 faz muita diferença por causa dos artigos e preposições de 1 ou 2 letras que temos na língua.
+\noindent\mytitle{k=5}
+\begin{center}
+\begin{tabular}{||c | c | c | c | c | c | c | c | c||}
+\hline
+Livro & Vertices & Arestas & Componentes & Maior Comp. & Menor Comp. & Média Comp. & Dist. Média & Denso \\ [0.5ex]
+\hline\hline
+adventuresHuckleberry.txt & 5963 & 2630 & 3812 & 627 & 1 & 1.562 & 16.407 & False \\
+\hline
+adventuresTomSawyer.txt & 6978 & 2600 & 4848 & 565 & 1 & 1.437 & 12.323 & False \\
+\hline
+frankstein.txt & 6315 & 2036 & 4578 & 150 & 1 & 1.377 & 7.342 & False \\
+\hline
+ladySusan.txt & 2531 & 511 & 2069 & 19 & 1 & 1.218 & 1.963 & False \\
+\hline
+lastMan.txt & 12606 & 5180 & 8504 & 1586 & 1 & 1.481 & 14.729 & False \\
+\hline
+prideAndPrejudice.txt & 6041 & 1680 & 4562 & 99 & 1 & 1.322 & 7.099 & False \\
+\hline
+\end{tabular}
+\end{center}
+
+
+\subsection{Textos Filosóficos}
+
+\subsubsection{Alemão}
+
+\noindent\mytitle{k=1}
+\begin{center}
+\begin{tabular}{||c | c | c | c | c | c | c | c | c||}
+\hline
+Livro & Vertices & Arestas & Componentes & Maior Comp. & Menor Comp. & Média Comp. & Dist. Média & Denso \\ [0.5ex]
+\hline\hline
+Aphorismen.txt & 11099 & 8924 & 6577 & 2270 & 1 & 1.686 & 8.291 & False \\
+\hline
+thePrince\_Al.txt & 6240 & 3729 & 3717 & 1028 & 1 & 1.676 & 9.765 & False \\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent\mytitle{k=3}
+\begin{center}
+\begin{tabular}{||c | c | c | c | c | c | c | c | c||}
+\hline
+Livro & Vertices & Arestas & Componentes & Maior Comp. & Menor Comp. & Média Comp. & Dist. Média & Denso \\ [0.5ex]
+\hline\hline
+Aphorismen.txt & 10910 & 6699 & 6595 & 2024 & 1 & 1.653 & 8.830 & False \\
+\hline
+thePrince\_Al.txt & 6182 & 3431 & 3717 & 957 & 1 & 1.660 & 10.056 & False \\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent\mytitle{k=5}
+\begin{center}
+\begin{tabular}{||c | c | c | c | c | c | c | c | c||}
+\hline
+Livro & Vertices & Arestas & Componentes & Maior Comp. & Menor Comp. & Média Comp. & Dist. Média & Denso \\ [0.5ex]
+\hline\hline
+Aphorismen.txt & 10032 & 4734 & 6572 & 1090 & 1 & 1.525 & 10.259 & False \\
+\hline
+thePrince\_Al.txt & 5820 & 2814 & 3708 & 617 & 1 & 1.567 & 10.598 & False \\
+\hline
+\end{tabular}
+\end{center}
+
+
+\subsubsection{Inglês}
+
+\noindent\mytitle{k=1}
+\begin{center}
+\begin{tabular}{||c | c | c | c | c | c | c | c | c||}
+\hline
+Livro & Vertices & Arestas & Componentes & Maior Comp. & Menor Comp. & Média Comp. & Dist. Média & Denso \\ [0.5ex]
+\hline\hline
+critiquePureReason.txt & 7995 & 4593 & 5461 & 952 & 1 & 1.462 & 7.227 & False \\
+\hline
+discourseMethod.txt & 2891 & 1151 & 2040 & 372 & 1 & 1.412 & 7.520 & False \\
+\hline
+manifestoCommunist.txt & 2257 & 865 & 1653 & 286 & 1 & 1.359 & 7.617 & False \\
+\hline
+thePrince.txt & 4774 & 2788 & 3107 & 862 & 1 & 1.533 & 7.114 & False \\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent\mytitle{k=3}
+\begin{center}
+\begin{tabular}{||c | c | c | c | c | c | c | c | c||}
+\hline
+Livro & Vertices & Arestas & Componentes & Maior Comp. & Menor Comp. & Média Comp. & Dist. Média & Denso \\ [0.5ex]
+\hline\hline
+critiquePureReason.txt & 7859 & 3285 & 5467 & 805 & 1 & 1.436 & 8.171 & False \\
+\hline
+discourseMethod.txt & 2861 & 1042 & 2047 & 327 & 1 & 1.393 & 9.040 & False \\
+\hline
+manifestoCommunist.txt & 2218 & 687 & 1664 & 198 & 1 & 1.327 & 8.825 & False \\
+\hline
+thePrince.txt & 4708 & 2357 & 3113 & 784 & 1 & 1.509 & 7.813 & False \\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent\mytitle{k=5}
+\begin{center}
+\begin{tabular}{||c | c | c | c | c | c | c | c | c||}
+\hline
+Livro & Vertices & Arestas & Componentes & Maior Comp. & Menor Comp. & Média Comp. & Dist. Média & Denso \\ [0.5ex]
+\hline\hline
+critiquePureReason.txt & 7272 & 2099 & 5513 & 20 & 1 & 1.317 & 1.951 & False \\
+\hline
+discourseMethod.txt & 2500 & 508 & 2037 & 15 & 1 & 1.222 & 1.679 & False \\
+\hline
+manifestoCommunist.txt & 1917 & 305 & 1636 & 7 & 1 & 1.166 & 1.375 & False \\
+\hline
+thePrince.txt & 4066 & 1066 & 3128 & 37 & 1 & 1.297 & 3.496 & False \\
+\hline
+\end{tabular}
+\end{center}
+
+
+\subsection{Manual}
+
+\subsubsection{Inglês}
+
+\noindent\mytitle{k=1}
+\begin{center}
+\begin{tabular}{||c | c | c | c | c | c | c | c | c||}
+\hline
+Livro & Vertices & Arestas & Componentes & Maior Comp. & Menor Comp. & Média Comp. & Dist. Média & Denso \\ [0.5ex]
+\hline\hline
+cat.txt & 133 & 129 & 95 & 32 & 1 & 1.295 & 2.423 & False \\
+\hline
+gcc.txt & 11781 & 11984 & 7083 & 2267 & 1 & 1.662 & 6.543 & False \\
+\hline
+ghc.txt & 1702 & 797 & 1307 & 131 & 1 & 1.295 & 4.380 & False \\
+\hline
+grep.txt & 962 & 860 & 672 & 132 & 1 & 1.417 & 4.108 & False \\
+\hline
+sort.txt & 317 & 368 & 234 & 52 & 1 & 1.312 & 2.235 & False \\
+\hline
+wget.txt & 2400 & 1591 & 1669 & 374 & 1 & 1.432 & 6.545 & False \\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent\mytitle{k=3}
+\begin{center}
+\begin{tabular}{||c | c | c | c | c | c | c | c | c||}
+\hline
+Livro & Vertices & Arestas & Componentes & Maior Comp. & Menor Comp. & Média Comp. & Dist. Média & Denso \\ [0.5ex]
+\hline\hline
+cat.txt & 106 & 9 & 97 & 3 & 1 & 0.990 & 1.182 & False \\
+\hline
+gcc.txt & 11472 & 7512 & 7107 & 1917 & 1 & 1.613 & 8.532 & False \\
+\hline
+ghc.txt & 1638 & 383 & 1322 & 16 & 1 & 1.231 & 2.241 & False \\
+\hline
+grep.txt & 886 & 229 & 682 & 21 & 1 & 1.284 & 2.611 & False \\
+\hline
+sort.txt & 275 & 42 & 239 & 4 & 1 & 1.109 & 1.212 & False \\
+\hline
+wget.txt & 2308 & 759 & 1683 & 241 & 1 & 1.365 & 10.290 & False \\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent\mytitle{k=5}
+\begin{center}
+\begin{tabular}{||c | c | c | c | c | c | c | c | c||}
+\hline
+Livro & Vertices & Arestas & Componentes & Maior Comp. & Menor Comp. & Média Comp. & Dist. Média & Denso \\ [0.5ex]
+\hline\hline
+cat.txt & 65 & 0 & 65 & 1 & 1 & 0.846 & -nan & False \\
+\hline
+gcc.txt & 9951 & 4165 & 7171 & 79 & 1 & 1.386 & 3.049 & False \\
+\hline
+ghc.txt & 1405 & 175 & 1235 & 4 & 1 & 1.130 & 1.069 & False \\
+\hline
+grep.txt & 713 & 107 & 610 & 7 & 1 & 1.152 & 1.297 & False \\
+\hline
+sort.txt & 194 & 12 & 182 & 2 & 1 & 1.011 & 1.000 & False \\
+\hline
+wget.txt & 1926 & 354 & 1606 & 9 & 1 & 1.193 & 1.312 & False \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Conclusão}
+
+Com todos os testes, pude perceber o seguinte:
+
+\begin{itemize}
+  
+\item O tamanho faz uma diferença muito grande entre os textos, o que era de se esperar. É mais fácil usar palavras diferentes em textos pequenos do que em textos grandes e isso faz com que quanto maior um texto fica, mais difícil é aumentar o seu número de vértices, e quando uma palavra diferente é adcionada, mais possível é que ela se conecte em diversas partes do grafo. Isso fica be claro ao ver que o número de arestas em textos grandes é bem mais próximo do número de vértices, e em textos pequenos, não chega nem perto.
+  
+\item O autor faz uma certa diferença nos textos também, mas não é tão grande. Apesar do fato de diferentes autores terem diferentes vocabulários, o número de conexões que acontecem entre as palavras em seus textos acabam ficam bem parecidos, caso as outras condições também sejam parecidas.
+  
+\item O gênero influencia os textos também, por dois motivos. Textos de diferentes gêneros tendem a ter tamanhos diferentes e, obviamente, o jeito de se expressar neles têm que ser diferente.
+  
+\item A língua faz uma certa diferença também, apesar de não ser tão grande.
+  
+\item A última coisa que pude notar é que variar o k influenciou os diversos textos da mesma maneira: a maioria dos dados diminuiu um pouco, com exceção do tamanho da maior componente e do número de arestas, que diminui \mytitle{drasticamente}.
+  
+\end{itemize}
 
 \end{document}
