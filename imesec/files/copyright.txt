@@ -1,3 +1,0 @@
-Os ícones usados em 2/ são do Adwaita, cuja licença é CC-BY-SA 3.0:
-https://github.com/GNOME/adwaita-icon-theme
-Alguns dos arquivos em 5/ foram coletados de fóruns como <https://unix.stackexchange.com>.
