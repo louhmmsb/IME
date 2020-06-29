@@ -14,3 +14,11 @@ circ.out : circ.c
 
 clean :
 	rm relatorio.out relatorio.log relatorio.aux relatorio.toc
+
+tar :
+	mkdir entrega
+	cp *.c entrega
+	cp *.pdf entrega
+	cp Makefile entrega
+	tar -cvf entrega.tar entrega
+	rm -rf entrega

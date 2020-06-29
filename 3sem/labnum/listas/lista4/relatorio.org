@@ -114,7 +114,27 @@
 
    Podemos perceber que o erro na versão não corrigida é da ordem de $10^{-4} = h^4$ e
    na versão corrigida é da ordem de $10^{-6} = h^6$, ou seja, uma melhora da ordem de $10^{-2} = h^2$ nos experimentos.
-   
+   \newpage
 ** (b)
+   Primeiro, vamos mostrar que o erro do trapézio corrigido composto 
+   é $O(h^4)$:
    
+   $\displaystyle I-I_{tcc} = \sum_{i=0}^{n-1}\frac{f^4(\eta_i)h^5}{720} = 
+   \frac{h^5}{720}\sum_{i=0}^{n-1}f^4(\eta_i)$.
+
+   Agora vamos multiplicar a expressão por $\frac{a-b}{nh}$. Podemos fazer
+   isso pois essa fração é igual a 1.
+
+   $\displaystyle\frac{a-b}{nh}\frac{h^5}{720}\sum_{i=0}^{n-1}f^4(\eta_i)$.
+
+   Agora usando o Teorema do Valor Intermediário, 
+   $\displaystyle \frac{\sum_{i=0}^{n-1}f^4(\eta_i)}{n} = f^4(\eta)$, $\eta \in [a, b]$, onde $[a, b]$ é o nosso intervalo de integração.\\
    
+   Simplificando, temos: 
+
+   $\displaystyle I-I_{tcc} = \frac{h^4(a-b)f^4(\eta)}{720} = O(h^4)$.\\
+
+   Com essa informação, podemos provar o que o exercício pede:
+   
+   $I-I_{tcc} = O(h^4) \rightarrow I-I_{tc}-h^2\frac{f'(a)-f'(b)}{12} = O(h^4) \rightarrow \\
+   \rightarrow I-I_{tc} = h^2\frac{f'(a)-f'(b)}{12}+O(h^4)$.

@@ -1,4 +1,4 @@
-% Created 2020-06-26 sex 21:24
+% Created 2020-06-29 seg 15:51
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -36,7 +36,7 @@
 \newpage
 
 \section{Exercício 3}
-\label{sec:org6924670}
+\label{sec:orgb0d3c52}
 \paragraph{}Precisamos deduzir a fórmula do erro da \emph{Midpoint Rule}.
 Para isso, primeiro vamos expandir a função \(f(x)\), que
 queremos, integrar usando taylor, até o termo de segunda ordem, 
@@ -57,9 +57,9 @@ Agora, iremos calcular o erro em si:
 \newpage
 
 \section{Exercício 4}
-\label{sec:orgbf65141}
+\label{sec:org8a40601}
 \subsection{(a)}
-\label{sec:org640d3e8}
+\label{sec:org4ac7550}
 Sabemos que o erro da \emph{Hermite Cubic Interpolation} é:\\
 
 \(\displaystyle\frac{f^4(\eta)(x-a)^2(x-b)^2}{4!}\) \\
@@ -88,7 +88,7 @@ Sabemos que o erro da \emph{Hermite Cubic Interpolation} é:\\
 \newpage
 
 \subsection{(b)}
-\label{sec:org2aabeb3}
+\label{sec:org4759d0e}
 
 \begin{minted}[]{py}
 import numpy as np
@@ -138,9 +138,9 @@ o que já era esperado, já que ele usa um polinômio de segundo grau, ao invés
 \newpage
 
 \section{Exercício 6}
-\label{sec:orgca210c3}
+\label{sec:org83bf0d2}
 \subsection{(a)}
-\label{sec:org5d2172b}
+\label{sec:org483ce4d}
 Para conseguir a fórmula é muito simples. Ao invés de aplicar a fórmula direto
 em \([a, b]\), vamos quebrar o intervalo em vários intervalos menores, equidistantes,
 e aplicar a fórmula nesses intervalos.
@@ -212,7 +212,29 @@ Valor Dado no Enunciado & Não corrigida & Corrigida\\
 
 Podemos perceber que o erro na versão não corrigida é da ordem de \(10^{-4} = h^4\) e
 na versão corrigida é da ordem de \(10^{-6} = h^6\), ou seja, uma melhora da ordem de \(10^{-2} = h^2\) nos experimentos.
-
+\newpage
 \subsection{(b)}
-\label{sec:org03ea26c}
+\label{sec:org8fc3a7d}
+Primeiro, vamos mostrar que o erro do trapézio corrigido composto 
+é \(O(h^4)\):
+
+\(\displaystyle I-I_{tcc} = \sum_{i=0}^{n-1}\frac{f^4(\eta_i)h^5}{720} = 
+   \frac{h^5}{720}\sum_{i=0}^{n-1}f^4(\eta_i)\).
+
+Agora vamos multiplicar a expressão por \(\frac{a-b}{nh}\). Podemos fazer
+isso pois essa fração é igual a 1.
+
+\(\displaystyle\frac{a-b}{nh}\frac{h^5}{720}\sum_{i=0}^{n-1}f^4(\eta_i)\).
+
+Agora usando o Teorema do Valor Intermediário, 
+\(\displaystyle \frac{\sum_{i=0}^{n-1}f^4(\eta_i)}{n} = f^4(\eta)\), \(\eta \in [a, b]\), onde \([a, b]\) é o nosso intervalo de integração.\\
+
+Simplificando, temos: 
+
+\(\displaystyle I-I_{tcc} = \frac{h^4(a-b)f^4(\eta)}{720} = O(h^4)\).\\
+
+Com essa informação, podemos provar o que o exercício pede:
+
+\(I-I_{tcc} = O(h^4) \rightarrow I-I_{tc}-h^2\frac{f'(a)-f'(b)}{12} = O(h^4) \rightarrow \\
+   \rightarrow I-I_{tc} = h^2\frac{f'(a)-f'(b)}{12}+O(h^4)\).
 \end{document}
