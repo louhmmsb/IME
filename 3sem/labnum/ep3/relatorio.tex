@@ -195,7 +195,7 @@ Colocarei aqui tabelas com os erros que obtive ao comparar as funções integrad
   \end{tabular}
 \end{center}
 
-Podemos perceber que a função $x^3$ é a que se comporta da pior maneira em relação ao método, tendo erro médio $10^3$ vezes mais alto que os outros métodos. A outras duas funções convegem muito bem, com o erro sendo da ordem de $10^4$ para $10^6$ variáveis aleatórias.
+Podemos perceber que a função $x^3$ é a que se comporta da pior maneira em relação ao método, tendo erro médio $10^3$ vezes mais alto que os outros métodos. A outras duas funções convegem muito bem, com o erro sendo da ordem de $10^{-4}$ para $10^{-6}$ variáveis aleatórias. O verdadeiro problema desse método é o tempo que ele demora. Para por exemplo, conseguir um erro médio de da ordem de $10^{-10}$, precisaríamos de uma quantidade gigantesca de variáveis aleatórias, o que consumiria muito tempo.
 
 \newpage
 
@@ -222,8 +222,10 @@ Agora para o círculo:
 \end{center}
 
 Nesse caso, podemos perceber que o erro médio converge devagar. Mesmo com $10^6$ variáveis aleatórias, em média, o erro foi da ordem de $10^{-3}$.
-O melhor caso é muito bom, mas isso não significa muita coisa, pois os testes são aleatórios. 
+O melhor caso é muito bom, mas isso não significa muita coisa, pois os testes são aleatórios.
 
 \mytitle{OBS:} Foram testadas 1000 sementes para cada teste acima.
+
+O que posso concluir desse método é que para ele ser utilizável na prática, é necessário 
 
 \end{document}
