@@ -1,39 +1,17 @@
-#include<iostream>
-#include<vector>
-#include<stack>
-#include<cstring>
-
-using namespace std;
-
-const int MAX = 10000;
-
-class NFA{
-  private:
-    vector<int> adj[MAX];
-    bool vis[MAX];
-    int M;
-    string re;
-
-  public:
-    NFA(string r);
-    bool match(string txt);
-    void dfs(int ini);
-    void DFS(vector<int> v);
-};
+#include "nfa.hpp"
 
 NFA::NFA(string r){
     stack<int> ops, abre;
-    re = "(.*" + r + ".*)";
-    cout<<re<<endl;
+    //re = "(.*" + r + ".*)";
+    re = '(' + r + ')';
     M = (int)re.size();
-    cout<<M<<endl;
     for(int i=0; i<M; i++){
+        int prev = i;
         if(re[i] == '(' || re[i] == '|'){
             ops.push(i);
             if(re[i] == '(') abre.push(i);
         }
-        else if(re[i] == ')'){
-            
+        else if(re[i] == ')'){            
             while(re[ops.top()] == '|'){
                 int ou = ops.top();
                 ops.pop();
@@ -41,19 +19,16 @@ NFA::NFA(string r){
                 adj[abre.top()].push_back(ou+1);
             }
             abre.pop();
+            prev = ops.top();
             ops.pop();
         }
-        if(i < M-1 && re[i+1] == '*'){
-            adj[ops.top()].push_back(i);
-            adj[i+1].push_back(ops.top());
+        if(i < M-1 && (re[i+1] == '*' || re[i+1] == '+')){
+            if(re[i+1] != '+')adj[prev].push_back(i+1);
+            adj[i+1].push_back(prev);
         }
-        if(re[i] == '(' || re[i] == '*' || re[i] == ')'){
+        if(re[i] == '(' || re[i] == '*' || re[i] == ')' | re[i] == '+'){
             adj[i].push_back(i+1);
         }
-    }
-    for(int i=0; i<M; i++){
-        cout<<re[i]<<": ";
-        for(auto a : adj[i]) cout<<a<<" "; cout<<endl;
     }
 }
 
@@ -79,7 +54,7 @@ bool NFA::match(string txt){
     match.push_back(0);
     DFS(match);
     
-    for(int i = 0; i<MAX; i++){
+    for(int i=0; i<=M; i++){
         if(vis[i]) pc.push_back(i);
     }
 
@@ -91,20 +66,11 @@ bool NFA::match(string txt){
         }
         DFS(match);
         pc.clear();
-        for(int i=0; i<MAX; i++){
-            if(vis[i]) pc.push_back(i);
+        for(int j=0; j<=M; j++){
+            if(vis[j]) pc.push_back(j);
         }
     }
     for(auto a : pc) if(a == M) return true;
     
     return false;
-}
-
-
-int main(int argc, char** argv){
-    string regex(argv[1]), txt(argv[2]);
-    NFA sas(regex);
-
-    cout<<sas.match(txt)<<endl;
-    return 0;
 }
