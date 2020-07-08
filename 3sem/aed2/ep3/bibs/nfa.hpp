@@ -18,10 +18,13 @@ class NFA{
     string re;
 
   public:
+    //Construtor da classe, constrói o grafo da regex.
     NFA(string r);
-    int matchAux(int v, char c);
+    //Função para fazer o match da string com a regex
     bool match(string txt);
+    //Funções auxiliares para fazer o match da string com a regex
     void dfs(int ini);
     void DFS(vector<int> v);
+    int matchAux(int v, char c);
 };
 
