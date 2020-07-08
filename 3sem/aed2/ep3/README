@@ -1,0 +1,3 @@
+Caso seu terminal não suporte coloraação e o output do programa fique estranho, rode o programa com -nc depois dos argumentos normais.
+
+O output será a string dada na entrada caso a regex consiga dar match nela, e nada caso contrário.
