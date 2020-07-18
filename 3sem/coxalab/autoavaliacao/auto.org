@@ -1,5 +1,6 @@
-#+TITLE: EP2 - Auto-avaliação
+#+TITLE: Modelagem e Simulação - Auto-avaliação
 #+LANGUAGE: pt-br
+#+AUTHOR: Lourenço Henrique Moinheiro Martins Sborz Bogo - 11208005
 
 #+LATEX_HEADER: \usepackage[hyperref, x11names]{xcolor}
 #+LATEX_HEADER: \hypersetup{colorlinks = true, urlcolor = SteelBlue4, linkcolor = black}
@@ -8,6 +9,7 @@
 #+LATEX_HEADER: \geometry{verbose,a4paper,left=2cm,top=2cm,right=3cm,bottom=3cm}
 #+latex_class_options: [11pt]
 
+\newpage
 * Questão 1
   Eu acho que faltei em uma ou duas aulas presenciais, mas não tenho certeza.
   Digo isso pois, antes do carnaval tive que fazer uma operação além de ficar
@@ -61,7 +63,7 @@
   por volta de 30 horas por semana. Dessas, eu devo ter utilizado algo em
   torno de duas ou três horas para essa matéria.
 
-* Quesoa 10
+* Questão 10
   De certa maneira sim. Gostava de participar das aulas, pois semrpe surgia
   uma dúvida, minha ou dos meus colegas, muito interessante e que de fato eu
   gostaria de conhecer a resposta. Uma coisa que provavelmente aumentaria
@@ -118,5 +120,9 @@
   em alguma) e dei o melhor que pude para resolver minhas dúvidas e fazer
   os trabalhos da melhor maneira possível. Entendi bem o conteúdo dado 
   e estudei por fora outros métodos pois achei o conceito da matéria muito
-  interessante. Dito tudo isso, acho que mereço algo em torno de 9 como 
-  nota final.
+  interessante.
+
+  Me esforcei ao máximo nos EPS, e sinto que mereço nota máxima por eles,
+  porém não me dediquei tanto à fazer os exercícios opcionais. Dito isso,
+  não me sinto muito confortável dando-me uma nota.
+  
