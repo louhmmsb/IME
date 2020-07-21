@@ -1,0 +1,69 @@
+% Created 2020-07-21 ter 08:10
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\usepackage[hyperref, x11names]{xcolor}
+\hypersetup{colorlinks = true, urlcolor = SteelBlue4, linkcolor = black}
+\usepackage[brazilian]{babel}
+\usepackage{geometry}
+\geometry{verbose,a4paper,left=2cm,top=2cm,right=3cm,bottom=3cm}
+\author{Lourenço Henrique Moinheiro Martins Sborz Bogo - 11208005}
+\date{\today}
+\title{P3 - Funções Diferenciáveis e Séries}
+\hypersetup{
+ pdfauthor={Lourenço Henrique Moinheiro Martins Sborz Bogo - 11208005},
+ pdftitle={P3 - Funções Diferenciáveis e Séries},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.3.7)}, 
+ pdflang={Brazilian}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\newpage
+
+\section{Questão 1 (Lista 6 Q2)}
+\label{sec:org56982f8}
+\paragraph{}Primeiro vamos derivar em x e em y a função dada:
+
+\(\displaystyle\\
+  \frac{\partial{f}}{\partial{x}} = \frac{x^2}{(x^3+y^3)^{\frac{2}{3}}}\\
+  \frac{\partial{f}}{\partial{y}} = \frac{y^2}{(x^3+y^3)^{\frac{2}{3}}}\)
+
+
+Como as derivadas parciais são um polinômio sobre a
+raiz de um outro polinômio, sabemos que elas são contínuas.
+O único ponto que pode nos causar alguma dúvida é
+o ponto \(x = -y\), pois isso faria com que o denominador
+fosse 0, logo vamos tratar esse caso a parte, derivando
+pela definição.
+
+\(\displaystyle
+  \frac{\partial{f}}{\partial{x}}(x_0, y_0) = 
+  \lim_{x \to x_0}{\frac{f(x, y_0)-f(x_0, y_0)}{x-x_0}} =
+  \lim_{x \to x_0}{\frac{(x^3+y_0^3)^{\frac{1}{3}}-(x_0^3+y_0^3)^{\frac{1}{3}}}{x-x_0}} = 
+  \lim_{x \to x_0}{\frac{(x^3+y_0^3)^{\frac{1}{3}}}{x-x_0}} = \\
+  = \lim_{x \to x_0}{\left(\frac{x^3-x_0^3}{(x-x_0)^3}\right)^{\frac{1}{3}}} = 
+  \left(\lim_{x \to x_0}{\frac{x^3-x_0^3}{(x-x_0)^3}}\right)^{\frac{1}{3}} \xrightarrow{\text{L'Hopital}}
+  \left(\lim_{x \to x_0}{\frac{3x^2}{3(x-x_0)^2}}\right)^{\frac{1}{3}} = +\infty\)
+
+Com isso, provamos que a função é diferenciável em
+qualquer ponto onde \(x \neq -y\) e que o gradiente é:
+
+\(\displaystyle\nabla{f(x_0, y_0)} = \left(\frac{x_0^2}{(x_0^3+y_0^3)^{\frac{2}{3}}}, \frac{y_0^2}{(x_0^3+y_0^3)^{\frac{2}{3}}}\right)\)
+\end{document}

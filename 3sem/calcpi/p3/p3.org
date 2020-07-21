@@ -1,0 +1,41 @@
+#+TITLE: P3 - Funções Diferenciáveis e Séries
+#+LANGUAGE: pt-br
+#+AUTHOR: Lourenço Henrique Moinheiro Martins Sborz Bogo - 11208005
+
+#+LATEX_HEADER: \usepackage[hyperref, x11names]{xcolor}
+#+LATEX_HEADER: \hypersetup{colorlinks = true, urlcolor = SteelBlue4, linkcolor = black}
+#+LATEX_HEADER: \usepackage[AUTO]{babel}
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{verbose,a4paper,left=2cm,top=2cm,right=3cm,bottom=3cm}
+#+latex_class_options: [11pt]
+
+\newpage
+
+* Questão 1 (Lista 6 Q2)
+  \paragraph{}Primeiro vamos derivar em x e em y a função dada:
+
+  $\displaystyle\\
+  \frac{\partial{f}}{\partial{x}} = \frac{x^2}{(x^3+y^3)^{\frac{2}{3}}}\\
+  \frac{\partial{f}}{\partial{y}} = \frac{y^2}{(x^3+y^3)^{\frac{2}{3}}}$
+  
+  \\
+  Como as derivadas parciais são um polinômio sobre a
+  raiz de um outro polinômio, sabemos que elas são contínuas.
+  O único ponto que pode nos causar alguma dúvida é
+  o ponto $x = -y$, pois isso faria com que o denominador
+  fosse 0, logo vamos tratar esse caso a parte, derivando
+  pela definição.
+
+  $\displaystyle
+  \frac{\partial{f}}{\partial{x}}(x_0, y_0) = 
+  \lim_{x \to x_0}{\frac{f(x, y_0)-f(x_0, y_0)}{x-x_0}} =
+  \lim_{x \to x_0}{\frac{(x^3+y_0^3)^{\frac{1}{3}}-(x_0^3+y_0^3)^{\frac{1}{3}}}{x-x_0}} = 
+  \lim_{x \to x_0}{\frac{(x^3+y_0^3)^{\frac{1}{3}}}{x-x_0}} = \\
+  = \lim_{x \to x_0}{\left(\frac{x^3-x_0^3}{(x-x_0)^3}\right)^{\frac{1}{3}}} = 
+  \left(\lim_{x \to x_0}{\frac{x^3-x_0^3}{(x-x_0)^3}}\right)^{\frac{1}{3}} \xrightarrow{\text{L'Hopital}}
+  \left(\lim_{x \to x_0}{\frac{3x^2}{3(x-x_0)^2}}\right)^{\frac{1}{3}} = +\infty$
+
+  Com isso, provamos que a função é diferenciável em
+  qualquer ponto onde $x \neq -y$ e que o gradiente é:
+
+  $\displaystyle\nabla{f(x_0, y_0)} = \left(\frac{x_0^2}{(x_0^3+y_0^3)^{\frac{2}{3}}}, \frac{y_0^2}{(x_0^3+y_0^3)^{\frac{2}{3}}}\right)$
