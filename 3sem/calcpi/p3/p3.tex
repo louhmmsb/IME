@@ -1,4 +1,4 @@
-% Created 2020-07-21 ter 08:10
+% Created 2020-07-23 qui 11:40
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -19,6 +19,7 @@
 \hypersetup{colorlinks = true, urlcolor = SteelBlue4, linkcolor = black}
 \usepackage[brazilian]{babel}
 \usepackage{geometry}
+\usepackage{amsmath}
 \geometry{verbose,a4paper,left=2cm,top=2cm,right=3cm,bottom=3cm}
 \author{Lourenço Henrique Moinheiro Martins Sborz Bogo - 11208005}
 \date{\today}
@@ -38,7 +39,7 @@
 \newpage
 
 \section{Questão 1 (Lista 6 Q2)}
-\label{sec:org56982f8}
+\label{sec:orgf8a6e15}
 \paragraph{}Primeiro vamos derivar em x e em y a função dada:
 
 \(\displaystyle\\
@@ -51,7 +52,7 @@ raiz de um outro polinômio, sabemos que elas são contínuas.
 O único ponto que pode nos causar alguma dúvida é
 o ponto \(x = -y\), pois isso faria com que o denominador
 fosse 0, logo vamos tratar esse caso a parte, derivando
-pela definição.
+pela definição. Portanto, assumindo que \(x_0 = -y_0\), temos: 
 
 \(\displaystyle
   \frac{\partial{f}}{\partial{x}}(x_0, y_0) = 
@@ -62,8 +63,176 @@ pela definição.
   \left(\lim_{x \to x_0}{\frac{x^3-x_0^3}{(x-x_0)^3}}\right)^{\frac{1}{3}} \xrightarrow{\text{L'Hopital}}
   \left(\lim_{x \to x_0}{\frac{3x^2}{3(x-x_0)^2}}\right)^{\frac{1}{3}} = +\infty\)
 
-Com isso, provamos que a função é diferenciável em
-qualquer ponto onde \(x \neq -y\) e que o gradiente é:
+Só podemos fazer esse último passo se \(x_0 \neq 0\).
+Nesse caso, teríamos:
+
+\(\displaystyle\left(\lim_{x \to x_0}{\frac{3x^2}{3(x-x_0)^2}}\right)^{\frac{1}{3}} \xrightarrow{x_0 = 0} 
+  \left(\lim_{x \to 0}{\frac{3x^2}{3x^2}}\right) = 1\)
+
+Com isso, falta tratar apenas o caso onde \(x_0 = y_0 = 0\),
+para isso, iremos usar o limite:
+
+\(\displaystyle\lim_{(x, y) \to (0, 0)}{\frac{f(x, y)-f(0, 0)-\frac{\partial{f}}{\partial{x}}(0, 0)(x)-\frac{\partial{f}}{\partial{y}}(0, 0)(y)}{\sqrt[2]{(x)^2+(y)^2}}}\).
+
+Se esse limite der 0, temos que a função é diferenciável em \((0, 0)\).
+Vamos simplificar o limite usando nossas observações.
+Sabemos que no ponto \((0, 0)\) a derivada parcial em x
+é 1, e como a derivada parcial em y é análoga, ela também é.
+Sabemos também, que \(f(0, 0) = 0\) e com isso em mente nosso
+limite se simplifica para:
+
+\(\displaystyle\lim_{(x, y) \to (0, 0)}{\frac{\sqrt[3]{x^3+y^3}-x-y}{\sqrt[2]{x^2+y^2}}}\)
+
+Vamos mostrar que esse limite não existe, mostrando que
+seu valor difere caso usemos duas curvas diferentes para
+aproximar o ponto:
+
+\begin{itemize}
+\item Usando a curva \((0, t)\), temos:
+
+\(\displaystyle\lim_{t \to 0}{\frac{\sqrt[3]{0^3+t^3}-0-t}{\sqrt[2]{0^2+t^2}}} =
+    \lim_{t \to 0}{\frac{t-t}{|t|}} = 0\)
+
+\item Usando a curva \((t, t)\), temos:
+
+\(\displaystyle\lim_{t \to 0}{\frac{\sqrt[3]{t^3+t^3}-t-t}{\sqrt[2]{t^2+t^2}}} =
+    \lim_{t \to 0}{\frac{\sqrt[3]{2}t-2t}{|t|}} \neq 0\).
+\end{itemize}
+
+Provamos então que a função não é diferenciável em \((0, 0)\).
+
+Com isso, terminamos a prova do exercício,
+já que demonstramos que a função é diferenciável em
+todo ponto onde \(x \neq y\) e, seu gradiente nesses pontos é:  
 
 \(\displaystyle\nabla{f(x_0, y_0)} = \left(\frac{x_0^2}{(x_0^3+y_0^3)^{\frac{2}{3}}}, \frac{y_0^2}{(x_0^3+y_0^3)^{\frac{2}{3}}}\right)\)
+
+\newpage
+\section{Questão 2 (Lista 6 Q15)}
+\label{sec:org1b33fa6}
+\paragraph{}Primeiro vamos montar a Jacobiana da função T.\\
+
+\(\displaystyle\begin{bmatrix}
+  \frac{\partial{u}}{\partial{x}} & \frac{\partial{u}}{\partial{y}} \\
+  \frac{\partial{v}}{\partial{x}} & \frac{\partial{v}}{\partial{y}}
+  \end{bmatrix} = 
+  \begin{bmatrix}
+  \cos{(x+y)} & \cos{(x+y)}\\
+  -\sin{(x+y)} & -\sin{(x+y)}
+  \end{bmatrix} = J(T)\)
+
+
+
+Tirando o determinante da Jacobiana, conseguimos o
+Jacobiano:
+
+\(det(J(T)) = -\sin{(x+y)\cos{(x+y)}} + \sin{(x+y)}\cos{(x+y)} = 0\)
+
+Agora, precisamos achar em que pontos a 
+função é injetora localmente.
+
+Para isso vamos supor uma bola aberta de raio \(R > 0\)
+ao redor de um ponto genérico \(P_0 = (x_0, y_0)\). Agora,
+escolhemos um número \(h\) tal que \(0< h <R\). Agora
+suponhamos o ponto \(P_1 = (x_0+h, y_0-h)\).
+Os dois pontos, \(P_0, P_1\), levam ao mesmo valor da função T.
+Desse modo, provamos que para qualquer ponto, não existe
+uma bola aberta ao seu redor, tal que a função seja
+injetora dentro dessa bola, logo, a função nunca é injetora localmente.
+\section{Questão 3 (Lista 7 Q17)}
+\label{sec:orgd620d4e}
+Seja \(f\) uma função de \(\mathbb{R}^6\to\mathbb{R}^3\), 
+tal que:\\
+\(f(x, y, z, u, v, w) = (3x+2y+z^2+u+v^2, 4x+3y+z+u^2+w+2, x+z+w+u^2+2) = (f_1, f_2, f_3)\)
+Vamos escrever a parte da Jacobiana de \(f\) que é necessária
+para usarmos o Teorema da Função Implícita:
+
+\(\displaystyle M = 
+  \begin{bmatrix}
+  \frac{\partial{f_1}}{\partial{u}} & \frac{\partial{f_1}}{\partial{v}} & \frac{\partial{f_1}}{\partial{w}} \\
+  \frac{\partial{f_2}}{\partial{u}} & \frac{\partial{f_2}}{\partial{v}} & \frac{\partial{f_2}}{\partial{w}} \\
+  \frac{\partial{f_3}}{\partial{u}} & \frac{\partial{f_3}}{\partial{v}} & \frac{\partial{f_3}}{\partial{w}}
+  \end{bmatrix} = 
+  \begin{bmatrix}
+  1 & 2v & 0 \\
+  2u & 1 & 1 \\
+  2u & 0 & 0 
+  \end{bmatrix}\)
+
+Tirando seu determinante, temos:
+
+\(\det{M} = 1 + 4uv + 0 - 0 - 4uv - 0 = 1\)
+
+Já que o resultado foi diferente de 0, agora precisamos
+apenas mostrar que as expressões dão 0 nas condições
+dadas, ou seja, 
+\((x, y, z) = (0, 0, 0)\), \((u, v) = (0, 0)\) e \(w = -2\).
+
+\begin{itemize}
+\item \(3x+2y+z^2+u+v^2 = 0\)
+\item \(4x+3y+z+u^2+w+2 = -2+2 = 0\)
+\item \(x+z+w+u^2+2 = -2+2 = 0\)
+\end{itemize}
+
+Com isso, podemos responder o a pergunta feita no
+enunciado. Sim, é possível solucionar as equações da
+maneira pedida.
+
+\newpage
+\section{Questão 4 (Lista 7 Q18b)}
+\label{sec:org539618f}
+\paragraph{}Primeiro, vamos conseguir o gradiente da função \(f\):
+
+\(\displaystyle\nabla{f(x, y, z)} = (2xy^2z^2, 2x^2yz^2, 2x^2y^2z)\)
+
+Agora, seja \(g(x, y, z)\) uma função tal que
+\(g(x, y, z) = x^2+y^2+z^2-1\). Podemos perceber que sua
+curva de nível \(C = 0\) é a restrição dada. Seu gradiente
+é:
+
+\(\displaystyle\nabla{g(x, y, z)} = (2x, 2y, 2z)\)
+
+Agora, usando os mutiplicadores de Lagrange, temos que:
+
+\((2xy^2z^2, 2x^2yz^2, 2x^2y^2z) = \lambda (2x, 2y, 2z)\) \(\rightarrow\) \\
+\(\rightarrow\)
+\(\begin{cases}
+  2x\lambda = 2xy^2z^2 \\
+  2y\lambda = 2x^2yz^2 \\
+  2z\lambda = 2x^2y^2z 
+  \end{cases}\)
+
+Quando \(x\), \(y\) e \(z\) são diferentes de 0, podemos escrever:
+
+\(\begin{cases}
+  \lambda = y^2z^2 \\
+  \lambda = x^2z^2 \\
+  \lambda = x^2y^2 
+  \end{cases}\) \(\rightarrow\) \(x^2=y^2=z^2\)
+
+Aplicando isso na condição inicial:
+
+\(x^2+y^2+z^2 = 3x^2 = 1 \rightarrow 
+  x = \pm \frac{\sqrt{3}}{3}, 
+  y = \pm \frac{\sqrt{3}}{3}, 
+  z = \pm \frac{\sqrt{3}}{3}\)
+
+Qualquer combinação dos possíveis valores de \(x\), \(y\) e \(z\)
+aplicada na função \(f\) dará o mesmo resultado:
+
+\(\displaystyle f(\frac{\sqrt{3}}{3}, \frac{\sqrt{3}}{3}, \frac{\sqrt{3}}{3}) = \frac{1}{27}\)
+
+Esse é o máximo da função nas restrições dadas.
+
+Agora para o mínimo, precisamos perceber duas coisas.
+
+\begin{enumerate}
+\item A função \(f\) é sempre positiva, seu valor mínimo
+possível é 0.
+\item Se uma das cordenadas for 0, o valor da função é 0.
+\end{enumerate}
+
+Com isso em mente, fica muito fácil perceber que o mínimo
+na restrição dada é 0, já que, por exemplo, o ponto \((0, 0, 1)\)
+está na restrição.
 \end{document}
