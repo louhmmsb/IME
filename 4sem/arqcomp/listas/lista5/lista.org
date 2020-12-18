@@ -13,8 +13,8 @@
 #+OPTIONS: toc:nil
 
 * Resposta
-21 mar := 0; sp := rshift(sp + sp); rd\\
-22 sp := rshift(sp + sp); rd\\
+21 mar := 0; sp := lshift(sp + sp); rd\\
+22 sp := lshift(sp + sp); rd\\
 23 sp := sp + mbr; if z then goto 25\\
 24 ac := 0; goto 0\\
 25 ac := mbr + 1; goto 0\\
