@@ -1,0 +1,79 @@
+% Created 2020-11-10 ter 15:58
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\usepackage[hyperref, x11names]{xcolor}
+\hypersetup{colorlinks = true, urlcolor = SteelBlue4, linkcolor = black}
+\usepackage[brazilian]{babel}
+\usepackage{geometry}
+\geometry{verbose,a4paper,left=2cm,top=2cm,right=3cm,bottom=3cm}
+\author{Lourenço Bogo - 11208005}
+\date{\today}
+\title{Arquitetura de Computadores Lista 4}
+\hypersetup{
+ pdfauthor={Lourenço Bogo - 11208005},
+ pdftitle={Arquitetura de Computadores Lista 4},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.1 (Org mode 9.4)}, 
+ pdflang={Brazilian}}
+\begin{document}
+
+\maketitle
+
+\section{Questão 1}
+\label{sec:orgb668271}
+$x_{1}x_{2}x_{3}x_{4}x_{5}x_{6}x_{7}x_{7}x_{9}x_{10}x_{11} = x_{1}x_{2}1x_{4}100x_{8}101$
+\begin{center}
+\begin{tabular}{c | c c c c}
+1 a 11 em binário & 8 & 4 & 2 & 1\\
+\hline
+1 & 0 & 0 & 0 & 1\\
+2 & 0 & 0 & 1 & 0\\
+3 & 0 & 0 & 1 & 1\\
+4 & 0 & 1 & 0 & 0\\
+5 & 0 & 1 & 0 & 1\\
+6 & 0 & 1 & 1 & 0\\
+7 & 0 & 1 & 1 & 1\\
+8 & 1 & 0 & 0 & 0\\
+9 & 1 & 0 & 0 & 1\\
+10 & 1 & 0 & 1 & 0\\
+11 & 1 & 0 & 1 & 1\\
+\end{tabular}
+\end{center}
+
+\noindent$x_{8} = 1 \oplus 0 \oplus 1 = 0$\newline
+$x_{4} = 1 \oplus 0 \oplus 0 = 1$\newline
+$x_{2} = 1 \oplus 0 \oplus 0 \oplus 0 \oplus 1 = 0$\newline
+$x_{1} = 1 \oplus 1 \oplus 0 \oplus 1 \oplus 1 = 0$\newline
+Portanto, temos
+$00111000101$
+
+\section{Questão 2}
+\label{sec:orge00684b}
+Para detectar algum erro, vamos calcular os bits adicionais:\\
+$x_{1} \oplus x_{3} \oplus x_{5} \oplus x_{7} \oplus x_{9} \oplus x_{11} = 1$ \\
+$x_{2} \oplus x_{3} \oplus x_{6} \oplus x_{7} \oplus x_{10} \oplus x_{11} = 0$ \\
+$x_{4} \oplus x_{5} \oplus x_{6} \oplus x_{7} = 1$ \\
+$x_{8} \oplus x_{9} \oplus x_{10} \oplus x_{11} = 0$ \\
+Temos paridade ímpar em dois casos
+As posições cujo bit é 1 são a 3, a 4, a 9 e a 11. Se tirarmos o `xor` de todas, temos:
+
+$0011 \oplus 0100 \oplus 1001 \oplus 1011 = 0101$
+
+Isso significa quee o erro está na posição \(0101\), ou seja, posição 5. Na mensagem que recebemos
+o Bit 5 está 0, logo, na mensagem correta o Bit 5 é um 1.
+\end{document}

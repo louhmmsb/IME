@@ -1,0 +1,27 @@
+#+TITLE: Arquitetura de Computadores Lista 1
+#+AUTHOR: Lourenço Bogo - 11208005
+#+EMAIL: louhmmsb@usp.br
+#+LANGUAGE: pt-br
+
+#+LATEX_HEADER: \usepackage[hyperref, x11names]{xcolor}
+#+LATEX_HEADER: \hypersetup{colorlinks = true, urlcolor = SteelBlue4, linkcolor = black}
+#+LATEX_HEADER: \usepackage[AUTO]{babel}
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{verbose,a4paper,left=2cm,top=2cm,right=3cm,bottom=3cm}
+#+latex_class_options: [11pt]
+#+OPTIONS: toc:nil
+
+1. Aqui estão os computadores instalados no Brasil e as informações pedidas:
+
+   | Posição | Nome    | Instituição   | /Cores/ | Linpack |    Pico |
+   |      56 | Atlas   | Petrobrás     |   91936 |    4376 | 8848.49 |
+   |      82 | Fênix   | Petrobrás     |   60480 |    3161 | 5371.78 |
+   |     240 | SDumont | LCNN          |   33856 |    1849 | 2727.03 |
+   |     395 | Ogbon   | Senai Cimatec |   27768 |    1605 | 2323.28 |
+
+   *OBS*: Velocidades estão e TFlop/s.
+
+2. Com o gráfico abaixo podemos perceber que
+   os processadores avançam mais rápido que a memória.
+
+   [[file:Processor-Memory-Performance-GapHen96.png]]

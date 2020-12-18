@@ -1,0 +1,44 @@
+% Created 2020-12-11 sex 16:51
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\usepackage[hyperref, x11names]{xcolor}
+\hypersetup{colorlinks = true, urlcolor = SteelBlue4, linkcolor = black}
+\usepackage[brazilian]{babel}
+\usepackage{geometry}
+\geometry{verbose,a4paper,left=2cm,top=2cm,right=3cm,bottom=3cm}
+\author{Lourenço Bogo - 11208005}
+\date{\today}
+\title{Arquitetura de Computadores Lista 5}
+\hypersetup{
+ pdfauthor={Lourenço Bogo - 11208005},
+ pdftitle={Arquitetura de Computadores Lista 5},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.1 (Org mode 9.5)}, 
+ pdflang={Brazilian}}
+\begin{document}
+
+\maketitle
+
+\section{Resposta}
+\label{sec:orgc5293fa}
+21 mar := 0; sp := rshift(sp + sp); rd\\
+22 sp := rshift(sp + sp); rd\\
+23 sp := sp + mbr; if z then goto 25\\
+24 ac := 0; goto 0\\
+25 ac := mbr + 1; goto 0\\
+\end{document}

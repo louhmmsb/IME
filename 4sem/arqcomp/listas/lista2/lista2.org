@@ -1,0 +1,27 @@
+#+TITLE: Arquitetura de Computadores - Lista 2
+#+AUTHOR: Lourenço Bogo - 11208005
+#+EMAIL: louhmmsb@usp.br
+#+LANGUAGE: pt-br
+
+#+LATEX_HEADER: \usepackage[hyperref, x11names]{xcolor}
+#+LATEX_HEADER: \hypersetup{colorlinks = true, urlcolor = SteelBlue4, linkcolor = black}
+#+LATEX_HEADER: \usepackage[AUTO]{babel}
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{verbose,a4paper,left=2cm,top=2cm,right=3cm,bottom=3cm}
+#+latex_class_options: [11pt]
+#+OPTIONS: toc:nil
+
+* Questão 1
+  [[file:tripleNor.jpg]]
+  #+CAPTION: NOR de três entradas
+
+  [[file:tripleNand.jpg]]
+  #+CAPTION: NAND de três entradas
+* Questão 2
+  A alternativa correta é a letra (b): $r_{ef} = \alpha\frac{L}{W}$.
+* Questão 3
+  A alternativa correta é a (b), CMOS.
+* Questão 4
+  [[file:transistors.jpg]]
+  #+CAPTION: Dois transistores, o da direita tem resistência 8 vezes menor que o da direita
+  

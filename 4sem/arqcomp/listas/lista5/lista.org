@@ -1,0 +1,20 @@
+
+#+TITLE: Arquitetura de Computadores Lista 5
+#+AUTHOR: Lourenço Bogo - 11208005
+#+EMAIL: louhmmsb@usp.br
+#+LANGUAGE: pt-br
+
+#+LATEX_HEADER: \usepackage[hyperref, x11names]{xcolor}
+#+LATEX_HEADER: \hypersetup{colorlinks = true, urlcolor = SteelBlue4, linkcolor = black}
+#+LATEX_HEADER: \usepackage[AUTO]{babel}
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{verbose,a4paper,left=2cm,top=2cm,right=3cm,bottom=3cm}
+#+latex_class_options: [11pt]
+#+OPTIONS: toc:nil
+
+* Resposta
+21 mar := 0; sp := rshift(sp + sp); rd\\
+22 sp := rshift(sp + sp); rd\\
+23 sp := sp + mbr; if z then goto 25\\
+24 ac := 0; goto 0\\
+25 ac := mbr + 1; goto 0\\

@@ -1,0 +1,60 @@
+#+TITLE: Arquitetura de Computadores Lista 4
+#+AUTHOR: Lourenço Bogo - 11208005
+#+EMAIL: louhmmsb@usp.br
+#+LANGUAGE: pt-br
+
+#+LATEX_HEADER: \usepackage[hyperref, x11names]{xcolor}
+#+LATEX_HEADER: \hypersetup{colorlinks = true, urlcolor = SteelBlue4, linkcolor = black}
+#+LATEX_HEADER: \usepackage[AUTO]{babel}
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{verbose,a4paper,left=2cm,top=2cm,right=3cm,bottom=3cm}
+#+latex_class_options: [11pt]
+#+OPTIONS: toc:nil
+
+* Questão 1
+#+begin_export latex
+$x_{1}x_{2}x_{3}x_{4}x_{5}x_{6}x_{7}x_{7}x_{9}x_{10}x_{11} = x_{1}x_{2}1x_{4}100x_{8}101$
+#+end_export
+#+attr_latex: :align c | c c c c
+| 1 a 11 em binário | 8 | 4 | 2 | 1 |
+|-------------------+---+---+---+---|
+|                 1 | 0 | 0 | 0 | 1 |
+|                 2 | 0 | 0 | 1 | 0 |
+|                 3 | 0 | 0 | 1 | 1 |
+|                 4 | 0 | 1 | 0 | 0 |
+|                 5 | 0 | 1 | 0 | 1 |
+|                 6 | 0 | 1 | 1 | 0 |
+|                 7 | 0 | 1 | 1 | 1 |
+|                 8 | 1 | 0 | 0 | 0 |
+|                 9 | 1 | 0 | 0 | 1 |
+|                10 | 1 | 0 | 1 | 0 |
+|                11 | 1 | 0 | 1 | 1 |
+
+#+begin_export latex
+\noindent$x_{8} = 1 \oplus 0 \oplus 1 = 0$\newline
+$x_{4} = 1 \oplus 0 \oplus 0 = 1$\newline
+$x_{2} = 1 \oplus 0 \oplus 0 \oplus 0 \oplus 1 = 0$\newline
+$x_{1} = 1 \oplus 1 \oplus 0 \oplus 1 \oplus 1 = 0$\newline
+#+end_export
+Portanto, temos
+#+begin_export latex
+$00111000101$
+#+end_export
+
+* Questão 2
+Para detectar algum erro, vamos calcular os bits adicionais:\\
+#+begin_export latex
+$x_{1} \oplus x_{3} \oplus x_{5} \oplus x_{7} \oplus x_{9} \oplus x_{11} = 1$ \\
+$x_{2} \oplus x_{3} \oplus x_{6} \oplus x_{7} \oplus x_{10} \oplus x_{11} = 0$ \\
+$x_{4} \oplus x_{5} \oplus x_{6} \oplus x_{7} = 1$ \\
+$x_{8} \oplus x_{9} \oplus x_{10} \oplus x_{11} = 0$ \\
+#+end_export
+Temos paridade ímpar em dois casos
+As posições cujo bit é 1 são a 3, a 4, a 9 e a 11. Se tirarmos o `xor` de todas, temos:
+
+#+begin_export latex
+$0011 \oplus 0100 \oplus 1001 \oplus 1011 = 0101$
+#+end_export
+
+Isso significa quee o erro está na posição $0101$, ou seja, posição 5. Na mensagem que recebemos
+o Bit 5 está 0, logo, na mensagem correta o Bit 5 é um 1.
