@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nf}{fibs} \PYG{o+ow}{=} \PYG{l+m+mi}{0} \PYG{k+kt}{:} \PYG{l+m+mi}{1} \PYG{k+kt}{:} \PYG{n}{zipWith} \PYG{p}{(}\PYG{o}{+}\PYG{p}{)} \PYG{n}{fibs} \PYG{p}{(}\PYG{n}{tail} \PYG{n}{fibs}\PYG{p}{)}
+      \PYG{c+c1}{\PYGZhy{}\PYGZhy{} Código retirado de wiki.haskell.org/The\PYGZus{}Fibonacci\PYGZus{}sequence}
+\end{Verbatim}

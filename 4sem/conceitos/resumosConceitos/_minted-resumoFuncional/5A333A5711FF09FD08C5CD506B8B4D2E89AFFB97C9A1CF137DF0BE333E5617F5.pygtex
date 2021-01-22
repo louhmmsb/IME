@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{k}{define }\PYG{n+nv}{somaUm}
+  \PYG{p}{(}\PYG{n+nf}{somaDoisCurry} \PYG{l+m+mi}{1}\PYG{p}{))}
+\end{Verbatim}

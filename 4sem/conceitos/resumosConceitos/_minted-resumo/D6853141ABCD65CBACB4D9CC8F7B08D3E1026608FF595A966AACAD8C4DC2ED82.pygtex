@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{k}{define }\PYG{n+nv}{somaUm}
+  \PYG{p}{(}\PYG{n+nf}{somaDoisCurry} \PYG{l+m+mi}{1}\PYG{p}{))} \PYG{c+c1}{;; Retorna uma lambda de um argumento que soma 1 a esse argumento}
+\end{Verbatim}

@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{k}{define }\PYG{n+nv}{fatorial}
+  \PYG{p}{(}\PYG{k}{lambda }\PYG{p}{(}\PYG{n+nf}{x}\PYG{p}{)}
+    \PYG{p}{(}\PYG{k}{if }\PYG{p}{(}\PYG{n+nb}{equal? }\PYG{l+m+mi}{0} \PYG{n+nv}{x}\PYG{p}{)} \PYG{l+m+mi}{0} \PYG{p}{(}\PYG{n+nb}{* }\PYG{n+nv}{x} \PYG{p}{(}\PYG{n+nf}{fatorial} \PYG{p}{(}\PYG{n+nb}{\PYGZhy{} }\PYG{n+nv}{x} \PYG{l+m+mi}{1}\PYG{p}{))))))}
+\end{Verbatim}

@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{;; Função definida sem currying}
+\PYG{p}{(}\PYG{k}{define }\PYG{n+nv}{somaDois}
+  \PYG{p}{(}\PYG{k}{lambda }\PYG{p}{(}\PYG{n+nf}{x} \PYG{n+nv}{y}\PYG{p}{)}
+    \PYG{p}{(}\PYG{n+nb}{+ }\PYG{n+nv}{x} \PYG{n+nv}{y}\PYG{p}{)))}
+
+\PYG{c+c1}{;; Função definida com currying}
+\PYG{p}{(}\PYG{k}{define }\PYG{n+nv}{somaDoisCurry}
+  \PYG{p}{(}\PYG{k}{lambda }\PYG{p}{(}\PYG{n+nf}{x}\PYG{p}{)}
+    \PYG{p}{(}\PYG{k}{lambda }\PYG{p}{(}\PYG{n+nf}{y}\PYG{p}{)}
+      \PYG{p}{(}\PYG{n+nb}{+ }\PYG{n+nv}{x} \PYG{n+nv}{y}\PYG{p}{))))}
+\end{Verbatim}
